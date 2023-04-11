@@ -478,3 +478,5 @@ const jsonProducts = [
   },
 ];
 console.log(jsonProducts.length)
+
+module.exports = jsonProducts
