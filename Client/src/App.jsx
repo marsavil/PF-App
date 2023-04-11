@@ -1,9 +1,14 @@
 import "./app.scss";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   return (
     <div className="App">
-      <h1>app</h1>
+      {/* navbar  */}
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
     </div>
   );
 }
