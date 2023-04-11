@@ -528,3 +528,6 @@ const jsonProducts = [
     category: "Accesorios"
   },
 ];
+
+module.exports = jsonProducts
+
