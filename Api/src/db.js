@@ -7,10 +7,10 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
-//Conexion  a la Base de Datos
+//Conexion  a la Base de Datos 
 
 //Local
-const DB = new Sequelize(`postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`,{
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,{
     logging: false,
     native: false,
     define: {
@@ -19,7 +19,7 @@ const DB = new Sequelize(`postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}
 }})
 
 //Deploy
-// const DB = new Sequelize(DB_DEPLOY,{
+// const sequelize = new Sequelize(DB_DEPLOY,{
 //     logging: false,
 //     native: false,
 //     define: {
@@ -48,9 +48,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { User, Product, ShoppingCart,
-        Review, PersonalData, PurchaseOrder,
-        ShippingAddress, Question, Answer } = sequelize.models;
+const { User, Product, Review, UserData, PurchaseOrder, ShoppingCart } = sequelize.models;
 
 //Relaciones
 
@@ -61,26 +59,18 @@ const { User, Product, ShoppingCart,
 User.belongsToMany(Product, { through: 'Cart' })  */
 
 
+
+
 /* RELACIÓN ENTRE PRODUCTO Y REVIEW */
 Product.hasMany(Review);
 Review.belongsTo(Product);
 /* RELACIÓN ENTRE USUARIO Y REVIEW */
 User.hasMany(Review);
 Review.belongsTo(User);
-
-/* RELACIÓN ENTRE PRODUCTO Y QUESTION */
-Product.hasMany(Question);
-Question.belongsTo(Product);
-/* RELACIÓN ENTRE USUARIO Y QUESTION */
-User.hasMany(Question);
-Question.belongsTo(User);
-/* RELACIÓN ENTRE QUESTION Y ANSWER */
-Question.hasOne(Answer);
-Answer.belongsTo(Question);
-
 /* RELACIÓN ENTRE USUARIO Y PERSONALDATA(P/COMPLETAR EN EL PERFIL PARA ENVIO) */
-User.hasOne(PersonalData);
-PersonalData.belongsTo(User);
+User.hasOne(UserData);
+UserData.belongsTo(User);
+
 /* RELACIÓN ENTRE USUARIO Y PURCHASEORDER */
 User.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(User);
@@ -93,9 +83,6 @@ ShoppingCart.belongsTo(User);
 /* RELACIÓN ENTRE ORDEN Y CARRITO */
 PurchaseOrder.hasOne(ShoppingCart)
 ShoppingCart.belongsTo(PurchaseOrder);
-/* RELACIÓN ENTRE USUARIO Y SHIPPINGADDRESS */
-User.hasMany(ShippingAddress);
-ShippingAddress.belongsTo(User);
 /* RELACION ENTRE USUARIO Y PRODUCTO */ 
 User.belongsToMany(Product,{ through: 'Favourite' });
 Product.belongsToMany(User,{ through: 'Favourite' });

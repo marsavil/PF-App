@@ -34,7 +34,7 @@ server.use((req,res,next)=>{
 //   next();
 // });
 
-server.use('/', routes);
+//server.use('/', routes);
 server.use(express.json())
 
 // Error catching endware.
