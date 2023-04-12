@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "../../redux/actions/actions";
 import "./home.scss";
-import jsonProducts from "../../jsonProducts.js";
 
 import Navbar from "../Navbar/Navbar";
 import Carrousel from "../Carrousel/Carrousel";
