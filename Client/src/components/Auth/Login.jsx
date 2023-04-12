@@ -20,10 +20,13 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setDataLogin({
       ...dataLogin,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    const { errors } = validateLoginData({ ...dataLogin, [name]: value });
+    setErrors(errors);
   };
 
   return (
@@ -31,7 +34,13 @@ const Login = () => {
       <form className="authForm" onSubmit={handleSubmit}>
         <h1>Iniciar sesion</h1>
         <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
-        {errors.email ? <p className="error">{errors.email}</p> : <p className="error"></p>}
+        {errors.email ? (
+          <p className="error">{errors.email}</p>
+        ) : (
+          <p className="error">
+            <br />
+          </p>
+        )}
         <input
           type="password"
           name="password"
@@ -39,7 +48,13 @@ const Login = () => {
           onChange={handleChange}
           value={dataLogin.password}
         />
-        {errors.password ? <p className="error">{errors.password}</p> : <p className="error"></p>}
+        {errors.password ? (
+          <p className="error">{errors.password}</p>
+        ) : (
+          <p className="error">
+            <br />
+          </p>
+        )}
         <button type="submit">Ingresar</button>
         <p>
           ¿No tienes cuenta? <Link to="/register">Registrate</Link>
