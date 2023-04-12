@@ -1,3 +1,4 @@
+import axios from "axios";
 import { GET_USER, GET_ALL_PRODUCTS, ADD_TO_CART } from "./actions-types";
 
 export function getUser() {
@@ -15,7 +16,7 @@ export function getAllProducts() {
   return function (dispatch) {
     return axios
       .get("http://localhost:3001/products")
-      .then((res) => res.json())
+      .then((res) => res.data)
       .then((json) => {
         dispatch({ type: GET_ALL_PRODUCTS, payload: json });
       });
