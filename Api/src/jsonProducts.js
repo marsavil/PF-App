@@ -505,5 +505,13 @@ const jsonProducts = [
   },
 ];
 
+// const brands = new Set()
+
+// jsonProducts.forEach((p)=>{
+//   brands.add(p.brand) 
+// })
+// console.log(brands)
+// console.log(brands.size)
+
 module.exports = jsonProducts
 
