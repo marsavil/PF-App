@@ -91,7 +91,7 @@ module.exports = {
       }
       user.verified = true;
       await user.save();
-      return res.redirect("http://localhost:3000/home");
+      return res.redirect("http://localhost:5173/home");
       //return res.redirect("")
     } catch (error) {
       return res.json({
