@@ -25,7 +25,7 @@ const Carrousel = () => {
   return (
     <div className="carrousel">
       {randomImages.map((product) => (
-        <img key={product.id} src={product.image} alt={product.name} />
+        <img key={product.id} src={product.image} alt={product.name} width={500} height={400} />
       ))}
     </div>
   );
