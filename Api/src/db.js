@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, HasMany } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
@@ -48,46 +48,33 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { User, Product, Review, UserData, Category , PurchaseOrder, ShoppingCart } = sequelize.models;
+const { User, Product, Review, ShippingAddress, PurchaseOrder, ShoppingCart } = sequelize.models;
 
 //Relaciones
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-/* RELACIÓN ENTYRE PRODUCTO y USUARIO = CARRITO */
-/* Product.belongsToMany(User, { through: 'Cart' })
-User.belongsToMany(Product, { through: 'Cart' })  */
-
-
-
-
+/* RELACIÓN ENTRE USUARIO Y SHIPPING ADDRESS */
+User.hasMany(ShippingAddress)
+ShippingAddress.hasMany(User)
 /* RELACIÓN ENTRE PRODUCTO Y REVIEW */
 Product.hasMany(Review);
 Review.belongsTo(Product);
 /* RELACIÓN ENTRE USUARIO Y REVIEW */
 User.hasMany(Review);
-Review.belongsTo(User);
-/* RELACIÓN ENTRE USUARIO Y PERSONALDATA(P/COMPLETAR EN EL PERFIL PARA ENVIO) */
-User.hasOne(UserData);
-UserData.belongsTo(User);
-/* RELACION ENTRE PRODUCTO Y CATEGORIA */
-Product.hasMany(Category);
-Category.hasMany(Product);
-/* RELACIÓN ENTRE USUARIO Y PURCHASEORDER */
-User.hasMany(PurchaseOrder);
-PurchaseOrder.belongsTo(User);
-/* RELACIÓN ENTRE PRODUCTO Y CARRITO */
-Product.hasMany(ShoppingCart);
-ShoppingCart.belongsTo(Product);
+Review.belongsTo(User)
 /* RELACIÓN ENTRE USUARIO Y CARRITO */
-User.hasMany(ShoppingCart);
-ShoppingCart.belongsTo(User);
-/* RELACIÓN ENTRE ORDEN Y CARRITO */
+User.hasOne(ShoppingCart)
+ShoppingCart.hasMany(User)
+/* RELACIÓN ENTRE PRODUCTO Y CARRITO */
+Product.hasMany(ShoppingCart)
+ShoppingCart.belongsTo(Product)
+/* RELACIÓN ENTRE PURCHASE ORDER Y CARRITO */
 PurchaseOrder.hasOne(ShoppingCart)
-ShoppingCart.belongsTo(PurchaseOrder);
-/* RELACION ENTRE USUARIO Y PRODUCTO */ 
-User.belongsToMany(Product,{ through: 'Favourite' });
-Product.belongsToMany(User,{ through: 'Favourite' });
+ShoppingCart.belongsTo(PurchaseOrder)
+  
+
+
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

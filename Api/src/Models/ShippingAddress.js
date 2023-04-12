@@ -1,31 +1,13 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("UserData", {
+  sequelize.define("ShippingAddress", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    cellphone: {
-      type: DataTypes.STRING,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      //encriptar
-      type: DataTypes.STRING,
-    },
+    
     street: {
       type: DataTypes.STRING,
     },
