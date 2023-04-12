@@ -1,6 +1,7 @@
 import "./app.scss";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing/Landing";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       {/* navbar  */}
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   );
