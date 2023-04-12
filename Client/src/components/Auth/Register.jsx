@@ -24,6 +24,7 @@ const Register = () => {
       // Enviar datos del formulario
     }
   };
+
   const handleChange = (e) => {
     setDataRegister({
       ...dataRegister,

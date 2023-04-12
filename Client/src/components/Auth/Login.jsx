@@ -10,13 +10,6 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    setDataLogin({
-      ...dataLogin,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, isValid } = validateLoginData(dataLogin);
@@ -24,6 +17,13 @@ const Login = () => {
     if (isValid) {
       // Enviar datos del formulario
     }
+  };
+
+  const handleChange = (e) => {
+    setDataLogin({
+      ...dataLogin,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
