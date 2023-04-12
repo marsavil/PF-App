@@ -1,30 +1,35 @@
 :root {
   --bg-color: #f2f2f2;
-  --secondary-color: #3d3d3d;
+  --light-color: #fcfcfc;
+  --dark-color: #3d3d3d;
+  --midnight-blue-matte: #11114e;
+  --steel-blue-matte: #4682b4;
+  --sky-blue-matte: #98f5ff;
+  --slate-gray-matte: #444444;
+  --silver-matte: #c0c0c0;
+  --storm-gray-matte: #808080;
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
   padding: 0;
   margin: 0;
   background-color: var(--bg-color);
 }
 
 .button {
-  background-color: #f2f2f2;
-  border: 1px solid #000;
+  background-color: var(--light-color);
+  border: 1px solid var(--dark-color);
   border-radius: 5px;
   padding: 10px 20px;
   margin: 10px;
   font-size: 15px;
   font-weight: bold;
-  color: #000;
+  color: var(--dark-color);
   transition: all 0.5s ease;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--dark-color);
   color: var(--bg-color);
 }

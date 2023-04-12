@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: 3fr 2fr;
   height: 100vh;
-  color: #000;
+
+  color: var(--dark-color);
   letter-spacing: 2px;
 
   button {

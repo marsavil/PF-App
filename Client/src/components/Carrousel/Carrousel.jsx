@@ -3,7 +3,7 @@ import './carrousel.scss';
 
 const Carrousel = () => {
   return (
-    <div>
+    <div className='carrousel'>
       <p>Carrusel</p>
     </div>
   );
