@@ -12,7 +12,9 @@ const Navbar = () => {
         <Link to="/home">Inicio</Link>
         <Link to="/home">Productos</Link>
         <Link to="/contacto">Contacto</Link>
-        <Link to="/contacto" className="ingresar">Ingresar</Link>
+        <Link to="/login" className="ingresar">
+          Ingresar
+        </Link>
         <Cart />
         <DarkMode />
       </div>
