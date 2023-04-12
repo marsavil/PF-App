@@ -308,6 +308,7 @@ const jsonProducts = [
     description: "Tamaño del papel:	A4\nTipo de papel:	Multifunción\nColor:	Blanco\nCantidad de hojas:	500\nGramaje:	75 g\nFormato de venta:	Pack\nUnidades por pack:	10",
     price: 17999,
     stock: 500,
+    category: "Insumos"
   },
   {
     id: "MLA1362839743",
