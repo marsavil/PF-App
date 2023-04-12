@@ -1,39 +1,36 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("Product", {
+  sequelize.define("ShippingAddress", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    
+    street: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    brand: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    price: {
+    number: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    stock: {
+    postalCode: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
-    category: {
+    apartment: {
       type: DataTypes.STRING,
-      allowNull:false
-    }
+    },
+    floor: {
+      type: DataTypes.INTEGER,
+    },
+    city: {
+      type: DataTypes.STRING,
+    },
+    state: {
+      type: DataTypes.STRING,
+    },
+    country: {
+      type: DataTypes.STRING,
+    },
   });
 };

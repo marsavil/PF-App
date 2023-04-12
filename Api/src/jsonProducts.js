@@ -5,8 +5,7 @@ const jsonProducts = [
     brand: "Kindle",
     image: "http://http2.mlstatic.com/D_834757-MLA52284783122_112022-O.webp",
     price: 47999,
-    description:
-      "Con este E-reader Kindle, podrás almacenar los libros que más te gustan y llevarlos a todos lados.A diferencia de otros dispositivos digitales, los libros electrónicos tienen una tinta electrónica que nos permite leer con una calidad similar a la del papel, sin demasiada fatiga visual. Además, este tipo de pantalla consume menos energía, por lo tanto, la batería puede durar días. ¡Volá con tu imaginación donde sea que estés! Cuida tu vista. Este E-reader cuenta luz de lectura que se distribuye por la pantalla para no impactar directamente en tu vista. Esto te permitirá leer durante largos períodos de tiempo sin sentir cansancio en tus ojo. Accesibilidad y comodidad. ¿Te gusta hacer actividades mientras escuchás un libro? Ahora es posible, ya que este dispositivo es compatible con audiolibros. Esto no solo brinda comodidad para quienes prefieren escuchar los textos, sino que garantiza una mayor accesibilidad para personas ciegas o con disminución visual.",
+    description: "Con este E-reader Kindle, podrás almacenar los libros que más te gustan y llevarlos a todos lados.A diferencia de otros dispositivos digitales, los libros electrónicos tienen una tinta electrónica que nos permite leer con una calidad similar a la del papel, sin demasiada fatiga visual. Además, este tipo de pantalla consume menos energía, por lo tanto, la batería puede durar días. ¡Volá con tu imaginación donde sea que estés! Cuida tu vista. Este E-reader cuenta luz de lectura que se distribuye por la pantalla para no impactar directamente en tu vista. Esto te permitirá leer durante largos períodos de tiempo sin sentir cansancio en tus ojo. Accesibilidad y comodidad. ¿Te gusta hacer actividades mientras escuchás un libro? Ahora es posible, ya que este dispositivo es compatible con audiolibros. Esto no solo brinda comodidad para quienes prefieren escuchar los textos, sino que garantiza una mayor accesibilidad para personas ciegas o con disminución visual.",
     stock: 10,
   },
   {
@@ -15,8 +14,7 @@ const jsonProducts = [
     brand: "Apple",
     image: "http://http2.mlstatic.com/D_801112-MLA46516512347_062021-O.webp",
     price: 408000,
-    description:
-      "La notebook más delgada y ligera de Apple viene con los superpoderes del chip M1. Termina todos tus proyectos mucho más rápido con el CPU de 8 núcleos y disfruta como nunca antes de apps y juegos con gráficos avanzados gracias al GPU de hasta 8 núcleos. Además, el Neural Engine de 16 núcleos se encarga de acelerar todos los procesos de aprendizaje automático. Todo en un diseño silencioso sin ventilador que te ofrece la mayor duración de batería en una MacBook Air: hasta 18 horas. (1) Portátil como siempre, más poderosa que nunca.\nAvisos Legales\nNo todos los recursos y configuraciones están disponibles en todos los países.\n(1) La duración de la batería varía según el uso y la configuración.\n(2) Comparado con la generación anterior.\n(3) El tamaño de la pantalla se mide en diagonal.",
+    description: "La notebook más delgada y ligera de Apple viene con los superpoderes del chip M1. Termina todos tus proyectos mucho más rápido con el CPU de 8 núcleos y disfruta como nunca antes de apps y juegos con gráficos avanzados gracias al GPU de hasta 8 núcleos. Además, el Neural Engine de 16 núcleos se encarga de acelerar todos los procesos de aprendizaje automático. Todo en un diseño silencioso sin ventilador que te ofrece la mayor duración de batería en una MacBook Air: hasta 18 horas. (1) Portátil como siempre, más poderosa que nunca.\nAvisos Legales\nNo todos los recursos y configuraciones están disponibles en todos los países.\n(1) La duración de la batería varía según el uso y la configuración.\n(2) Comparado con la generación anterior.\n(3) El tamaño de la pantalla se mide en diagonal.",
     stock: 8,
   },
   {
@@ -25,8 +23,7 @@ const jsonProducts = [
     brand: "Hewlett Packard",
     price: 373999,
     image: "http://http2.mlstatic.com/D_865824-MLA50416885433_062022-O.webp",
-    description:
-      "La notebook HP 15-ef2513la es una solución tanto para trabajar y estudiar como para entretenerte. Al ser portátil, el escritorio dejará de ser tu único espacio de uso para abrirte las puertas a otros ambientes ya sea en tu casa o en la oficina.\nPantalla con gran impacto visual\nSu pantalla de 15.6 y 1366x768 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.\nEficiencia a tu alcance.\nSu procesador AMD Ryzen 5 de 6 núcleos, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar.\nPotente disco sólido\nEl disco sólido de 256 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas.\nUn procesador exclusivo para los gráficos\nSu placa de video AMD Radeon RX Vega 7 convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.\nUna batería que acompaña tu jornada\nLa batería de este equipo tiene una autonomía de alrededor de 9.45 horas. La duración varía según el uso, la configuración y otros factores, pero vas a poder usarla durante varias horas sin depender de los enchufes.",
+    description: "La notebook HP 15-ef2513la es una solución tanto para trabajar y estudiar como para entretenerte. Al ser portátil, el escritorio dejará de ser tu único espacio de uso para abrirte las puertas a otros ambientes ya sea en tu casa o en la oficina.\nPantalla con gran impacto visual\nSu pantalla de 15.6 y 1366x768 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.\nEficiencia a tu alcance.\nSu procesador AMD Ryzen 5 de 6 núcleos, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar.\nPotente disco sólido\nEl disco sólido de 256 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas.\nUn procesador exclusivo para los gráficos\nSu placa de video AMD Radeon RX Vega 7 convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.\nUna batería que acompaña tu jornada\nLa batería de este equipo tiene una autonomía de alrededor de 9.45 horas. La duración varía según el uso, la configuración y otros factores, pero vas a poder usarla durante varias horas sin depender de los enchufes.",
     stock: 7,
   },
   {
@@ -35,8 +32,7 @@ const jsonProducts = [
     brand: "Intel",
     image: "http://http2.mlstatic.com/D_851749-MLA31077072812_062019-O.webp",
     price: 79999,
-    description:
-      "PC ARMADA I3 3200 MHZ \n8 GIGAS ddr3 \nDISCO SOLIDO Ssd 240 \nWI FI \nGAB ATX 400W 450W \nSISTEMA OPERATIVO LISTO PARA USAR \nENTREGAMOS CPU LISTA PARA USAR \n6 MESES DE GARANTIA \nENTREGA INMEDIATA",
+    description: "PC ARMADA I3 3200 MHZ \n8 GIGAS ddr3 \nDISCO SOLIDO Ssd 240 \nWI FI \nGAB ATX 400W 450W \nSISTEMA OPERATIVO LISTO PARA USAR \nENTREGAMOS CPU LISTA PARA USAR \n6 MESES DE GARANTIA \nENTREGA INMEDIATA",
     stock: 5,
   },
   {
@@ -54,8 +50,7 @@ const jsonProducts = [
     brand: "Nowtec",
     image: "http://http2.mlstatic.com/D_878149-MLA48418583813_122021-O.webp",
     price: 3190,
-    description:
-      "NUEVO MODELO CON ESTETICA TOTALMENTE RENOVADA!\n• SOMOS FACTORY SHOP •\nIncluye Soporte para celular con porta retrato GRATIS DE REGALO!!! (El color del soporte de celular siempre es negro, sin excepción, no incluye foto)\n- IMPORTANTE : NO ES IMPRESION 3D. calidad superior, 100% macizo, inyectado a alta presión. Resiste mas peso que cualquier soporte del mercado, incluso los de aluminio.\nCaracterísticas del producto:\n- Marca NOWTEC ORIGINAL.- Es ideal para notebook / Macbook pesadas ya que cuenta con refuerzos anti flexión.\n- Material: Plástico MUY RESISTENTE (REFORZADO), con goma antideslizante y pernos de Poliamida.\n- Medidas: 27x9cm cerrado, 23cm de ancho abierto al máximo\n- 7 regulaciones en altura (12cm - 13.5cm - 14.5cm - 15.5cm - 16.5cm - 17cm - 17.5cm)\n- IMPORTANTE:\nEs compatible con el 99% de las notebooks disponibles en el mercado. Algunas de sus 7 posiciones se adaptan mejor a cierto tipo de notebooks dependiendo el peso, la apertura y forma. Se recomienda usar teclado externo para mejorar aun mas la postura, de todos modos se puede usar solo también.",
+    description: "NUEVO MODELO CON ESTETICA TOTALMENTE RENOVADA!\n• SOMOS FACTORY SHOP •\nIncluye Soporte para celular con porta retrato GRATIS DE REGALO!!! (El color del soporte de celular siempre es negro, sin excepción, no incluye foto)\n- IMPORTANTE : NO ES IMPRESION 3D. calidad superior, 100% macizo, inyectado a alta presión. Resiste mas peso que cualquier soporte del mercado, incluso los de aluminio.\nCaracterísticas del producto:\n- Marca NOWTEC ORIGINAL.- Es ideal para notebook / Macbook pesadas ya que cuenta con refuerzos anti flexión.\n- Material: Plástico MUY RESISTENTE (REFORZADO), con goma antideslizante y pernos de Poliamida.\n- Medidas: 27x9cm cerrado, 23cm de ancho abierto al máximo\n- 7 regulaciones en altura (12cm - 13.5cm - 14.5cm - 15.5cm - 16.5cm - 17cm - 17.5cm)\n- IMPORTANTE:\nEs compatible con el 99% de las notebooks disponibles en el mercado. Algunas de sus 7 posiciones se adaptan mejor a cierto tipo de notebooks dependiendo el peso, la apertura y forma. Se recomienda usar teclado externo para mejorar aun mas la postura, de todos modos se puede usar solo también.",
     stock: 500,
   },
   {
@@ -64,8 +59,7 @@ const jsonProducts = [
     brand: "Kelyx",
     image: "http://http2.mlstatic.com/D_624320-MLA51838855951_102022-O.webp",
     price: 64900,
-    description:
-      "Pantalla con gran impacto visual\nSu pantalla LED de 14' y 1920 x 1080 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.\n\nEficiencia a tu alcance\nCon su procesador Intel Celeron de 2 núcleos, lograrás el desempeño que necesitás para navegar y trabajar. Podrás usar los programas más esenciales, llevar a cabo tus tareas y organizar tu vida diaria.\n\nUn procesador exclusivo para los gráficos\nSu placa de video Intel Graphics convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todas tus tareas cotidianas que impliquen procesamiento gráfico.",
+    description: "Pantalla con gran impacto visual\nSu pantalla LED de 14' y 1920 x 1080 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.\n\nEficiencia a tu alcance\nCon su procesador Intel Celeron de 2 núcleos, lograrás el desempeño que necesitás para navegar y trabajar. Podrás usar los programas más esenciales, llevar a cabo tus tareas y organizar tu vida diaria.\n\nUn procesador exclusivo para los gráficos\nSu placa de video Intel Graphics convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todas tus tareas cotidianas que impliquen procesamiento gráfico.",
     stock: 50,
   },
   {
@@ -74,8 +68,7 @@ const jsonProducts = [
     brand: "Intel",
     image: "http://http2.mlstatic.com/D_812729-MLA53117714657_012023-O.webp",
     price: 99999,
-    description:
-      "PC ARMADA I5 INTEL\n8 GIGAS DDR 3\nDISCO SOLIDO 480\nGAB ATX FUENTE 500W\nTECLADO Y MOUSE\nSISTEMA OPERATIVO INSTALADO\nLISTA PARA USAR\n6 MESES DE GARANTIA ESCRITA",
+    description: "PC ARMADA I5 INTEL\n8 GIGAS DDR 3\nDISCO SOLIDO 480\nGAB ATX FUENTE 500W\nTECLADO Y MOUSE\nSISTEMA OPERATIVO INSTALADO\nLISTA PARA USAR\n6 MESES DE GARANTIA ESCRITA",
     stock: 3,
   },
   {
@@ -93,15 +86,14 @@ const jsonProducts = [
     brand: "Dell",
     image: "http://http2.mlstatic.com/D_805951-MLA50865156506_072022-O.webp",
     price: 264899,
-    description:
-      "Los equipos Dell se destacan por ofrecer soluciones reales para cada una de las necesidades. Ya sea para conectarte, entretenerte, trabajar o colaborar de manera online, podrás hacerlo de forma segura desde cualquier lugar y en cualquier momento.\n\nPantalla con gran impacto visual\nSu pantalla LCD de 15.5' y 1366x768 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.\n\nEficiencia a tu alcance\nSu procesador AMD Ryzen 5 de 4 núcleos, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar.\n\nPotente disco sólido\nEl disco sólido de 256 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas.\n\nUn procesador exclusivo para los gráficos\nSu placa de video AMD Radeon RX Vega 8 (Ryzen 2000/3000) convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.",
+    description: "Los equipos Dell se destacan por ofrecer soluciones reales para cada una de las necesidades. Ya sea para conectarte, entretenerte, trabajar o colaborar de manera online, podrás hacerlo de forma segura desde cualquier lugar y en cualquier momento.\n\nPantalla con gran impacto visual\nSu pantalla LCD de 15.5' y 1366x768 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.\n\nEficiencia a tu alcance\nSu procesador AMD Ryzen 5 de 4 núcleos, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar.\n\nPotente disco sólido\nEl disco sólido de 256 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas.\n\nUn procesador exclusivo para los gráficos\nSu placa de video AMD Radeon RX Vega 8 (Ryzen 2000/3000) convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.",
     stock: 4,
   },
   {
     id: "MLA1119471975",
     name: "Mouse Gamer Inalámbrico Recargable Logitech G Series Lightspeed G502 Negro",
     brand: "Logitech",
-    thumbnail:
+    image:
       "http://http2.mlstatic.com/D_943772-MLA40076329951_122019-O.webp",
     price: 38979,
     description: "Logitech diseña productos y experiencias que ocupan un lugar cotidiano en la vida de las personas, poniendo foco en la innovación y la calidad. Su objetivo es crear momentos verdaderamente únicos y significativos para sus usuarios. Los mouses Logitech se adaptan a la forma de tu mano para proporcionarte horas de comodidad. Sin necesidad de mover el brazo para deslizar el cursor, tu mano se fatigará menos. Son ideales para cualquier espacio de trabajo y quienes tienen la mesa llena de diversos objetos.\n\nLos dispositivos Logitech cuentan con un diseño ergonómico pensado para tu confort. Lightspeed es una tecnología ultrarrápida y confiable con desempeño probado en competencias por profesionales. No vuelvas a preocuparte por la duración de la batería. Simplemente, el mouse se mantiene cargado.\n   \nLa funcionalidad al alcance de tu mano\nEl sistema de detección de movimiento óptico te permitirá mover el cursor de una manera más precisa y sensible que en los sistemas tradicionales.",
@@ -113,8 +105,7 @@ const jsonProducts = [
     brand: "Intel",
     image: "http://http2.mlstatic.com/D_691246-MLA49643833761_042022-O.webp",
     price: 94999,
-    description:
-      "PC ARMADA I5 INTEL\n8 GIGAS DDR 3\nSSD 240\nGAB ATX FUENTE 550W\nSISTEMA OPERATIVO INSTALADO\nLISTA PARA USAR\n\n6 MESES DE GARANTIA ESCRITA",
+    description: "PC ARMADA I5 INTEL\n8 GIGAS DDR 3\nSSD 240\nGAB ATX FUENTE 550W\nSISTEMA OPERATIVO INSTALADO\nLISTA PARA USAR\n\n6 MESES DE GARANTIA ESCRITA",
     stock: 3,
   },
   {
@@ -123,8 +114,7 @@ const jsonProducts = [
     brand: "Dell",
     image: "http://http2.mlstatic.com/D_863339-MLA51341842000_082022-O.webp",
     price: 24500,
-    description:
-      "PC DELL OPTIPLEX DUAL CORE REACONDICIONADO\n\n- PC DELL DUAL CORE IDEAL PARA OFICINAS Y HOGARES\n-Equipos Reaconcidionados 100% Funcionales listos para usar\n- Procesador Dual Core\n- 2GB Ram.\n- Disco 80GB.\n- Sistema operativo y programas instalados, lista para usar.",
+    description: "PC DELL OPTIPLEX DUAL CORE REACONDICIONADO\n\n- PC DELL DUAL CORE IDEAL PARA OFICINAS Y HOGARES\n-Equipos Reaconcidionados 100% Funcionales listos para usar\n- Procesador Dual Core\n- 2GB Ram.\n- Disco 80GB.\n- Sistema operativo y programas instalados, lista para usar.",
     stock: 2,
   },
   {
@@ -133,8 +123,7 @@ const jsonProducts = [
     brand: "Kingston",
     image: "http://http2.mlstatic.com/D_667453-MLA50418240420_062022-O.webp",
     price: 24600,
-    description:
-      "Si tu computadora funciona con lentitud, si un programa no responde o no se carga, lo más probable es que se trate de un problema de memoria. Estos son posibles indicios de un rendimiento defectuoso en el día a día de tus tareas. Por ello, contar con una memoria Kingston -sinónimo de trayectoria y excelencia- mejorará la productividad de tu equipo: las páginas se cargarán más rápido y la ejecución de nuevas aplicaciones resultará más ágil y simple.\nPotenciá tu PC \nCon su tecnología DDR4, mejorará el desempeño de tu equipo, ya que aumentará la fluidez y la velocidad en la transferencia de datos ¡Optimizá al máximo el rendimiento de tu computadora y reducí el consumo energético!\nTu equipo como nuevo \nEsta memoria es ideal para tu Computadoras de escritorio. ¡Instalala y comenzá a disfrutar de un óptimo funcionamiento!",
+    description: "Si tu computadora funciona con lentitud, si un programa no responde o no se carga, lo más probable es que se trate de un problema de memoria. Estos son posibles indicios de un rendimiento defectuoso en el día a día de tus tareas. Por ello, contar con una memoria Kingston -sinónimo de trayectoria y excelencia- mejorará la productividad de tu equipo: las páginas se cargarán más rápido y la ejecución de nuevas aplicaciones resultará más ágil y simple.\nPotenciá tu PC \nCon su tecnología DDR4, mejorará el desempeño de tu equipo, ya que aumentará la fluidez y la velocidad en la transferencia de datos ¡Optimizá al máximo el rendimiento de tu computadora y reducí el consumo energético!\nTu equipo como nuevo \nEsta memoria es ideal para tu Computadoras de escritorio. ¡Instalala y comenzá a disfrutar de un óptimo funcionamiento!",
     stock: 15,
   },
   {
@@ -143,8 +132,7 @@ const jsonProducts = [
     brand: "Lenovo",
     image: "http://http2.mlstatic.com/D_787180-MLA54518190876_032023-O.webp",
     price: 158899,
-    description:
-      "La notebook LENOVO 82QC003VUS es una solución tanto para trabajar y estudiar como para entretenerte. Al ser portátil, el escritorio dejará de ser tu único espacio de uso para abrirte las puertas a otros ambientes ya sea en tu casa o en la oficina.\n\nEficiencia a tu alcance\nSu procesador Intel Core i3 de 12.ª generación, está pensado para aquellas personas generadoras y consumidoras de contenidos. Con esta unidad central, la máquina llevará a cabo varios procesos de forma simultánea, desde edición de videos hasta retoques fotográficos con programas profesionales.\n    \n    Potente disco sólido\nEl disco sólido de 128 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas.\n\nUna batería que acompaña tu jornada\nLa duración varía según el uso, la configuración y otros factores, pero vas a poder usarla durante varias horas sin depender de los enchufes.",
+    description: "La notebook LENOVO 82QC003VUS es una solución tanto para trabajar y estudiar como para entretenerte. Al ser portátil, el escritorio dejará de ser tu único espacio de uso para abrirte las puertas a otros ambientes ya sea en tu casa o en la oficina.\n\nEficiencia a tu alcance\nSu procesador Intel Core i3 de 12.ª generación, está pensado para aquellas personas generadoras y consumidoras de contenidos. Con esta unidad central, la máquina llevará a cabo varios procesos de forma simultánea, desde edición de videos hasta retoques fotográficos con programas profesionales.\n    \n    Potente disco sólido\nEl disco sólido de 128 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas.\n\nUna batería que acompaña tu jornada\nLa duración varía según el uso, la configuración y otros factores, pero vas a poder usarla durante varias horas sin depender de los enchufes.",
     stock: 5,
   },
   {
@@ -153,8 +141,7 @@ const jsonProducts = [
     brand: "Kingston",
     image: "http://http2.mlstatic.com/D_751939-MLA46221843872_052021-O.webp",
     price: 15601,
-    description:
-      "Considerado un dispositivo de alto rendimiento, la unidad en estado sólido A400 de Kingston está diseñada para las personas más exigentes. Mejora de forma notable la capacidad de respuesta de su sistema, ya que alcanza velocidades de lectura/escritura de hasta 500MB/seg y 450MB/seg. Por ende, es 10 veces más rápido que un disco duro tradicional.\nAl estar compuesta por una memoria flash es silenciosa y posee pocas probabilidades de tener fallas.\n\nIrrompible\nAdemás de su funcionalidad y soporte, la importancia de los discos de almacenamiento también radica en su calidad y resistencia. Despreocupate y disfrutá de la durabilidad de este producto debido a su capacidad de absorber y resistir fuertes impactos.",
+    description: "Considerado un dispositivo de alto rendimiento, la unidad en estado sólido A400 de Kingston está diseñada para las personas más exigentes. Mejora de forma notable la capacidad de respuesta de su sistema, ya que alcanza velocidades de lectura/escritura de hasta 500MB/seg y 450MB/seg. Por ende, es 10 veces más rápido que un disco duro tradicional.\nAl estar compuesta por una memoria flash es silenciosa y posee pocas probabilidades de tener fallas.\n\nIrrompible\nAdemás de su funcionalidad y soporte, la importancia de los discos de almacenamiento también radica en su calidad y resistencia. Despreocupate y disfrutá de la durabilidad de este producto debido a su capacidad de absorber y resistir fuertes impactos.",
     stock: 500,
   },
   {
@@ -163,19 +150,17 @@ const jsonProducts = [
     brand: "Intel",
     image: "http://http2.mlstatic.com/D_947590-MLA49891440341_052022-O.webp",
     price: 71999,
-    description:
-      "PC ARMADA I3\n8 GIGAS ddr3\nSSD 240\nREG DE DVD\nGAB ATX 550w OULET o USADO ACTUAL\nSISTEMA OPERATIVO\nLISTO PARA USAR\nW10 OFFICE ANTIVIRUS\n\nENTREGAMOS CPU LISTA PARA USAR\n\n6 MESES DE GARANTIA\nENTREGA INMEDIATA",
+    description: "PC ARMADA I3\n8 GIGAS ddr3\nSSD 240\nREG DE DVD\nGAB ATX 550w OULET o USADO ACTUAL\nSISTEMA OPERATIVO\nLISTO PARA USAR\nW10 OFFICE ANTIVIRUS\n\nENTREGAMOS CPU LISTA PARA USAR\n\n6 MESES DE GARANTIA\nENTREGA INMEDIATA",
     stock: 2,
   },
   {
     id: "MLA1106075045",
     name: "Apple Macbook Air (13 Pulgadas, 2020, Chip M1, 256 Gb De Ssd, 8 Gb De Ram) - Plata",
     brand: "Apple",
-    thumbnail:
+    image:
       "http://http2.mlstatic.com/D_648428-MLA46516517286_062021-O.webp",
     price: 404000,
-    description:
-      "La notebook más delgada y ligera de Apple viene con los superpoderes del chip M1. Termina todos tus proyectos mucho más rápido con el CPU de 8 núcleos y disfruta como nunca antes de apps y juegos con gráficos avanzados gracias al GPU de hasta 8 núcleos. Además, el Neural Engine de 16 núcleos se encarga de acelerar todos los procesos de aprendizaje automático. Todo en un diseño silencioso sin ventilador que te ofrece la mayor duración de batería en una MacBook Air: hasta 18 horas. (1) Portátil como siempre, más poderosa que nunca.\n\n\nAvisos Legales\nNo todos los recursos y configuraciones están disponibles en todos los países.\n(1) La duración de la batería varía según el uso y la configuración.\n(2) Comparado con la generación anterior.\n(3) El tamaño de la pantalla se mide en diagonal.",
+    description: "La notebook más delgada y ligera de Apple viene con los superpoderes del chip M1. Termina todos tus proyectos mucho más rápido con el CPU de 8 núcleos y disfruta como nunca antes de apps y juegos con gráficos avanzados gracias al GPU de hasta 8 núcleos. Además, el Neural Engine de 16 núcleos se encarga de acelerar todos los procesos de aprendizaje automático. Todo en un diseño silencioso sin ventilador que te ofrece la mayor duración de batería en una MacBook Air: hasta 18 horas. (1) Portátil como siempre, más poderosa que nunca.\n\n\nAvisos Legales\nNo todos los recursos y configuraciones están disponibles en todos los países.\n(1) La duración de la batería varía según el uso y la configuración.\n(2) Comparado con la generación anterior.\n(3) El tamaño de la pantalla se mide en diagonal.",
     stock: 1,
   },
   {
@@ -193,8 +178,7 @@ const jsonProducts = [
     brand: "Lyonn",
     image: "http://http2.mlstatic.com/D_954479-MLA44446945155_122020-O.webp",
     price: 7871,
-    description:
-      "Con este producto de Lyonn vas a poder mantener tus equipos electrónicos a salvo cuando ocurran variaciones en la línea eléctrica. Gracias a este aparato, la protección contra daños o pérdida de información estará garantizada.\n\nSi buscás equipos de alta calidad no dudes en elegir Lyonn, empresa argentina de amplia trayectoria. Son especialistas en brindar soluciones para equipamientos trifásicos y monofásicos, tanto en UPS como estabilizadores de tensión.\n\nConexión segura\nCon este estabilizador vas a poder mantener tus equipos electrónicos a salvo. Su función principal consiste en corregir las variaciones de voltaje existentes en la línea eléctrica. Gracias a este aparato, la protección contra daños o pérdida de información estará garantizada.\n\nTecnología LED\nAl tener indicador LED podrás visualizar la funcionalidad del aparato como así también observar alertas, procesos y tareas que se llevan a cabo en el mismo.",
+    description: "Con este producto de Lyonn vas a poder mantener tus equipos electrónicos a salvo cuando ocurran variaciones en la línea eléctrica. Gracias a este aparato, la protección contra daños o pérdida de información estará garantizada.\n\nSi buscás equipos de alta calidad no dudes en elegir Lyonn, empresa argentina de amplia trayectoria. Son especialistas en brindar soluciones para equipamientos trifásicos y monofásicos, tanto en UPS como estabilizadores de tensión.\n\nConexión segura\nCon este estabilizador vas a poder mantener tus equipos electrónicos a salvo. Su función principal consiste en corregir las variaciones de voltaje existentes en la línea eléctrica. Gracias a este aparato, la protección contra daños o pérdida de información estará garantizada.\n\nTecnología LED\nAl tener indicador LED podrás visualizar la funcionalidad del aparato como así también observar alertas, procesos y tareas que se llevan a cabo en el mismo.",
     stock: 50,
   },
   {
@@ -221,8 +205,7 @@ const jsonProducts = [
     brand: "Samsung",
     image: "http://http2.mlstatic.com/D_973781-MLA48131216539_112021-O.webp",
     price: 65499,
-    description:
-      "Samsung está fielmente comprometida en brindar productos de calidad y que contribuyan a crear un mejor futuro para las personas. Como empresa líder en la industria tecnológica uno de sus objetivos principales es desarrollar avanzadas e innovadoras soluciones. Es por ello que con este monitor tendrás y disfrutarás de una gran experiencia visual en todo momento.\n\nUn monitor a tu medida\nCon tu pantalla LED no solo ahorrás energía, ya que su consumo es bajo, sino que vas a ver colores nítidos y definidos en tus películas o series favoritas.\n\nUna experiencia visual de calidad\nEste monitor de 24' te va a resultar cómodo para estudiar, trabajar o ver una película en tus tiempos de ocio. Asimismo, su resolución de 1920 x 1080 te permite disfrutar de momentos únicos gracias a una imagen de alta fidelidad. Su tiempo de respuesta de 5 ms lo hace ideal para gamers y cinéfilos porque es capaz de mostrar imágenes en movimiento sin halos o bordes borrosos.",
+    description: "Samsung está fielmente comprometida en brindar productos de calidad y que contribuyan a crear un mejor futuro para las personas. Como empresa líder en la industria tecnológica uno de sus objetivos principales es desarrollar avanzadas e innovadoras soluciones. Es por ello que con este monitor tendrás y disfrutarás de una gran experiencia visual en todo momento.\n\nUn monitor a tu medida\nCon tu pantalla LED no solo ahorrás energía, ya que su consumo es bajo, sino que vas a ver colores nítidos y definidos en tus películas o series favoritas.\n\nUna experiencia visual de calidad\nEste monitor de 24' te va a resultar cómodo para estudiar, trabajar o ver una película en tus tiempos de ocio. Asimismo, su resolución de 1920 x 1080 te permite disfrutar de momentos únicos gracias a una imagen de alta fidelidad. Su tiempo de respuesta de 5 ms lo hace ideal para gamers y cinéfilos porque es capaz de mostrar imágenes en movimiento sin halos o bordes borrosos.",
     stock: 250,
   },
   {
@@ -231,8 +214,7 @@ const jsonProducts = [
     brand: "Double Motor",
     image: "http://http2.mlstatic.com/D_962433-MLA49908975232_052022-O.webp",
     price: 7900,
-    description:
-      "Control preciso\nEste mando combina funciones revolucionarias mientras conserva precisión, comodidad y exactitud en cada movimiento. Gracias a su ergonomía especialmente pensada para la posición de tu mano, podés pasar horas jugando con total confort.\n \nMayor comodidad y realismo\nTe permite jugar sin necesidad de que haya cables de por medio. Está pensado no solamente para controlar mejor tus videojuegos, sino también para aumentar su realismo y experiencia.\n\nActivá el Bluetooth\nCuenta con conexión Bluetooth de alta tecnología para usarlo en cualquier ordenador o dispositivo; ya no necesitarás de aplicaciones de terceros ni cable USB. Además, posee gran capacidad antiinterferente, fácil manejo y señal de conexión estable.",
+    description: "Control preciso\nEste mando combina funciones revolucionarias mientras conserva precisión, comodidad y exactitud en cada movimiento. Gracias a su ergonomía especialmente pensada para la posición de tu mano, podés pasar horas jugando con total confort.\n \nMayor comodidad y realismo\nTe permite jugar sin necesidad de que haya cables de por medio. Está pensado no solamente para controlar mejor tus videojuegos, sino también para aumentar su realismo y experiencia.\n\nActivá el Bluetooth\nCuenta con conexión Bluetooth de alta tecnología para usarlo en cualquier ordenador o dispositivo; ya no necesitarás de aplicaciones de terceros ni cable USB. Además, posee gran capacidad antiinterferente, fácil manejo y señal de conexión estable.",
     stock: 45,
   },
   {
@@ -250,8 +232,7 @@ const jsonProducts = [
     brand: "AMD",
     image: "http://http2.mlstatic.com/D_884368-MLA53087339003_122022-O.webp",
     price: 205000,
-    description:
-      "- MICRO PROCESADOR: AMD Ryzen 5 5600G 6/12 NUCLEOS 4.4GHZ\n- PLACA DE VIDEO INCORPORADA RADEON VEGA RX\n- MOTHER: MSI A320M PRO PCI 3.0 USB 3.1\n- DISCO SSD: 480GB SATA3 ADATA 500MBs\n- MEMORIA RAM: 16GB DDR4 2666 EXPANDIBLE HASTA 64GB\n- GABINETE: ATX MEDIUM TOWER BLACK - FUENTE BCP500W\nNO INCLUYE: MONITOR, NI DVD",
+    description: "- MICRO PROCESADOR: AMD Ryzen 5 5600G 6/12 NUCLEOS 4.4GHZ\n- PLACA DE VIDEO INCORPORADA RADEON VEGA RX\n- MOTHER: MSI A320M PRO PCI 3.0 USB 3.1\n- DISCO SSD: 480GB SATA3 ADATA 500MBs\n- MEMORIA RAM: 16GB DDR4 2666 EXPANDIBLE HASTA 64GB\n- GABINETE: ATX MEDIUM TOWER BLACK - FUENTE BCP500W\nNO INCLUYE: MONITOR, NI DVD",
     stock: 500,
   },
   {
@@ -285,7 +266,7 @@ const jsonProducts = [
     id: "MLA923743804",
     name: "Pc Cpu Computadora Intel Core I5 8gb Ram Ssd 240gb",
     brand: "Clon",
-    thumbnail:
+    image:
       "http://http2.mlstatic.com/D_670329-MLA53687133769_022023-O.webp",
     price: 99998,
     description: "Producto: PC CPU Computadora Intel Core i5 8Gb RAM ssd 240gb Outlet\n\nIMPORTANTE: EL EQUIPO SE ENTREGA LISTO PARA USAR. EL SISTEMA OPERATIVO DEL EQUIPO ES UNA VERSION DE PRUEBA. NO ESTA CUBIERTO POR LA GARANTIA Y NO DAMOS SOPORTE SOBRE EL MISMO.\n\nCaracterísticas:\n• Intel i5 3.10GHz\n• Motherboard a disponibilidad (Ecs, Gigabyte, Asus, Msi )\n• Gabinete Slim c/fuente 500 W\n• Disco sólido SSD 240Gb\n• Memoria RAM 8Gb DDR3\n• Salida de Video VGA\n\nNO* Incluye kit de periféricos.\n\nPRODUCTO DE OUTLET / EXHIBICION. PUEDE PRESENTAR ALGUN DETALLE ESTETICO QUE NO AFECTA EL FUNCIONAMIENTO.\n\nGarantía del producto: 6 meses",
@@ -299,6 +280,7 @@ const jsonProducts = [
     description: "Tamaño del papel:	A4\nTipo de papel:	Multifunción\nColor:	Blanco\nCantidad de hojas:	500\nGramaje:	75 g\nFormato de venta:	Pack\nUnidades por pack:	10",
     price: 17999,
     stock: 500,
+    category: "Insumos"
   },
   {
     id: "MLA1362839743",
@@ -315,8 +297,7 @@ const jsonProducts = [
     brand: "Lenovo",
     image: "http://http2.mlstatic.com/D_716560-MLA53246241196_012023-O.webp",
     price: 131799,
-    description:
-      "La notebook Lenovo IdeaPad 1 fue pensada para hacer tu vida más sencilla. Su diseño elegante e innovador y su comodidad para transportarla, la convertirá en tu PC favorita. Cualquier tarea que te propongas, ya sea en casa o en la oficina, la harás con facilidad gracias a su poderoso rendimiento. \nPantalla con gran impacto visual. \nSu pantalla de 14 y 1366x768 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle. \nEficiencia a tu alcance. \nSu procesador Intel Pentium Silver de 4 núcleos, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar. Potente disco sólido. El disco sólido de 128 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas. \nUn procesador exclusivo para los gráficos. \nSu placa de video Intel UHD Graphics 605 convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico. \nUna batería que acompaña tu jornada. \nLa batería de este equipo tiene una autonomía de alrededor de 8 horas. La duración varía según el uso, la configuración y otros factores, pero vas a poder usarla durante varias horas sin depender de los enchufes.",
+    description: "La notebook Lenovo IdeaPad 1 fue pensada para hacer tu vida más sencilla. Su diseño elegante e innovador y su comodidad para transportarla, la convertirá en tu PC favorita. Cualquier tarea que te propongas, ya sea en casa o en la oficina, la harás con facilidad gracias a su poderoso rendimiento. \nPantalla con gran impacto visual. \nSu pantalla de 14 y 1366x768 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle. \nEficiencia a tu alcance. \nSu procesador Intel Pentium Silver de 4 núcleos, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar. Potente disco sólido. El disco sólido de 128 GB hace que el equipo funcione a gran velocidad y por lo tanto te brinda mayor agilidad para operar con diversos programas. \nUn procesador exclusivo para los gráficos. \nSu placa de video Intel UHD Graphics 605 convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico. \nUna batería que acompaña tu jornada. \nLa batería de este equipo tiene una autonomía de alrededor de 8 horas. La duración varía según el uso, la configuración y otros factores, pero vas a poder usarla durante varias horas sin depender de los enchufes.",
     stock: 1,
   },
   {
@@ -341,7 +322,7 @@ const jsonProducts = [
     id: "MLA1105307864",
     name: "Pc Ar Completa Core I5 8gb Ssd240 Led 20 Wi Fi W10 Office",
     brand: "Intel",
-    thumbnail:
+    image:
       "http://http2.mlstatic.com/D_755107-MLA49570269738_042022-O.webp",
     price: 142999,
     description: "PC ARMADA I5 INTEL\n8 GIGAS DDR 3\nSSD 240\nWI FI USD 300 BPS\nMONITOR 20 G FAST HDMI\nGAB ATX FUENTE 550W\nSISTEMA OPERATIVO INSTALADO\nW10 PRO OFFICE\n\nLISTA PARA USAR\n6 MESES DE GARANTIA ESCRITA",
@@ -351,7 +332,7 @@ const jsonProducts = [
     id: "MLA1134341182",
     name: "Disco Sólido Interno Kingston Sa400s37/240g 240gb Negro",
     brand: "Kingston",
-    thumbnail:
+    image:
       "http://http2.mlstatic.com/D_825890-MLA54124091906_032023-O.webp",
     price: 12538,
     description: "Considerado un dispositivo de alto rendimiento, la unidad en estado sólido A400 de Kingston está diseñada para las personas más exigentes. Mejora de forma notable la capacidad de respuesta de su sistema, ya que alcanza velocidades de lectura/escritura de hasta 500MB/seg y 450MB/seg. Por ende, es 10 veces más rápido que un disco duro tradicional.\nAl estar compuesta por una memoria flash es silenciosa y posee pocas probabilidades de tener fallas.\n\nIrrompible\nAdemás de su funcionalidad y soporte, la importancia de los discos de almacenamiento también radica en su calidad y resistencia. Despreocupate y disfrutá de la durabilidad de este producto debido a su capacidad de absorber y resistir fuertes impactos.",
@@ -477,6 +458,10 @@ const jsonProducts = [
     stock: 100,
   },
 ];
+<<<<<<<<< Temporary merge branch 1
 console.log(jsonProducts.length)
 
 module.exports = jsonProducts
+=========
+module.exports = jsonProducts
+>>>>>>>>> Temporary merge branch 2
