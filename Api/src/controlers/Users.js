@@ -1,4 +1,4 @@
-const { User, UserData } = require("../db");
+const { User } = require("../db");
 const bcrypt = require("bcrypt");
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
@@ -9,44 +9,32 @@ const dotenv = require("dotenv");
 dotenv.config();
 const salt = process.env.BCRYPT_SALT_ROUNDS
 
-
+console.log(salt)
 module.exports = {
   registerUser: async (req, res) => {
     try {
       const { name, lastName, userName, email, password } = req.body;
-      let user = await UserData.findOne({
+      let user = await User.findOne({
         where: {
           userName,
         },
       });
-      console.log("linea 17 Users controller", user)
       let userEmail = await User.findOne({
         where: {
           email,
         },
       });
-      console.log("linea 23 Users controller", userEmail)
-      //let passwordHashed = await bcrypt.hash(password, salt);
+      let passwordHashed = await bcrypt.hash(password, 10);
       //console.log("linea 30 Users controller", passwordHashed)
       if (user || userEmail) {
         return(null, false, console.log("This user name already exists"));
       } else {
         const code = v4();
-        let user = User.create({ email, code });
+        let user = User.create({ name, lastName, userName, email, password: passwordHashed, code });
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
-        let userData = UserData.create({
-          name,
-          lastName,
-          userName,
-          password,
-        });
-        console.log("linea 38 Users controller", user)
-        console.log("linea 39 Users controller", userData)
 
         await sendEmail(email, "Confirm your account", template);
-        // await user.save();
-        // await userData.save();
 
         res.json({
           success: true,
@@ -92,7 +80,7 @@ module.exports = {
       user.verified = true;
       await user.save();
       return res.redirect("http://localhost:5173/home");
-      //return res.redirect("")
+      //return res.redirect("home del deploy")
     } catch (error) {
       return res.json({
         success: false,
@@ -108,12 +96,5 @@ module.exports = {
       res.json(error);
     }
   },
-  getUsersData: async(req, res) => {
-    try {
-      const users = await UserData.findAll();
-      res.json(users);
-    } catch (error) {
-      res.json(error);
-    }
-  }
+
 };

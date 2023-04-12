@@ -13,6 +13,7 @@ module.exports = {
           brand: e.brand,
           description: e.description,
           stock: e.stock,
+          category: e.category
         };
         return obj;
       });
@@ -20,21 +21,17 @@ module.exports = {
     }
   },
 
-  listProducts: {
-    async function() {
-      const dbProducts = await Product.findAll();
-      const allProductsArray = await dbProducts.map((product) => {
-        return {
-          name: product.name,
-          price: product.price,
-          image: product.image,
-          brand: product.brand,
-          description: product.description,
-          stock: product.stock,
-        };
-      });
-      console.log(allProductsArray);
-      return allProductsArray;
-    },
+  listProducts: async function () {
+    const dbProducts = await Product.findAll();
+    //console.log(dbProducts)
+    return dbProducts;
   },
+  productsByCategory: async function (category){
+    const filtered = await Product.findAll({
+      where:{
+        category
+      }
+    })
+    return filtered
+  }
 };
