@@ -505,7 +505,7 @@ const jsonProducts = [
   },
 ];
 
-// const brands = new Set()
+// const brands
 
 // jsonProducts.forEach((p)=>{
 //   brands.add(p.brand) 

@@ -17,7 +17,7 @@ router.get("/category", async(req, res) => {
     const filteredProducts = await productsByCategory(category);
     res.status(200).json(filteredProducts);
   } catch (error) {
-    res.status(400).json("no ok");
+    res.status(400).send({error: error.message});
   }
 });
 router.get("/brand", async(req, res) => {
