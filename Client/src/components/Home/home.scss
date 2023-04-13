@@ -1,0 +1,23 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.filtros_productos {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  column-gap: 3%;
+  padding: 3%;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5%;
+  row-gap: 50px;
+  height: 1450px;
+  padding: 1% 2%;
+  overflow-y: auto;
+}
