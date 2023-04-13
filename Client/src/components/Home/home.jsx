@@ -8,6 +8,7 @@ import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
 import Pagination from "../Pagination/Pagination";
+import Cart from "../Cart/Cart";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,12 +36,16 @@ const Home = () => {
       <div className="filtros_productos">
         <Filters />
         <div className="divPagination">
-          <Pagination
-            productsPerPage={productsPerPage}
-            allProducts={allProducts.length}
-            handlePagination={handlePagination}
-            currentPage={currentPage}
-          />
+          <div className="paginationAndCart">
+            <Pagination
+              productsPerPage={productsPerPage}
+              allProducts={allProducts.length}
+              handlePagination={handlePagination}
+              currentPage={currentPage}
+            />
+
+            <Cart />
+          </div>
 
           <div className="products">
             {currentProducts.map((product, index) => (

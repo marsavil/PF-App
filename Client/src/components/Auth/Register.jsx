@@ -24,8 +24,6 @@ const Register = () => {
       const formData = { ...dataRegister };
       delete formData.confirmPassword;
       // Enviar datos del formulario (enviando formData)
-
-      
     }
   };
 
@@ -50,7 +48,8 @@ const Register = () => {
           onChange={handleChange}
           value={dataRegister.userName}
         />
-        {errors.userName ? (
+
+        {dataRegister.userName !== "" && errors.userName ? (
           <p className="error">{errors.userName}</p>
         ) : (
           <p className="error">
@@ -59,7 +58,8 @@ const Register = () => {
         )}
 
         <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
-        {errors.name ? (
+
+        {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
         ) : (
           <p className="error">
@@ -74,7 +74,8 @@ const Register = () => {
           onChange={handleChange}
           value={dataRegister.lastName}
         />
-        {errors.lastName ? (
+
+        {dataRegister.lastName !== "" && errors.lastName ? (
           <p className="error">{errors.lastName}</p>
         ) : (
           <p className="error">
@@ -83,7 +84,7 @@ const Register = () => {
         )}
 
         <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
-        {errors.email ? (
+        {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
           <p className="error">
@@ -97,7 +98,7 @@ const Register = () => {
           onChange={handleChange}
           value={dataRegister.password}
         />
-        {errors.password ? (
+        {dataRegister.password !== "" && errors.password ? (
           <p className="error">{errors.password}</p>
         ) : (
           <p className="error">
@@ -112,7 +113,7 @@ const Register = () => {
           onChange={handleChange}
           value={dataRegister.confirmPassword}
         />
-        {errors.confirmPassword ? (
+        {dataRegister.confirmPassword !== "" && errors.confirmPassword ? (
           <p className="error">{errors.confirmPassword}</p>
         ) : (
           <p className="error">

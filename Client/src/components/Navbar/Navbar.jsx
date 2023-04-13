@@ -1,7 +1,6 @@
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 
-import Cart from "../Cart/Cart";
 import DarkMode from "../DarkMode/DarkMode";
 
 const Navbar = () => {
@@ -23,7 +22,6 @@ const Navbar = () => {
           </Link>
         )}
 
-        <Cart />
         <DarkMode />
       </div>
     </div>
