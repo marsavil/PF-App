@@ -17,10 +17,7 @@ const Carrousel = () => {
   }, [allProducts]);
 
   const handlePrev = () => {
-    const prevIndex =
-      currentProductIndex === 0
-        ? allProducts.length - 1
-        : currentProductIndex - 1;
+    const prevIndex = currentProductIndex === 0 ? allProducts.length - 1 : currentProductIndex - 1;
     document.querySelector(".carrousel img").style.opacity = 0;
     setTimeout(() => {
       setCurrentProductIndex(prevIndex);
@@ -29,10 +26,7 @@ const Carrousel = () => {
   };
 
   const handleNext = () => {
-    const nextIndex =
-      currentProductIndex === allProducts.length - 1
-        ? 0
-        : currentProductIndex + 1;
+    const nextIndex = currentProductIndex === allProducts.length - 1 ? 0 : currentProductIndex + 1;
     document.querySelector(".carrousel img").style.opacity = 0;
     setTimeout(() => {
       setCurrentProductIndex(nextIndex);
@@ -40,15 +34,11 @@ const Carrousel = () => {
     }, 500);
   };
 
-  console.log(allProducts);
   return (
     <div className="carrousel">
       {allProducts.length > 0 && (
         <React.Fragment key={allProducts[currentProductIndex].id}>
-          <img
-            src={allProducts[currentProductIndex].image}
-            alt={allProducts[currentProductIndex].name}
-          />
+          <img src={allProducts[currentProductIndex].image} alt={allProducts[currentProductIndex].name} />
           <h3>{allProducts[currentProductIndex].name}</h3>
           <button onClick={handlePrev}>&lt;</button>
           <button onClick={handleNext}>&gt;</button>

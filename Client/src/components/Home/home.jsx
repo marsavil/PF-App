@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "../../redux/actions/actions";
@@ -14,6 +14,17 @@ const Home = () => {
 
   const allProducts = useSelector((state) => state.allProducts);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(6);
+
+  const numOfLastProduct = currentPage * productsPerPage;
+  const numOfFirstProduct = numOfLastProduct - productsPerPage;
+  const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
+
+  const handlePagination = (page) => {
+    setCurrentPage(page);
+  };
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
@@ -24,15 +35,25 @@ const Home = () => {
       <div className="filtros_productos">
         <Filters />
         <div className="divPagination">
-          <Pagination />
+          <Pagination
+            productsPerPage={productsPerPage}
+            allProducts={allProducts.length}
+            handlePagination={handlePagination}
+            currentPage={currentPage}
+          />
 
           <div className="products">
-            {allProducts.map((product, index) => (
+            {currentProducts.map((product, index) => (
               <Product product={product} key={index} />
             ))}
           </div>
 
-          <Pagination />
+          <Pagination
+            productsPerPage={productsPerPage}
+            allProducts={allProducts.length}
+            handlePagination={handlePagination}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>
