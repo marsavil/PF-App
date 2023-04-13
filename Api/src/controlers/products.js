@@ -23,7 +23,7 @@ module.exports = {
 
   listProducts: async function () {
     const dbProducts = await Product.findAll();
-    //console.log(dbProducts)
+    // console.log(dbProducts)
     return dbProducts;
   },
   productsByCategory: async function (category){
