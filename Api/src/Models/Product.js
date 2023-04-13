@@ -34,6 +34,11 @@ module.exports = (sequelize) => {
     category: {
       type: DataTypes.STRING,
       allowNull:false
+    },
+    disable:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
+   
   });
 };
