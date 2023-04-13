@@ -279,6 +279,5 @@ module.exports = {
         disabled: false
       })
     }
-    console.log(user)
   }
 };
