@@ -1,6 +1,8 @@
 import "./product.scss";
 
 const Product = ({ product }) => {
+  const token = true;
+
   return (
     <div className="product">
       <img src={product.image} alt={product.name} />
@@ -9,7 +11,7 @@ const Product = ({ product }) => {
         <p className="pBrand">{product.brand}</p>
         <p className="pPrice">$ {product.price.toLocaleString()}</p>
       </section>
-      <button className="button">Agregar al carrito</button>
+      {token && <button className="button">Agregar al carrito</button>}
     </div>
   );
 };

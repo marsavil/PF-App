@@ -13,8 +13,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, isValid } = validateLoginData(dataLogin);
-    setErrors(errors);
-    if (isValid) {
+    if (!isValid) {
+      setErrors(errors);
+    } else {
+      setErrors({});
       // Enviar datos del formulario
     }
   };

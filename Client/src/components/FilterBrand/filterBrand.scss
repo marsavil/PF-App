@@ -1,0 +1,21 @@
+.filterBrand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+  max-height: 300px;
+  overflow-y: auto;
+
+  a {
+    color: var(--steel-blue-matte);
+    margin-top: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.divBrand {
+  display: flex;
+  justify-content: flex-start;
+  margin: 2px 0;
+}
