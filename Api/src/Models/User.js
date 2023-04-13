@@ -49,5 +49,9 @@ module.exports = (sequelize) => {
       //encriptar
       type: DataTypes.STRING,
     },
+    disabled: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    }
   });
 };
