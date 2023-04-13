@@ -1,49 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/actions";
+import React, { useState } from "react";
 import "./carrousel.scss";
+import productsCarrousel from "./carrouselProducts.json";
 
 const Carrousel = () => {
-  const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.allProducts);
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
 
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
-
-  useEffect(() => {
-    setCurrentProductIndex(0);
-  }, [allProducts]);
+  const handleDetail = async () => {
+    try {
+    } catch (error) {}
+  };
 
   const handlePrev = () => {
-    const prevIndex = currentProductIndex === 0 ? allProducts.length - 1 : currentProductIndex - 1;
-    document.querySelector(".carrousel img").style.opacity = 0;
-    setTimeout(() => {
-      setCurrentProductIndex(prevIndex);
-      document.querySelector(".carrousel img").style.opacity = 1;
-    }, 500);
+    const prevIndex = (currentProductIndex - 1 + productsCarrousel.length) % productsCarrousel.length;
+    setCurrentProductIndex(prevIndex);
   };
 
   const handleNext = () => {
-    const nextIndex = currentProductIndex === allProducts.length - 1 ? 0 : currentProductIndex + 1;
-    document.querySelector(".carrousel img").style.opacity = 0;
-    setTimeout(() => {
-      setCurrentProductIndex(nextIndex);
-      document.querySelector(".carrousel img").style.opacity = 1;
-    }, 500);
+    const nextIndex = (currentProductIndex + 1) % productsCarrousel.length;
+    setCurrentProductIndex(nextIndex);
   };
+
+  const currentProduct = productsCarrousel[currentProductIndex];
 
   return (
     <div className="carrousel">
-      {allProducts.length > 0 && (
-        <React.Fragment key={allProducts[currentProductIndex].id}>
-          <img src={allProducts[currentProductIndex].image} alt={allProducts[currentProductIndex].name} />
-          <h3>{allProducts[currentProductIndex].name}</h3>
-          <button onClick={handlePrev}>&lt;</button>
-          <button onClick={handleNext}>&gt;</button>
-        </React.Fragment>
-      )}
+      <img src={currentProduct.image} alt={currentProduct.name} />
+      <section>
+        <h3>{currentProduct.name}</h3>
+        <button className="button" onClick={handleDetail}>
+          Ver detalles
+        </button>
+      </section>
+
+      <button className="scrollCarrousel" onClick={handlePrev}>
+        &lt;
+      </button>
+      <button className="scrollCarrousel" onClick={handleNext}>
+        &gt;
+      </button>
     </div>
   );
 };
