@@ -7,11 +7,10 @@ const Filters = () => {
   return (
     <div className="filters">
       <SearchBar />
+      <h3>Ordenar</h3>
       <Order />
-      <>
-        <h3>Por marca:</h3>
-        <FilterBrand />
-      </>
+      <h3>Marca:</h3>
+      <FilterBrand />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { brands } from "../../functions/constants";
 import "./filterBrand.scss";
 
