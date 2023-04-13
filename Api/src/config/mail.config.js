@@ -32,7 +32,7 @@ sendEmail: async (email, subject,html)=>{
           from:`${mail.user}`,
           to:email,
           subject,
-          text:"Welcome to I Brought Pop Corn",
+          text:"Welcome to Electro Shop",
           html,
       })
   }catch(error){
@@ -57,6 +57,22 @@ getTemplate: (email,token)=>{
           >Confirmar Cuenta</a>
       </div>
     `},
+    templateAdminInvitation: (email,token)=>{
+      return `
+          <head>
+              <link rel="stylesheet" href="./style.css">
+          </head>
+          
+          <div id="email___content">
+              <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
+              <h2>Hola ${ email }</h2>
+              <p>Has sido invitado a formar parate del equipo administrativo de Electro Shop</p>
+              <a
+                  href="http://localhost:3001/user/confirm/${token}"
+                  target="_blank"
+              >Confirmar Cuenta</a>
+          </div>
+        `},
 
     getForgotPassTemplate: (email,token)=>{
       return `
