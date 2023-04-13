@@ -1,5 +1,6 @@
 :root {
   --bg-color: #f2f2f2;
+  --white-color: #ffffff;
   --light-color: #fcfcfc;
   --dark-color: #3d3d3d;
   --midnight-blue-matte: #11114e;
@@ -7,6 +8,7 @@
   --sky-blue-matte: #36a7b4;
   --slate-gray-matte: #444444;
   --silver-matte: #c0c0c0;
+  --light-gray-matte: #d3d3d3;
   --storm-gray-matte: #5d5d5d;
   --error-color: #ff0000;
 }
@@ -15,17 +17,18 @@ body {
   padding: 0;
   margin: 0;
   background-color: var(--bg-color);
+  color: var(--dark-color);
 }
 
 .button {
   background-color: var(--light-color);
   border: 1px solid var(--dark-color);
+  color: var(--dark-color);
   border-radius: 5px;
   padding: 10px 20px;
   margin: 10px;
   font-size: 15px;
   font-weight: bold;
-  color: var(--dark-color);
   transition: all 0.5s ease;
   cursor: pointer;
 }

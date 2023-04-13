@@ -9,13 +9,16 @@
 
   .scrollCarrousel {
     position: absolute;
-    transform: translateY(-30%);
     background-color: transparent;
     border: none;
     font-size: 40px;
     z-index: 1;
     color: var(--light-color);
     font-weight: bold;
+    height: 50%;
+    width: 4%;
+    filter: brightness(0.9);
+    transition: all 0.3s ease-in-out;
 
     &:first-child {
       left: 0;
@@ -24,8 +27,11 @@
       right: 0;
     }
     &:hover {
-      opacity: 0.9;
       cursor: pointer;
+      filter: brightness(1.5);
+      font-size: 50px;
+      width: 5%;
+      transition: all 0.5s ease-in-out;
     }
   }
 
