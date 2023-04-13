@@ -31,11 +31,17 @@ export function validateRegisterData(dataRegister) {
   if (!dataRegister.name) {
     errors.name = "Debes ingresar un nombre";
     isValid = false;
+  } else if (dataRegister.name.length < 3) {
+    errors.name = "El nombre debe tener al menos 3 letras";
+    isValid = false;
   }
 
   // Validar apellido
   if (!dataRegister.lastName) {
     errors.lastName = "Debes ingresar un apellido";
+    isValid = false;
+  } else if (dataRegister.lastName.length < 3) {
+    errors.lastName = "El apellido debe tener al menos 3 letras";
     isValid = false;
   }
 

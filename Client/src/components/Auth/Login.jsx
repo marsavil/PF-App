@@ -34,7 +34,7 @@ const Login = () => {
       <form className="authForm authFormLogin" onSubmit={handleSubmit}>
         <h1>Iniciar sesion</h1>
         <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
-        {errors.email ? (
+        {dataLogin.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
           <p className="error">
@@ -48,7 +48,7 @@ const Login = () => {
           onChange={handleChange}
           value={dataLogin.password}
         />
-        {errors.password ? (
+        {dataLogin.password !== "" && errors.password ? (
           <p className="error">{errors.password}</p>
         ) : (
           <p className="error">
