@@ -31,7 +31,7 @@ const Login = () => {
 
   return (
     <div className="authDiv">
-      <form className="authForm" onSubmit={handleSubmit}>
+      <form className="authForm authFormLogin" onSubmit={handleSubmit}>
         <h1>Iniciar sesion</h1>
         <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
         {errors.email ? (
