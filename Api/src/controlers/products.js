@@ -33,5 +33,13 @@ module.exports = {
       }
     })
     return filtered
-  }
+  },
+  productsByBrand: async function (brand){
+    const filtered = await Product.findAll({
+      where:{
+        brand
+      }
+    })
+    return filtered
+  },
 };
