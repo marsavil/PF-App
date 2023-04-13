@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/actions";
 import "./home.scss";
 
-import Navbar from "../Navbar/Navbar";
 import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
+import Pagination from "../Pagination/Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,14 +20,19 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Navbar />
       <Carrousel />
       <div className="filtros_productos">
         <Filters />
-        <div className="products">
-          {allProducts.map((product, index) => (
-            <Product product={product} key={index} />
-          ))}
+        <div className="divPagination">
+          <Pagination />
+
+          <div className="products">
+            {allProducts.map((product, index) => (
+              <Product product={product} key={index} />
+            ))}
+          </div>
+
+          <Pagination />
         </div>
       </div>
     </div>

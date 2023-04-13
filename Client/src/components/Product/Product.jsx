@@ -5,9 +5,9 @@ const Product = ({ product }) => {
     <div className="product">
       <img src={product.image} alt={product.name} />
       <section className="info">
-        <p>{product.name}</p>
-        <p>{product.brand}</p>
-        <p>${product.price.toLocaleString()}</p>
+        <p className="pName">{product.name}</p>
+        <p className="pBrand">{product.brand}</p>
+        <p className="pPrice">$ {product.price.toLocaleString()}</p>
       </section>
       <button className="button">Agregar al carrito</button>
     </div>

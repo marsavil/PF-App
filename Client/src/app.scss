@@ -7,7 +7,7 @@
   --sky-blue-matte: #3db0bd;
   --slate-gray-matte: #444444;
   --silver-matte: #c0c0c0;
-  --storm-gray-matte: #808080;
+  --storm-gray-matte: #5d5d5d;
   --error-color: #ff0000;
 }
 
@@ -31,6 +31,6 @@ body {
 }
 
 .button:hover {
-  background-color: var(--dark-color);
+  background-color: var(--storm-gray-matte);
   color: var(--bg-color);
 }
