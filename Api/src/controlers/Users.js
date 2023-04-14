@@ -1,4 +1,5 @@
 const { User, ShippingAddress } = require("../db"); 
+const bcrypt = require('bcrypt')
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
@@ -6,8 +7,13 @@ const {
   getTemplate,
   sendEmail,
   templateAdminInvitation,
+  templateSuspensiónDeCuenta,
+  sendStatusEmail,
+  templateRehabilitacionDeCuenta, 
+  templateEliminacionDeCuenta
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
+const sender = process.env.EMAIL
 
 dotenv.config();
 
@@ -148,6 +154,8 @@ module.exports = {
         id,
       },
     });
+    const template = templateSuspensiónDeCuenta(user.email, sender)
+    await sendStatusEmail(user.email, "Tu cuenta ha sido suspendida", template)
     user.disabled = true;
     user.save();
     res.send({ message: "Usuario inhabilitado" });
@@ -160,6 +168,8 @@ module.exports = {
         id,
       },
     });
+    const template = templateRehabilitacionDeCuenta(user.email, sender)
+    await sendStatusEmail(user.email, "Tu cuenta ha sido restaurada", template)
     user.disabled = false;
     user.save();
     res.send({ message: "Usuario habilitado" });
@@ -316,15 +326,20 @@ module.exports = {
           UserId: user.id
         }
       })
+      const template = templateEliminacionDeCuenta(user.email, sender)
+      await sendStatusEmail(user.email, "Tu cuenta ha sido eliminada", template)
       
       for (let i = 0; i < Addresses.length; i++) {
         Addresses[i].destroy();
         
       }
+      if(user.email === sender){
+        return res.status(400).send({message: `La cuenta ${user.userName} no puede ser eliminada`})
+      }
       user.destroy()
-      res.status(200).send({message: "Cuenta de usuario eliminada"})
+      return res.status(200).send({message: "Cuenta de usuario eliminada"})
     } catch (error) {
-      res.status(400).send("oops")
+      res.status(400).send('oops')
     }
     
 
