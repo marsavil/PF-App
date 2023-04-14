@@ -6,13 +6,17 @@ import { validateLoginData } from "../../functions/validate";
 import "./auth.scss";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const [dataLogin, setDataLogin] = useState({
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState({});
 
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  console.log(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
