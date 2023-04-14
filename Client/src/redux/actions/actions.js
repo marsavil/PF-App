@@ -12,7 +12,17 @@ const API_URL = "http://localhost:3001";
 
 export const getUser = () => {
   return async (dispatch) => {
-    let response = await axios.get(API_URL + "/auth/me");
+    let response = await axios.get(API_URL + "/user/login");
+    return dispatch({
+      type: GET_USER,
+      payload: response.data,
+    });
+  };
+};
+
+export const createUser = (user) => {
+  return async (dispatch) => {
+    let response = await axios.post(API_URL + "/user", user);
     return dispatch({
       type: GET_USER,
       payload: response.data,
@@ -46,16 +56,15 @@ export const clearDetail = () => {
   };
 };
 
-export function addToCart(product) {
-  return function (dispatch) {
-    return axios
-      .post(API_URL + "/cart", product)
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch({ type: ADD_TO_CART, payload: json });
-      });
+export const addToCart = (product) => {
+  return async (dispatch) => {
+    let response = await axios.post(API_URL + "/cart", product);
+    return dispatch({
+      type: ADD_TO_CART,
+      payload: response.data,
+    });
   };
-}
+};
 
 export function allFilters(payload) {
   let query = `${API_URL}/products`;
