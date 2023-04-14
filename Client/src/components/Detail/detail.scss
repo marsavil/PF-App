@@ -1,0 +1,14 @@
+.detail {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  padding: 50px;
+
+  button {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 8px;
+    border-radius: 5%;
+  }
+}

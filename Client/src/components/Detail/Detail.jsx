@@ -21,7 +21,7 @@ const Detail = () => {
   }, [dispatch, id]);
 
   return (
-    <div>
+    <div className="detail">
       {productDetail?.id ? (
         <div>
           <h2>{productDetail.name}</h2>
@@ -30,10 +30,10 @@ const Detail = () => {
           <p>{productDetail.category}</p>
 
           <h3>
-            {productDetail.brand} - Precio: $ {productDetail.price}
+            Marca: {productDetail.brand} - Precio: $ {productDetail.price}
           </h3>
-          <p>{productDetail.description}</p>
           <p>Stock: {productDetail.stock}</p>
+          <p>{productDetail.description}</p>
           <button onClick={backToHome}>Volver</button>
         </div>
       ) : (
