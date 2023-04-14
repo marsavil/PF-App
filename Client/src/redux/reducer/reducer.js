@@ -5,7 +5,6 @@ import {
   CLEAR_DETAIL,
   ADD_TO_CART,
   ALL_FILTERS,
-
 } from "../actions/actions-types";
 
 const initialState = {
@@ -25,13 +24,19 @@ export default function reducer(state = initialState, action) {
     case ADD_TO_CART:
       return { ...state, cart: action.payload };
     case ALL_FILTERS:
-      if (action.payload.condition === "brand") {
-        return { ...state, allProducts: action.payload.response };
-      } else if (action.payload.condition === "category") {
-        return { ...state, allProducts: action.payload.response };
-      } else if (action.payload.condition === "all") {
-        return { ...state, allProducts: action.payload.response };
+      const { brand, category } = action.payload.condition;
+      let filteredProducts = action.payload.response;
+      if (brand !== "" && category !== "") {
+        filteredProducts = filteredProducts.filter(
+          (product) => product.brand === brand && product.category === category
+        );
+      } else if (brand !== "") {
+        filteredProducts = filteredProducts.filter((product) => product.brand === brand);
+      } else if (category !== "") {
+        filteredProducts = filteredProducts.filter((product) => product.category === category);
       }
+      return { ...state, allProducts: filteredProducts };
+
     case GET_PRODUCT_DETAIL:
       return { ...state, productDetail: action.payload };
     case CLEAR_DETAIL:

@@ -47,11 +47,17 @@ const Home = () => {
             <Cart />
           </div>
 
-          <div className="products">
-            {currentProducts.map((product, index) => (
-              <Product product={product} key={index} />
-            ))}
-          </div>
+          {allProducts && allProducts.length === 0 ? (
+            <div className="noProducts">
+              <h1>No hay productos disponibles</h1>
+            </div>
+          ) : (
+            <div className="products">
+              {currentProducts.map((product, index) => (
+                <Product product={product} key={index} />
+              ))}
+            </div>
+          )}
 
           <Pagination
             productsPerPage={productsPerPage}
