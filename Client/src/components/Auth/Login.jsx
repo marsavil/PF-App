@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { getUser } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
 import "./auth.scss";
 
@@ -10,15 +12,11 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { errors, isValid } = validateLoginData(dataLogin);
-    if (!isValid) {
-      setErrors(errors);
-    } else {
-      setErrors({});
-      // Enviar datos del formulario
-    }
+    dispatch(getUser(dataLogin));
   };
 
   const handleChange = (e) => {
