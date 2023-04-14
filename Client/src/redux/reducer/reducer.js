@@ -1,8 +1,17 @@
-import { GET_USER, GET_ALL_PRODUCTS, ADD_TO_CART, ALL_FILTERS } from "../actions/actions-types";
+import {
+  GET_USER,
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  CLEAR_DETAIL,
+  ADD_TO_CART,
+  ALL_FILTERS,
+
+} from "../actions/actions-types";
 
 const initialState = {
   user: {},
   allProducts: [],
+  productDetail: {},
   cart: [],
   filteredProducts: [],
 };
@@ -23,6 +32,10 @@ export default function reducer(state = initialState, action) {
       } else if (action.payload.condition === "all") {
         return { ...state, allProducts: action.payload.response };
       }
+    case GET_PRODUCT_DETAIL:
+      return { ...state, productDetail: action.payload };
+    case CLEAR_DETAIL:
+      return { ...state, productDetail: {} };
     default:
       return state;
   }

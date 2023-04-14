@@ -1,5 +1,12 @@
 import axios from "axios";
-import { GET_USER, GET_ALL_PRODUCTS, ADD_TO_CART, ALL_FILTERS } from "./actions-types";
+import {
+  GET_USER,
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  CLEAR_DETAIL,
+  ADD_TO_CART,
+  ALL_FILTERS,
+} from "./actions-types";
 
 export function getUser() {
   return function (dispatch) {
@@ -23,6 +30,23 @@ export function getAllProducts() {
   };
 }
 
+export function getProductDetail(id) {
+  return async function (dispatch) {
+    let productId = await axios.get(`http://localhost:3001/products/${id}`);
+
+    return dispatch({
+      type: GET_PRODUCT_DETAIL,
+      payload: productId.data,
+    });
+  };
+}
+
+export const clearDetail = () => {
+  return {
+    type: CLEAR_DETAIL,
+  };
+};
+
 export function addToCart(product) {
   return function (dispatch) {
     return axios
@@ -37,7 +61,9 @@ export function addToCart(product) {
 export function allFilters(payload) {
   if (payload.brand !== "") {
     return async (dispatch) => {
-      const response = await axios.get(`http://localhost:3001/products/brand?brand=${payload.brand}`);
+      const response = await axios.get(
+        `http://localhost:3001/products/brand?brand=${payload.brand}`
+      );
       return dispatch({
         type: ALL_FILTERS,
         payload: { response: response.data, condition: "brand" },
@@ -45,7 +71,9 @@ export function allFilters(payload) {
     };
   } else if (payload.category !== "") {
     return async (dispatch) => {
-      const response = await axios.get(`http://localhost:3001/products/category?category=${payload.category}`);
+      const response = await axios.get(
+        `http://localhost:3001/products/category?category=${payload.category}`
+      );
       return dispatch({
         type: ALL_FILTERS,
         payload: { response: response.data, condition: "category" },
