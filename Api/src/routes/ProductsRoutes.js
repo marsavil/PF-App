@@ -6,6 +6,7 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
+  searchProduct,
 } = require("../controlers/products");
 const express = require("express");
 const router = express.Router();
@@ -13,7 +14,14 @@ router.use(express.json());
 
 router.get("/", async (req, res) => {
   try {
+    const {search} = req.query
     const listAllProducts = await listProducts();
+    if (search){
+      
+      const foundProduct =  await searchProduct(listAllProducts, search)
+      return res.status(200).json(foundProduct)
+    }
+    
     res.status(200).json(listAllProducts);
   } catch (error) {
     res.status(400).json("no ok");
@@ -49,6 +57,7 @@ router.get("/:id", async (req, res) => {
     res.status(404).send({ error: error.message });
   }
 });
+
 //crea un nuevo producto
 router.post("/", async (req, res) => {
   try {

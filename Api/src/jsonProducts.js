@@ -1,4 +1,3 @@
-
 const jsonProducts = [
   {
     id: "01",
@@ -515,4 +514,3 @@ const jsonProducts = [
 // console.log(brands.size)
 
 module.exports = jsonProducts
-
