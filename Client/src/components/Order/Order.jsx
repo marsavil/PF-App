@@ -19,7 +19,7 @@ const Order = ({ filterState, setFilterState, setCurrentPage }) => {
   return (
     <div className="order">
       <select value={selectOrder} onChange={handleOrderChange}>
-        <option value="none">Seleccione una marca</option>
+        <option value="none">Seleccione un orden</option>
         <option value="menor">Menor precio</option>
         <option value="mayor">Mayor precio</option>
       </select>

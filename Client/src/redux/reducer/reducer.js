@@ -14,7 +14,6 @@ const initialState = {
   allProducts: [],
   productDetail: {},
   cart: [],
-  filteredProducts: [],
 };
 
 export default function reducer(state = initialState, action) {

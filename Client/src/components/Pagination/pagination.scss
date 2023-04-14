@@ -11,6 +11,7 @@
   display: flex;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .linksPagination ul li {
@@ -19,7 +20,7 @@
 
 .linksPagination ul li button {
   background-color: var(--bg-color);
-  color: var(--dark-color) ;
+  color: var(--dark-color);
   display: block;
   border-radius: 10%;
   height: 32px;

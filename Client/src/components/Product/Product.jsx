@@ -2,8 +2,6 @@ import "./product.scss";
 import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const token = true;
-
   const navigate = useNavigate();
 
   function handleDetail() {
@@ -20,8 +18,6 @@ const Product = ({ product }) => {
         </p>
         <p className="pPrice">$ {product.price.toLocaleString()}</p>
       </section>
-
-      {token && <button className="button">Agregar al carrito</button>}
     </a>
   );
 };

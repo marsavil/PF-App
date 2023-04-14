@@ -37,11 +37,15 @@ const Filters = ({ setCurrentPage }) => {
 
   return (
     <div className="filters">
-      <SearchBar />
+      <h3>Buscar producto</h3>
+      <SearchBar filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+
       <h3>Ordenar</h3>
       <Order filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+
       <h3>Marca:</h3>
       <FilterBrand filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+
       <h3>Categoría:</h3>
       <FilterCategories filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
 
