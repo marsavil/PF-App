@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { validateRegisterData } from "../../functions/validate";
+import { createUser } from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 import "./auth.scss";
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const [dataRegister, setDataRegister] = useState({
     name: "",
     lastName: "",
@@ -18,13 +22,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { errors, isValid } = validateRegisterData(dataRegister);
-    setErrors(errors);
-    if (isValid) {
-      const formData = { ...dataRegister };
-      delete formData.confirmPassword;
-      // Enviar datos del formulario (enviando formData)
-    }
+    const formData = { ...dataRegister };
+    delete formData.confirmPassword;
+
+    dispatch(createUser(formData));
   };
 
   const handleChange = (e) => {
