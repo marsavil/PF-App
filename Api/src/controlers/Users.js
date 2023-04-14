@@ -1,4 +1,4 @@
-const { User, ShippingAddress } = require("../db"); 
+const { User, ShippingAddress, ShoppingCart } = require("../db"); 
 const bcrypt = require('bcrypt')
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
@@ -37,6 +37,7 @@ module.exports = {
         return null, false, console.log("This user name already exists");
       } else {
         const code = v4();
+        
         let user = User.create({
           name,
           lastName,
@@ -44,7 +45,12 @@ module.exports = {
           email,
           password: passwordHashed,
           code,
-        });
+        }).then(user => user.createShoppingCart({
+          quantity: 0,
+          totalPrice: 0,
+        }))
+        
+        user.setShoppingCarts = (user.id)
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
@@ -135,7 +141,8 @@ module.exports = {
         email,
       },
     });
-    try {
+    console.log(user)
+    try { 
       if (!user) res.status(400).send({ message: "Usuario inexitente. Registrate" });
       if(user.disabled === true){
         res.status(400).send({message: "Cuenta de usuario deshabilitada"})

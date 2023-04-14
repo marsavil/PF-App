@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       primarykey: true,
-      validate: {
+      validate: { 
         isEmail: {
           msg: "Debe ser un email válido",
         },
@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userName: {
+    userName: { 
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -55,3 +55,4 @@ module.exports = (sequelize) => {
     }
   });
 };
+ 
