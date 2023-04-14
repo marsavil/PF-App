@@ -5,12 +5,14 @@
   --dark-color: #3d3d3d;
   --midnight-blue-matte: #11114e;
   --steel-blue-matte: #3b719d;
+  --steel-blue-medium-matte: #4a90e2;
   --sky-blue-matte: #36a7b4;
-  --light-sky-blue-matte: #cfeff5;
+  --light-sky-blue-matte: #d1ecf5;
   --slate-gray-matte: #444444;
   --silver-matte: #c0c0c0;
   --light-gray-matte: #d3d3d3;
   --storm-gray-matte: #5d5d5d;
+  --success-color: #00bd00;
   --error-color: #ff0000;
 }
 
@@ -19,6 +21,7 @@ body {
   margin: 0;
   background-color: var(--bg-color);
   color: var(--dark-color);
+  font-family: Roboto, Arial, sans-serif;
 }
 
 .button {
