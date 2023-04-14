@@ -35,7 +35,6 @@
 
   img {
     padding-left: 100px;
-    
   }
 
   section {
@@ -52,8 +51,15 @@
     }
 
     button {
+      border: none;
+      color: var(--storm-gray-matte);
       padding: 15px 75px;
       font-size: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      &:hover {
+        color: var(--storm-gray-matte);
+        background-color: var(--light-color);
+      }
     }
   }
 }

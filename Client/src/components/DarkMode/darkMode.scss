@@ -1,5 +1,10 @@
-.dark-mode{
-    background-color: var(--bg-color);
-    color: var(--dark-color);
-    
+.dark-mode {
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+  border: none;
+
+  img {
+    width: 25px;
+    cursor: pointer;
+  }
 }
