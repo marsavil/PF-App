@@ -13,9 +13,7 @@ const Carrousel = () => {
   };
 
   const handlePrev = () => {
-    const prevIndex =
-      (currentProductIndex - 1 + productsCarrousel.length) %
-      productsCarrousel.length;
+    const prevIndex = (currentProductIndex - 1 + productsCarrousel.length) % productsCarrousel.length;
     setCurrentProductIndex(prevIndex);
   };
 
@@ -28,7 +26,14 @@ const Carrousel = () => {
 
   return (
     <div className="carrousel">
-      <img src={currentProduct.image} alt={currentProduct.name} />
+      <img
+        src={currentProduct.image}
+        alt={currentProduct.name}
+        className={currentProduct.loading ? "hide" : ""}
+        onLoad={() => {
+          currentProduct.loading = false;
+        }}
+      />
       <section>
         <h3>{currentProduct.name}</h3>
         <button className="button" onClick={handleDetail}>
