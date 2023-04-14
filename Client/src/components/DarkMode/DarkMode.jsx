@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./darkMode.scss"
 
 const DarkMode = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -10,7 +11,6 @@ const DarkMode = () => {
     const slateGrayMatte = darkMode ? "#c0c0c0" : "#444444";
     const silverMatte = darkMode ? "#444444" : "#c0c0c0";
     const stormGrayMatte = darkMode ? "#f2f2f2" : "#5d5d5d";
-
     document.documentElement.style.setProperty("--bg-color", bgColor);
     document.documentElement.style.setProperty("--dark-color", darkColor);
     document.documentElement.style.setProperty("--light-color", lightColor);
@@ -25,7 +25,7 @@ const DarkMode = () => {
 
   return (
     <div className="dark-mode">
-      <button type="button" onClick={handleDarkMode}>
+      <button className="dark-mode" type="button" onClick={handleDarkMode}>
         {!darkMode ? "Dark" : "Light"}
       </button>
     </div>
