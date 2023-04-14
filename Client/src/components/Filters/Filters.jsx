@@ -14,12 +14,22 @@ const Filters = ({ setCurrentPage }) => {
   const [filterState, setFilterState] = useState({
     search: "",
     brand: "",
-    order: {
-      nombre: "",
-      precio: "",
-    },
+    order: "none",
     category: "",
   });
+
+  const handleCleanFilters = () => {
+    setFilterState({
+      search: "",
+      brand: "",
+      order: {
+        nombre: "",
+        precio: "",
+      },
+      category: "",
+    });
+    setCurrentPage(1);
+  };
 
   useEffect(() => {
     dispatch(allFilters(filterState));
@@ -34,6 +44,10 @@ const Filters = ({ setCurrentPage }) => {
       <FilterBrand filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
       <h3>Categoría:</h3>
       <FilterCategories filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+
+      <button className="button cleanFilters" onClick={handleCleanFilters}>
+        Limpiar filtros
+      </button>
     </div>
   );
 };

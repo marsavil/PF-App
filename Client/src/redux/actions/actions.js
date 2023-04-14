@@ -66,6 +66,20 @@ export function allFilters(payload) {
   if (payload.category !== "") {
     queryParams.push(`category=${payload.category}`);
   }
+  if (payload.orderBy !== "") {
+    return async (dispatch) => {
+      const response = await axios.get(`http://localhost:3001/products`);
+
+      return dispatch({
+        type: ALL_FILTERS,
+        payload: {
+          response: response.data,
+          condition: { brand: payload.brand, category: payload.category, orderBy: payload.order },
+        },
+      });
+    };
+  }
+
   const queryString = queryParams.join("&");
 
   return async (dispatch) => {
