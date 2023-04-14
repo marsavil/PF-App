@@ -1,49 +1,13 @@
 export const handleOrder = (allProducts, orderProducts) => {
-  if (orderProducts === "ascendente") {
-    allProducts.sort((a, b) => {
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-  if (orderProducts === "descendente") {
-    allProducts.sort((a, b) => {
-      if (a.name < b.name) {
-        return 1;
-      }
-      if (a.name > b.name) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-  if (orderProducts === "menor") {
-    allProducts.sort((a, b) => {
-      if (a.price > b.price) {
-        return 1;
-      }
-      if (a.price < b.price) {
-        return -1;
-      }
-      return 0;
-    });
-  }
+  const sortedProducts = allProducts.sort((a, b) => {
+    if (orderProducts === "menor") {
+      return a.price - b.price;
+    } else if (orderProducts === "mayor") {
+      return b.price - a.price;
+    } else if (orderProducts === "none") {
+      return allProducts;
+    }
+  });
 
-  if (orderProducts === "mayor") {
-    allProducts.sort((a, b) => {
-      if (a.price < b.price) {
-        return 1;
-      }
-      if (a.price > b.price) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  return allProducts;
+  return sortedProducts;
 };

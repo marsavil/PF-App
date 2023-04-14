@@ -77,7 +77,18 @@ module.exports = {
       return { error: 'Server error' };
     }
   },
-  
-  
-  
+  searchProduct: async function(array, text){
+
+      try {
+        const lowerCase = text.toLowerCase()
+        foundProducts = array.filter(product => product.name.toLowerCase().includes(lowerCase))
+
+        return foundProducts
+      } catch (error) {
+          return { error: 'Server error' };
+      }
+      
+
+  }
+
 };
