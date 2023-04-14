@@ -1,24 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { brands } from "../../functions/constants";
 import "./filterBrand.scss";
 
-const FilterBrand = () => {
-  const [showMore, setShowMore] = useState(false);
+const FilterBrand = ({ filterState, setFilterState, setCurrentPage }) => {
+  const [selectedBrand, setSelectedBrand] = useState("");
 
-  const brandsToShow = showMore ? brands : brands.slice(0, 5);
+  useEffect(() => {
+    setFilterState({
+      ...filterState,
+      brand: selectedBrand,
+    });
+  }, [selectedBrand]);
+
+  const handleBrandChange = (e) => {
+    setSelectedBrand(e.target.value);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="filterBrand">
-      {brandsToShow.map((brand, index) => {
-        return (
-          <div key={index} className="divBrand">
-            <input type="checkbox" name={brand} id={brand} />
-            <label htmlFor={brand}>{brand}</label>
-          </div>
-        );
-      })}
-      {!showMore && brands.length > 5 && <a onClick={() => setShowMore(true)}>Mostrar más</a>}
-      {showMore && <a onClick={() => setShowMore(false)}>Mostrar menos</a>}
+      <select value={selectedBrand} onChange={handleBrandChange}>
+        <option value="">Seleccione una marca</option>
+        {brands.map((brand, index) => {
+          return (
+            <option key={index} value={brand}>
+              {brand}
+            </option>
+          );
+        })}
+      </select>
     </div>
   );
 };
