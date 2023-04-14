@@ -38,6 +38,19 @@ module.exports = {
       console.log("Something went wrong with your email", error);
     }
   },
+  sendStatusEmail: async (email, subject, html) => {
+    try {
+      await transporter.sendMail({
+        from: `${mail.user}`,
+        to: email,
+        subject,
+        text: "IMPORTANT INFORMATION FOR YOU",
+        html,
+      });
+    } catch (error) {
+      console.log("Something went wrong with your email", error);
+    }
+  },
 
   getTemplate: (email, token) => {
     return `
@@ -70,6 +83,50 @@ module.exports = {
                   href="http://localhost:3001/user/confirm/${token}"
                   target="_blank"
               >Confirmar Cuenta</a>
+          </div>
+        `;
+  },
+  templateSuspensiónDeCuenta: (email, sender) => {
+    return `
+          <head>
+              <link rel="stylesheet" href="./style.css">
+          </head>
+          
+          <div id="email___content">
+              <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
+              <h2>Hola ${email}</h2>
+              <p>Este este email te ha sido enviado porque tu cuenta en ElectroShop ha sido suspendida.
+              Para más información comunicate con nosotros a ${sender}</p>
+              
+          </div>
+        `;
+  },
+  templateRehabilitacionDeCuenta: (email, sender) => {
+    return `
+          <head>
+              <link rel="stylesheet" href="./style.css">
+          </head>
+          
+          <div id="email___content">
+              <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
+              <h2>Hola ${email}</h2>
+              <p>Este este email te ha sido enviado porque tu cuenta en ElectroShop ha sido restaurada.
+              Para más información comunicate con nosotros a ${sender}</p>
+              
+          </div>
+        `;
+  },
+  templateEliminacionDeCuenta: (email, sender) => {
+    return `
+          <head>
+              <link rel="stylesheet" href="./style.css">
+          </head>
+          
+          <div id="email___content">
+              <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
+              <h2>Hola ${email}</h2>
+              <p>Lamentamos verte partir. Si tienes alguna sugerencia para hacernos y así tenerte de vuelta, te pedimos que nos escribas a ${sender}</p>
+              
           </div>
         `;
   },
