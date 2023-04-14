@@ -1,4 +1,4 @@
-const { User } = require("../db");
+const { User, ShippingAddress } = require("../db");
 const bcrypt = require("bcrypt");
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
@@ -88,7 +88,7 @@ module.exports = {
       }
       user.verified = true;
       await user.save();
-      return res.redirect("http://localhost:5173/home");
+      return res.redirect("http://localhost:3000/home");
       //return res.redirect("home del deploy")
     } catch (error) {
       return res.json({
@@ -279,5 +279,55 @@ module.exports = {
         disabled: false
       })
     }
+  },
+  updateUser: async (req, res) => {
+    const { email, name, lastName, cellphone, password } = req.body
+    try {
+      const user = await User.findOne({
+        where: {
+          email
+        }
+      })
+      if(name) user.name = name;
+      if(lastName) user.lastName = lastName;
+      if(cellphone) user.cellphone = cellphone;
+      if(password){
+        let passwordHashed = await bcrypt.hash(password, 10);
+        user.password = passwordHashed;
+      } 
+
+      user.save();
+      return res.status(200).send({message: "Datos modificados correctamente"})
+    } catch (error) {
+      res.status(400).send({message: "oops I did it again"})
+    }
+  },
+  deleteUser: async (req, res) => {
+    
+    const { email } = req.body;
+    try {
+      const user = await User.findOne({
+        where: {
+          email
+        }
+      })
+      
+      const Addresses = await ShippingAddress.findAll({
+        where: {
+          UserId: user.id
+        }
+      })
+      
+      for (let i = 0; i < Addresses.length; i++) {
+        Addresses[i].destroy();
+        
+      }
+      user.destroy()
+      res.status(200).send({message: "Cuenta de usuario eliminada"})
+    } catch (error) {
+      res.status(400).send("oops")
+    }
+    
+
   }
 };

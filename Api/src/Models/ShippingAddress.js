@@ -12,16 +12,16 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     number: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
-    postalCode: {
-      type: DataTypes.INTEGER,
+    postCode: {
+      type: DataTypes.STRING,
     },
     apartment: {
       type: DataTypes.STRING,
     },
     floor: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     city: {
       type: DataTypes.STRING,
