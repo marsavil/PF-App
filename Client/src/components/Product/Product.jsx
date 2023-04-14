@@ -1,16 +1,28 @@
 import "./product.scss";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
+  const token = true;
+
+  const navigate = useNavigate();
+
+  function handleDetail() {
+    navigate(`/detail/${product.id}`);
+  }
+
   return (
-    <div className="product">
+    <a className="product" onClick={handleDetail}>
       <img src={product.image} alt={product.name} />
       <section className="info">
-        <p>{product.name}</p>
-        <p>{product.brand}</p>
-        <p>${product.price.toLocaleString()}</p>
+        <p className="pName">{product.name}</p>
+        <p className="pBrand">
+          {product.category} - {product.brand}
+        </p>
+        <p className="pPrice">$ {product.price.toLocaleString()}</p>
       </section>
-      <button className="button">Agregar al carrito</button>
-    </div>
+
+      {token && <button className="button">Agregar al carrito</button>}
+    </a>
   );
 };
 

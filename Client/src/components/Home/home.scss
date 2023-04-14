@@ -8,16 +8,43 @@
 .filtros_productos {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  column-gap: 3%;
-  padding: 3%;
+  column-gap: 1%;
+  padding: 3% 2%;
+  width: 95%;
 }
 
+.divPagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paginationAndCart {
+  display: flex;
+}
+
+.paginationAndCart div:last-child {
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
 .products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
   column-gap: 5%;
-  row-gap: 50px;
-  height: 1450px;
+  row-gap: 30px;
+  height: 750px;
   padding: 1% 2%;
   overflow-y: auto;
+}
+
+.noProducts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 775px;
+  width: 100%;
+  grid-column-start: span 3;
+  color: var(--storm-gray-matte);
 }

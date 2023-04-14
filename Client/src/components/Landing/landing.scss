@@ -1,6 +1,6 @@
 .landing {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 2fr 1fr;
   height: 100vh;
 
   color: var(--dark-color);
@@ -8,7 +8,7 @@
 
   button {
     padding: 15px 50px;
-    font-size: 30px;
+    font-size: 25px;
     margin: 0;
   }
 
@@ -17,7 +17,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 2%;
+    padding: 5%;
   }
 }
 
@@ -33,13 +33,13 @@
 }
 
 .subtitle {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
   text-align: center;
 }
 
 .desc {
-  font-size: 18px;
+  font-size: 17px;
   text-align: center;
   margin-bottom: 10%;
 }

@@ -4,7 +4,7 @@
   align-items: center;
   padding: 25px 0;
   width: 100%;
-  color: var(--slate-gray-matte);
+  color: var(--storm-gray-matte);
 }
 
 .navbar__logo {
@@ -20,7 +20,7 @@
 }
 
 .navbar__links a {
-  color: var(--slate-gray-matte);
+  color: var(--storm-gray-matte);
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
@@ -28,7 +28,14 @@
 }
 
 .navbar__links .ingresar {
-  background-color: var(--steel-blue-matte);
+  background-image: linear-gradient(to right, #3b719d, #37a0ab);
+  color: var(--light-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.navbar__links .desconectarse {
+  background-image: linear-gradient(to right, #9d3b3b, #d04141);
   color: var(--light-color);
   padding: 10px 20px;
   border-radius: 5px;

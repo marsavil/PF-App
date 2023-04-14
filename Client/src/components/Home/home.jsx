@@ -1,22 +1,70 @@
-import "./home.scss";
-import jsonProducts from "../../jsonProducts.js";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import Navbar from "../Navbar/Navbar";
+import { getAllProducts } from "../../redux/actions/actions";
+import "./home.scss";
+
 import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
+import Pagination from "../Pagination/Pagination";
+import Cart from "../Cart/Cart";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const allProducts = useSelector((state) => state.allProducts);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(6);
+
+  const numOfLastProduct = currentPage * productsPerPage;
+  const numOfFirstProduct = numOfLastProduct - productsPerPage;
+  const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
+
+  const handlePagination = (page) => {
+    setCurrentPage(page);
+  };
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
+
   return (
     <div className="home">
-      <Navbar />
       <Carrousel />
       <div className="filtros_productos">
-        <Filters />
-        <div className="products">
-          {jsonProducts.map((product, index) => (
-            <Product product={product} key={index} />
-          ))}
+        <Filters setCurrentPage={setCurrentPage} />
+        <div className="divPagination">
+          <div className="paginationAndCart">
+            <Pagination
+              productsPerPage={productsPerPage}
+              allProducts={allProducts.length}
+              handlePagination={handlePagination}
+              currentPage={currentPage}
+            />
+
+            <Cart />
+          </div>
+
+          {allProducts && allProducts.length === 0 ? (
+            <div className="noProducts">
+              <h1>No hay productos disponibles</h1>
+            </div>
+          ) : (
+            <div className="products">
+              {currentProducts.map((product, index) => (
+                <Product product={product} key={index} />
+              ))}
+            </div>
+          )}
+
+          <Pagination
+            productsPerPage={productsPerPage}
+            allProducts={allProducts.length}
+            handlePagination={handlePagination}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>
