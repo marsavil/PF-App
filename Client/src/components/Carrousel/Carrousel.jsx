@@ -1,17 +1,21 @@
-import React, { useState } from "react";
 import "./carrousel.scss";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import productsCarrousel from "./carrouselProducts.json";
 
 const Carrousel = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const navigate = useNavigate();
 
-  const handleDetail = async () => {
-    try {
-    } catch (error) {}
+  const handleDetail = () => {
+    const product = productsCarrousel[currentProductIndex];
+    navigate(`/detail/${product.id}`);
   };
 
   const handlePrev = () => {
-    const prevIndex = (currentProductIndex - 1 + productsCarrousel.length) % productsCarrousel.length;
+    const prevIndex =
+      (currentProductIndex - 1 + productsCarrousel.length) %
+      productsCarrousel.length;
     setCurrentProductIndex(prevIndex);
   };
 
