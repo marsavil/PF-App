@@ -1,4 +1,3 @@
-
 const jsonProducts = [
   {
     id: "01",
@@ -493,6 +492,25 @@ const jsonProducts = [
     stock: 100,
     category: "Accesorios"
   },
+  {
+    id: "50",
+    name: "Tablet Overtech Ox7s 7 Pulgadas Android 11 2gb Ram Oficial",
+    brand: "Overtech",
+    image: "https://res.cloudinary.com/dlzp43wz9/image/upload/v1681428545/Products/50_vzrpbh.png",
+    price: 18599,
+    description:
+      "Tablet OX7s\nIdeal para use personal Cómoda y practica\n\nPantalla de 7 pulgadas\nResolución HD de 1024x600 px\nProcesador A133\nQuad-core ARM CortexTM-A53 1.5GHz\nDoble cámara\nConexión de WIFI de alta velocidad\nMemoria RAM de 2GB\n16GB de almacenamiento interno\nAndroid 11 Go\n\nCon la OX7s podrás experimentar los mejores juegos en línea.\nTambién podrás realizar transmisión de datos a través de Bluetooth.\nTené la mejor experiencia!",
+    stock: 500,
+    category: "Tablet"
+  },
 ];
+
+// const brands
+
+// jsonProducts.forEach((p)=>{
+//   brands.add(p.brand) 
+// })
+// console.log(brands)
+// console.log(brands.size)
 
 module.exports = jsonProducts
