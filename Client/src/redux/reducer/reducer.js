@@ -27,22 +27,12 @@ export default function reducer(state = initialState, action) {
       return { ...state, cart: action.payload };
 
     case ALL_FILTERS:
-      const { brand, category, orderBy } = action.payload.condition;
+      const { brand, category, order } = action.payload.condition;
       let filteredProducts = action.payload.response;
 
-      if (brand !== "" && category !== "") {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.brand === brand && product.category === category
-        );
-      } else if (brand !== "") {
-        filteredProducts = filteredProducts.filter((product) => product.brand === brand);
-      } else if (category !== "") {
-        filteredProducts = filteredProducts.filter((product) => product.category === category);
-      }
-
-      if (orderBy !== "") {
-        filteredProducts = handleOrder(filteredProducts, orderBy);
-      }
+      if (brand !== "") filteredProducts = filteredProducts.filter((product) => product.brand === brand);
+      if (category !== "") filteredProducts = filteredProducts.filter((product) => product.category === category);
+      if (order !== "none") filteredProducts = handleOrder(filteredProducts, order);
 
       return { ...state, allProducts: filteredProducts };
 
