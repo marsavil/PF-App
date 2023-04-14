@@ -7,10 +7,10 @@
 
 .filtros_productos {
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  column-gap: 1%;
-  padding: 3% 2%;
-  width: 95%;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 5%;
+  padding: 2% 2%;
+  width: 85%;
 }
 
 .divPagination {
@@ -26,15 +26,14 @@
 .paginationAndCart div:last-child {
   position: absolute;
   right: 0;
-  margin-right: 20px;
+  margin-right: 35px;
 }
 .products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   column-gap: 5%;
-  row-gap: 30px;
-  height: 750px;
+  height: 625px;
   padding: 1% 2%;
   overflow-y: auto;
 }
@@ -43,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 775px;
+  height: 625px;
   width: 100%;
   grid-column-start: span 3;
   color: var(--storm-gray-matte);
