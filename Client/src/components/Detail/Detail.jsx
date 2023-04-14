@@ -21,25 +21,35 @@ const Detail = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="detail">
+    <div className="detail-container">
       {productDetail?.id ? (
-        <div>
-          <h2>{productDetail.name}</h2>
-          <img src={productDetail.image} alt={productDetail.name} />
-
-          <p>{productDetail.category}</p>
-
-          <h3>
-            Marca: {productDetail.brand} - Precio: $ {productDetail.price}
-          </h3>
-          <p>Stock: {productDetail.stock}</p>
-          <p>{productDetail.description}</p>
-          <button onClick={backToHome}>Volver</button>
-        </div>
+        <>
+          <div className="detail-image">
+            <img src={productDetail.image} alt={productDetail.name} />
+          </div>
+          <div className="detail-info">
+            <h2>{productDetail.name}</h2>
+            <h1>$ {productDetail.price.toLocaleString()}</h1>{" "}
+          </div>
+          <div className="detail-buy">
+            <p>
+              Stock: <b>{productDetail.stock} unidades</b>
+            </p>
+            <button>Comprar ahora</button>
+            <button className="button-cart">Agregar al carrito </button>
+          </div>
+          <div className="detail-description">
+            <h2>Características del producto</h2>
+            <h3>Categoría: {productDetail.category}</h3>
+            <h3>Marca: {productDetail.brand}</h3>
+            <h2>Descripción</h2>
+            <p>{productDetail.description}</p>
+          </div>
+        </>
       ) : (
-        <div>
-          <h1>Producto no encontrado</h1>
-          <button onClick={backToHome}>Volver</button>
+        <div className="redirect">
+          <h1>Parece que esta página no existe</h1>
+          <button onClick={backToHome}>Ir a la página principal</button>
         </div>
       )}
     </div>
