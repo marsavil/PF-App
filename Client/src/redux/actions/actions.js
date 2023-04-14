@@ -10,10 +10,10 @@ import {
 
 const API_URL = "http://localhost:3001";
 
-export const getUser = () => {
+export const getUser = (user) => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(API_URL + "/user/login");
+      let response = await axios.get(API_URL + "/user/login/log", user);
       return dispatch({
         type: GET_USER,
         payload: response.data,
@@ -89,8 +89,16 @@ export const addToCart = (product) => {
 export function allFilters(payload) {
   let query = `${API_URL}/products`;
 
-  if (payload.brand !== "") query += `?brand=${payload.brand}`;
-  if (payload.category !== "") query += `?category=${payload.category}`;
+  if (payload.brand !== "") {
+    query += `?brand=${payload.brand}`;
+    if (payload.category !== "") query += `&category=${payload.category}`;
+    if (payload.search !== "") query += `&search=${payload.search}`;
+  } else if (payload.category !== "") {
+    query += `?category=${payload.category}`;
+    if (payload.search !== "") query += `&search=${payload.search}`;
+  } else if (payload.search !== "") {
+    query += `?search=${payload.search}`;
+  }
 
   return async (dispatch) => {
     try {

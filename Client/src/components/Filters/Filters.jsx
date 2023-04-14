@@ -38,7 +38,7 @@ const Filters = ({ setCurrentPage }) => {
   return (
     <div className="filters">
       <h3>Buscar producto</h3>
-      <SearchBar />
+      <SearchBar filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
 
       <h3>Ordenar</h3>
       <Order filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
