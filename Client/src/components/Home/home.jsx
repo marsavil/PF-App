@@ -34,7 +34,7 @@ const Home = () => {
     <div className="home">
       <Carrousel />
       <div className="filtros_productos">
-        <Filters />
+        <Filters setCurrentPage={setCurrentPage} />
         <div className="divPagination">
           <div className="paginationAndCart">
             <Pagination

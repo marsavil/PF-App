@@ -24,3 +24,14 @@ export const brands = [
   "Libercam",
   "Overtech",
 ];
+
+export const categories = [
+  "Accesorios",
+  "Ebook Reader",
+  "Tablet",
+  "PC",
+  "Componentes",
+  "Notebook",
+  "Insumos",
+  "Monitor",
+];
