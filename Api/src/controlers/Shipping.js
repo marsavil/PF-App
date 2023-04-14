@@ -22,7 +22,9 @@ module.exports = {
       })
       if(!user) return res.status(400).send({message: `${email} no es un email válido`})
       address.UserId = user.id
+      user.ShippingAddressId = address.id
       address.save()
+      user.save()
       return res.status(200).send({ message: "Información agregada correctamente"})
     } catch (error) {
       res.status(400).send("oops")
