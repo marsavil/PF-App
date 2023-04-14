@@ -8,32 +8,31 @@ import {
   ALL_FILTERS,
 } from "./actions-types";
 
-export function getUser() {
-  return function (dispatch) {
-    return axios
-      .get("http://localhost:3001/auth/me")
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch({ type: GET_USER, payload: json });
-      });
-  };
-}
+const API_URL = "http://localhost:3001";
 
-export function getAllProducts() {
-  return function (dispatch) {
-    return axios
-      .get("http://localhost:3001/products")
-      .then((res) => res.data)
-      .then((json) => {
-        dispatch({ type: GET_ALL_PRODUCTS, payload: json });
-      });
+export const getUser = () => {
+  return async (dispatch) => {
+    let response = await axios.get(API_URL + "/auth/me");
+    return dispatch({
+      type: GET_USER,
+      payload: response.data,
+    });
   };
-}
+};
+
+export const getAllProducts = () => {
+  return async (dispatch) => {
+    let response = await axios.get(API_URL + "/products");
+    return dispatch({
+      type: GET_ALL_PRODUCTS,
+      payload: response.data,
+    });
+  };
+};
 
 export function getProductDetail(id) {
   return async function (dispatch) {
-    let productId = await axios.get(`http://localhost:3001/products/${id}`);
-
+    let productId = await axios.get(API_URL + `/products/${id}`);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
       payload: productId.data,
@@ -50,7 +49,7 @@ export const clearDetail = () => {
 export function addToCart(product) {
   return function (dispatch) {
     return axios
-      .post("http://localhost:3001/cart", product)
+      .post(API_URL + "/cart", product)
       .then((res) => res.json())
       .then((json) => {
         dispatch({ type: ADD_TO_CART, payload: json });
@@ -59,36 +58,18 @@ export function addToCart(product) {
 }
 
 export function allFilters(payload) {
-  const queryParams = [];
-  if (payload.brand !== "") {
-    queryParams.push(`brand=${payload.brand}`);
-  }
-  if (payload.category !== "") {
-    queryParams.push(`category=${payload.category}`);
-  }
-  if (payload.orderBy !== "") {
-    return async (dispatch) => {
-      const response = await axios.get(`http://localhost:3001/products`);
+  let query = `${API_URL}/products`;
 
-      return dispatch({
-        type: ALL_FILTERS,
-        payload: {
-          response: response.data,
-          condition: { brand: payload.brand, category: payload.category, orderBy: payload.order },
-        },
-      });
-    };
-  }
-
-  const queryString = queryParams.join("&");
+  if (payload.brand !== "") query += `?brand=${payload.brand}`;
+  if (payload.category !== "") query += `?category=${payload.category}`;
 
   return async (dispatch) => {
-    const response = await axios.get(`http://localhost:3001/products?${queryString}`);
+    const response = await axios.get(query);
     return dispatch({
       type: ALL_FILTERS,
       payload: {
         response: response.data,
-        condition: { brand: payload.brand, category: payload.category },
+        condition: payload,
       },
     });
   };
