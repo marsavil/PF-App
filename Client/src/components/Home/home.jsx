@@ -20,10 +20,7 @@ const Home = () => {
 
   const numOfLastProduct = currentPage * productsPerPage;
   const numOfFirstProduct = numOfLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(
-    numOfFirstProduct,
-    numOfLastProduct
-  );
+  const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
 
   const handlePagination = (page) => {
     setCurrentPage(page);
