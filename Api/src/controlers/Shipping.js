@@ -29,7 +29,7 @@ module.exports = {
     }
     },
     getAllData: async (req, res) => {
-      const { email} = req.body
+      const { email } = req.body
       try {
         if(email){
           const user = await User.findOne({

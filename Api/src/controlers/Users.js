@@ -1,4 +1,5 @@
 const { User, ShippingAddress } = require("../db"); 
+const bcrypt = require('bcrypt')
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
