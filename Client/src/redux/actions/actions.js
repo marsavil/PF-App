@@ -59,33 +59,23 @@ export function addToCart(product) {
 }
 
 export function allFilters(payload) {
+  const queryParams = [];
   if (payload.brand !== "") {
-    return async (dispatch) => {
-      const response = await axios.get(
-        `http://localhost:3001/products/brand?brand=${payload.brand}`
-      );
-      return dispatch({
-        type: ALL_FILTERS,
-        payload: { response: response.data, condition: "brand" },
-      });
-    };
-  } else if (payload.category !== "") {
-    return async (dispatch) => {
-      const response = await axios.get(
-        `http://localhost:3001/products/category?category=${payload.category}`
-      );
-      return dispatch({
-        type: ALL_FILTERS,
-        payload: { response: response.data, condition: "category" },
-      });
-    };
-  } else {
-    return async (dispatch) => {
-      const response = await axios.get(`http://localhost:3001/products`);
-      return dispatch({
-        type: ALL_FILTERS,
-        payload: { response: response.data, condition: "all" },
-      });
-    };
+    queryParams.push(`brand=${payload.brand}`);
   }
+  if (payload.category !== "") {
+    queryParams.push(`category=${payload.category}`);
+  }
+  const queryString = queryParams.join("&");
+
+  return async (dispatch) => {
+    const response = await axios.get(`http://localhost:3001/products?${queryString}`);
+    return dispatch({
+      type: ALL_FILTERS,
+      payload: {
+        response: response.data,
+        condition: { brand: payload.brand, category: payload.category },
+      },
+    });
+  };
 }
