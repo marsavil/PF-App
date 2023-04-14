@@ -339,7 +339,7 @@ module.exports = {
       user.destroy()
       return res.status(200).send({message: "Cuenta de usuario eliminada"})
     } catch (error) {
-      res.status(400).send(error.message)
+      res.status(400).send('oops')
     }
     
 
