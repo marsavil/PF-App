@@ -125,7 +125,7 @@ module.exports = {
           <div id="email___content">
               <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
               <h2>Hola ${email}</h2>
-              <p>Lamentamos verte partir. Si tienes alguna sugerencia para hacernos y así tenerte de vuelta, te pedimos que nos escribas a ${sender}</p>
+              <p>Lamentamos verte partir. Si tu no has realizado esta acción o si tienes alguna sugerencia para hacernos y así tenerte de vuelta, te pedimos que nos escribas a ${sender}</p>
               
           </div>
         `;

@@ -333,8 +333,11 @@ module.exports = {
         Addresses[i].destroy();
         
       }
+      if(user.email === sender){
+        return res.status(400).send({message: `La cuenta ${user.userName} no puede ser eliminada`})
+      }
       user.destroy()
-      res.status(200).send({message: "Cuenta de usuario eliminada"})
+      return res.status(200).send({message: "Cuenta de usuario eliminada"})
     } catch (error) {
       res.status(400).send(error.message)
     }
