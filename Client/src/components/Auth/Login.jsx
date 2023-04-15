@@ -1,26 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUser } from "../../redux/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
 import "./auth.scss";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [dataLogin, setDataLogin] = useState({
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState({});
-
-  const user = useSelector((state) => state.user);
-
-  console.log(user);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(getUser(dataLogin));
+    navigate("/home");
   };
 
   const handleChange = (e) => {
