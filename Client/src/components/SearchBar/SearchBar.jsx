@@ -16,8 +16,6 @@ const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
     setCurrentPage(1);
   };
 
-  console.log(productSearch);
-
   return (
     <div>
       <section>

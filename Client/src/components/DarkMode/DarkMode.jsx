@@ -13,12 +13,12 @@ const DarkMode = () => {
 
   useEffect(() => {
     const colors = {
-      "--bg-color": darkMode && "#3d3d3d",
-      "--dark-color": darkMode && "#f2f2f2",
-      "--light-color": darkMode && "#3d3d3d",
-      "--slate-gray-matte": darkMode && "#c0c0c0",
-      "--silver-matte": darkMode && "#444444",
-      "--storm-gray-matte": darkMode && "#f2f2f2",
+      "--bg-color": darkMode ? "#3d3d3d" : "#f2f2f2",
+      "--dark-color": darkMode ? "#f2f2f2" : "#3d3d3d",
+      "--light-color": darkMode ? "#3d3d3d" : "#f2f2f2",
+      "--slate-gray-matte": darkMode ? "#c0c0c0" : "#3d3d3d",
+      "--silver-matte": darkMode ? "#444444" : "#c0c0c0",
+      "--storm-gray-matte": darkMode ? "#f2f2f2" : "#444444",
     };
 
     Object.entries(colors).forEach(([key, value]) => {
