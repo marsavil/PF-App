@@ -22,7 +22,6 @@ module.exports = {
     try {
       const { name, lastName, userName, email, password } = req.body;
 
-      // Verificar si todos los campos requeridos están presentes
       if (!name || !lastName || !userName || !email || !password) {
         return res.json({
           success: false,
@@ -40,7 +39,6 @@ module.exports = {
           email,
         },
       });
-      let passwordHashed = await bcrypt.hash(password, 10);
 
       if (user || userEmail) {
         return res.json({
@@ -49,7 +47,8 @@ module.exports = {
         });
       } else {
         const code = v4();
-        let user = User.create({
+        let passwordHashed = await bcrypt.hash(password, 10);
+        user = await User.create({
           name,
           lastName,
           userName,
@@ -165,7 +164,10 @@ module.exports = {
           .status(400)
           .send({ message: "Cuenta de usuario deshabilitada" });
       }
-      if (bcrypt.compare(password, user.password)) {
+
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (passwordMatch) {
         return res.status(200).send(user);
       } else {
         return res.status(400).send({ message: "Contraseña incorrecta" });

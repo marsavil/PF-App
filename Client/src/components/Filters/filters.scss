@@ -35,16 +35,19 @@
       border-radius: 5px;
     }
 
+    input {
+      border: none;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      padding: 9px;
+      width: 90%;
+    }
+
     select {
       transition: all 0.3s ease;
       &:focus {
         outline: none;
-        border: 2px solid var(--light-color);
+        border: 1px solid var(--light-color);
       }
-    }
-
-    input {
-      width: 90%;
     }
   }
 }
