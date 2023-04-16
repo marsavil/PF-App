@@ -13,7 +13,7 @@ const API_URL = "http://localhost:3001";
 export const getUser = (user) => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(API_URL + "/user/login/log", user);
+      let response = await axios.post(API_URL + "/user/login/log", user);
       return dispatch({
         type: GET_USER,
         payload: response.data,

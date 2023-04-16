@@ -11,7 +11,7 @@
     position: absolute;
     background-color: transparent;
     border: none;
-    font-size: 40px;
+    font-size: 36px;
     z-index: 1;
     color: var(--light-color);
     font-weight: bold;
@@ -35,7 +35,6 @@
 
   img {
     padding-left: 100px;
-    
   }
 
   section {
@@ -48,12 +47,19 @@
     h3 {
       font-weight: 400;
       letter-spacing: 1px;
-      font-size: 40px;
+      font-size: 32px;
     }
 
     button {
-      padding: 15px 75px;
-      font-size: 20px;
+      border: none;
+      color: var(--storm-gray-matte);
+      padding: 12px 60px;
+      font-size: 18px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      &:hover {
+        color: var(--storm-gray-matte);
+        background-color: var(--light-color);
+      }
     }
   }
 }

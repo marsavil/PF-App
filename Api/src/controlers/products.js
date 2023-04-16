@@ -22,7 +22,11 @@ module.exports = {
   },
 
   listProducts: async function () {
-    const dbProducts = await Product.findAll();
+    const dbProducts = await Product.findAll({
+      where: {
+        disable: false
+      }
+    });
     // console.log(dbProducts)
     return dbProducts;
   },

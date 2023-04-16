@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { brands } from "../../functions/constants";
-import "./filterBrand.scss";
 
 const FilterBrand = ({ filterState, setFilterState, setCurrentPage }) => {
   const [selectedBrand, setSelectedBrand] = useState("");

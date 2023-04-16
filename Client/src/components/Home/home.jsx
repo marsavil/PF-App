@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "../../redux/actions/actions";
@@ -21,6 +21,8 @@ const Home = () => {
   const numOfLastProduct = currentPage * productsPerPage;
   const numOfFirstProduct = numOfLastProduct - productsPerPage;
   const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
+
+  const productsRef = useRef(null);
 
   const handlePagination = (page) => {
     setCurrentPage(page);
@@ -52,7 +54,7 @@ const Home = () => {
               <h1>No hay productos disponibles</h1>
             </div>
           ) : (
-            <div className="products">
+            <div className="products" id="products">
               {currentProducts.map((product, index) => (
                 <Product product={product} key={index} />
               ))}

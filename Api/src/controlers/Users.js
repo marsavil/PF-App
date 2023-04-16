@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 const { User, ShippingAddress, ShoppingCart } = require("../db"); 
 const bcrypt = require('bcrypt')
+=======
+const { User, ShippingAddress } = require("../db");
+const bcrypt = require("bcrypt");
+>>>>>>> 63c47c516054d88f7388f524662888b0ace50fc5
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
@@ -9,11 +14,11 @@ const {
   templateAdminInvitation,
   templateSuspensiónDeCuenta,
   sendStatusEmail,
-  templateRehabilitacionDeCuenta, 
-  templateEliminacionDeCuenta
+  templateRehabilitacionDeCuenta,
+  templateEliminacionDeCuenta,
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
-const sender = process.env.EMAIL
+const sender = process.env.EMAIL;
 
 dotenv.config();
 
@@ -21,6 +26,14 @@ module.exports = {
   registerUser: async (req, res) => {
     try {
       const { name, lastName, userName, email, password } = req.body;
+
+      if (!name || !lastName || !userName || !email || !password) {
+        return res.json({
+          success: false,
+          msg: "Completa los campos requeridos",
+        });
+      }
+
       let user = await User.findOne({
         where: {
           userName,
@@ -31,14 +44,21 @@ module.exports = {
           email,
         },
       });
-      let passwordHashed = await bcrypt.hash(password, 10);
-      //console.log("linea 30 Users controller", passwordHashed)
+
       if (user || userEmail) {
-        return null, false, console.log("This user name already exists");
+        return res.json({
+          success: false,
+          msg: "El usuario o el email ya existen",
+        });
       } else {
         const code = v4();
+<<<<<<< HEAD
         
         let user = User.create({
+=======
+        let passwordHashed = await bcrypt.hash(password, 10);
+        user = await User.create({
+>>>>>>> 63c47c516054d88f7388f524662888b0ace50fc5
           name,
           lastName,
           userName,
@@ -54,18 +74,18 @@ module.exports = {
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
-        await sendEmail(email, "Confirm your account", template);
+        await sendEmail(email, template);
 
         res.json({
           success: true,
-          msg: "User successfully registered",
+          msg: "Usuario registrado con éxito",
         });
       }
     } catch (error) {
       console.log(error);
       return res.json({
         success: false,
-        msg: "Something went wrong. Registration has failed",
+        msg: "Error al registrar usuario",
       });
     }
   },
@@ -111,7 +131,7 @@ module.exports = {
   getUsers: async (req, res) => {
     const { id } = req.query;
 
-    if(id){
+    if (id) {
       try {
         const user = await User.findOne({
           where: {
@@ -123,7 +143,7 @@ module.exports = {
       } catch (error) {
         res.status(400).send("oops I did it again");
       }
-    }else{
+    } else {
       try {
         const users = await User.findAll();
         res.json(users);
@@ -131,16 +151,23 @@ module.exports = {
         res.json(error);
       }
     }
-    
   },
 
   logInUser: async (req, res) => {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .send({ message: "Por favor, proporciona el email y la contraseña" });
+    }
+
     const user = await User.findOne({
       where: {
         email,
       },
     });
+<<<<<<< HEAD
     console.log(user)
     try { 
       if (!user) res.status(400).send({ message: "Usuario inexitente. Registrate" });
@@ -149,8 +176,30 @@ module.exports = {
         return
       } 
       if (bcrypt.compare(password, user.password)) res.status(200).send(user);
+=======
+
+    try {
+      if (!user) {
+        return res
+          .status(400)
+          .send({ message: "Usuario inexistente. Regístrate" });
+      }
+      if (user.disabled === true) {
+        return res
+          .status(400)
+          .send({ message: "Cuenta de usuario deshabilitada" });
+      }
+
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (passwordMatch) {
+        return res.status(200).send(user);
+      } else {
+        return res.status(400).send({ message: "Contraseña incorrecta" });
+      }
+>>>>>>> 63c47c516054d88f7388f524662888b0ace50fc5
     } catch (error) {
-      res.status(400).send("oops");
+      return res.status(500).send({ message: "Error en el servidor" });
     }
   },
   banUser: async (req, res) => {
@@ -161,8 +210,8 @@ module.exports = {
         id,
       },
     });
-    const template = templateSuspensiónDeCuenta(user.email, sender)
-    await sendStatusEmail(user.email, "Tu cuenta ha sido suspendida", template)
+    const template = templateSuspensiónDeCuenta(user.email, sender);
+    await sendStatusEmail(user.email, "Tu cuenta ha sido suspendida", template);
     user.disabled = true;
     user.save();
     res.send({ message: "Usuario inhabilitado" });
@@ -175,8 +224,8 @@ module.exports = {
         id,
       },
     });
-    const template = templateRehabilitacionDeCuenta(user.email, sender)
-    await sendStatusEmail(user.email, "Tu cuenta ha sido restaurada", template)
+    const template = templateRehabilitacionDeCuenta(user.email, sender);
+    await sendStatusEmail(user.email, "Tu cuenta ha sido restaurada", template);
     user.disabled = false;
     user.save();
     res.send({ message: "Usuario habilitado" });
@@ -240,12 +289,10 @@ module.exports = {
           .status(400)
           .send({ message: "Ya existe un usuario con este nombre" });
       } else if (checkUserEmail) {
-        res
-          .status(400)
-          .send({
-            message:
-              "Ya existe un usuario registrado con este email. Utilice la función 'setAdminRightsToUser' ",
-          });
+        res.status(400).send({
+          message:
+            "Ya existe un usuario registrado con este email. Utilice la función 'setAdminRightsToUser' ",
+        });
       } else {
         const code = v4();
         let user = User.create({
@@ -264,7 +311,7 @@ module.exports = {
 
         res.json({
           success: true,
-          msg: "User successfully registered"
+          msg: "User successfully registered",
         });
       }
     } catch (error) {
@@ -276,79 +323,83 @@ module.exports = {
     }
   },
   serverAdmin: async (req, res) => {
-    let passwordHashed = await bcrypt.hash("proyectofinal", 10)
+    let passwordHashed = await bcrypt.hash("proyectofinal", 10);
     let user = await User.findOne({
-      where:{
-        name: "Grupo 6"
-      }
-    })
-    if(!user){
+      where: {
+        name: "Grupo 6",
+      },
+    });
+    if (!user) {
       const user = await User.create({
         name: "Grupo 6",
         email: "auxiliarparaproyectos@gmail.com",
         admin: true,
         verified: true,
-        code : v4(),
+        code: v4(),
         lastName: "Proyecto Final",
         userName: "ElectroShop",
         password: passwordHashed,
-        disabled: false
-      })
+        disabled: false,
+      });
     }
   },
   updateUser: async (req, res) => {
-    const { email, name, lastName, cellphone, password } = req.body
+    const { email, name, lastName, cellphone, password } = req.body;
     try {
       const user = await User.findOne({
         where: {
-          email
-        }
-      })
-      if(name) user.name = name;
-      if(lastName) user.lastName = lastName;
-      if(cellphone) user.cellphone = cellphone;
-      if(password){
+          email,
+        },
+      });
+      if (name) user.name = name;
+      if (lastName) user.lastName = lastName;
+      if (cellphone) user.cellphone = cellphone;
+      if (password) {
         let passwordHashed = await bcrypt.hash(password, 10);
         user.password = passwordHashed;
-      } 
+      }
 
       user.save();
-      return res.status(200).send({message: "Datos modificados correctamente"})
+      return res
+        .status(200)
+        .send({ message: "Datos modificados correctamente" });
     } catch (error) {
-      res.status(400).send({message: "oops I did it again"})
+      res.status(400).send({ message: "oops I did it again" });
     }
   },
   deleteUser: async (req, res) => {
-    
     const { email } = req.body;
     try {
       const user = await User.findOne({
         where: {
-          email
-        }
-      })
-      
+          email,
+        },
+      });
+
       const Addresses = await ShippingAddress.findAll({
         where: {
-          UserId: user.id
-        }
-      })
-      const template = templateEliminacionDeCuenta(user.email, sender)
-      await sendStatusEmail(user.email, "Tu cuenta ha sido eliminada", template)
-      
+          UserId: user.id,
+        },
+      });
+      const template = templateEliminacionDeCuenta(user.email, sender);
+      await sendStatusEmail(
+        user.email,
+        "Tu cuenta ha sido eliminada",
+        template
+      );
+
       for (let i = 0; i < Addresses.length; i++) {
         Addresses[i].destroy();
-        
       }
-      if(user.email === sender){
-        return res.status(400).send({message: `La cuenta ${user.userName} no puede ser eliminada`})
+      if (user.email === sender) {
+        return res.status(400).send({
+          message: `La cuenta ${user.userName} no puede ser eliminada`,
+        });
       }
-      user.destroy()
-      return res.status(200).send({message: "Cuenta de usuario eliminada"})
+      user.destroy();
+      return res.status(200).send({ message: "Cuenta de usuario eliminada" });
     } catch (error) {
-      res.status(400).send('oops')
+      res.status(400).send("oops");
     }
-    
-
-  }
+  },
 };

@@ -1,15 +1,18 @@
 .filters {
   display: flex;
   flex-direction: column;
+  margin: 20% 0;
   align-items: center;
-  background-color: var(--bg-color);
-  border: 1px solid #000;
   border-radius: 10px;
   letter-spacing: 1px;
   padding: 25px 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--white-color);
 
-  h3 {
-    text-decoration: underline;
+  h4 {
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 10px;
   }
 
   .cleanFilters {
@@ -27,13 +30,24 @@
     select,
     section,
     input {
-      padding: 5px 10px;
+      padding: 3px 10px;
       width: 100%;
       border-radius: 5px;
     }
 
     input {
+      border: none;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      padding: 9px;
       width: 90%;
+    }
+
+    select {
+      transition: all 0.3s ease;
+      &:focus {
+        outline: none;
+        border: 1px solid var(--light-color);
+      }
     }
   }
 }
