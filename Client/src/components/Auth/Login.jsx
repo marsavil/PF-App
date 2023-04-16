@@ -14,11 +14,20 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(getUser(dataLogin));
-    navigate("/home");
+    try {
+      e.preventDefault();
+      const user = await dispatch(getUser(dataLogin));
+      if (user === undefined) {
+        console.error("El usuario no coincide con los datos ingresados");
+      } else {
+        alert("Bienvenido")
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Error al procesar el formulario:", error);
+    }
   };
 
   const handleChange = (e) => {
@@ -35,7 +44,13 @@ const Login = () => {
     <div className="authDiv">
       <form className="authForm authFormLogin" onSubmit={handleSubmit}>
         <h1>Iniciar sesion</h1>
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          value={dataLogin.email}
+        />
         {dataLogin.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
