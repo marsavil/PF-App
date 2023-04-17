@@ -9,7 +9,8 @@ import {
 } from "./actions-types";
 import qs from "query-string"; // importar la biblioteca query-string
 
-const API_URL = "http://localhost:3001";
+// const API_URL = "http://localhost:3001";
+const API_URL = "pf-app-production.up.railway.app";
 
 export const getUser = (user) => {
   return async (dispatch) => {
