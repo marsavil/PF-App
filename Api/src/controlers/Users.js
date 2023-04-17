@@ -1,10 +1,7 @@
-<<<<<<<<< Temporary merge branch 1
+
 const { User, ShippingAddress, ShoppingCart } = require("../db"); 
 const bcrypt = require('bcrypt')
-=========
-const { User, ShippingAddress } = require("../db");
-const bcrypt = require("bcrypt");
->>>>>>>>> Temporary merge branch 2
+
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
