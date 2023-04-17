@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite dev ",
+    "start": "smooth-form-production.up.railway.app",
     "build": "vite build",
     "preview": "vite preview"
   },
