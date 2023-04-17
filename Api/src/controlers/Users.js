@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-const { User, ShippingAddress, ShoppingCart } = require("../db"); 
-const bcrypt = require('bcrypt')
-=======
-const { User, ShippingAddress } = require("../db");
+const { User, ShippingAddress, shoppingCart } = require("../db");
 const bcrypt = require("bcrypt");
->>>>>>> 63c47c516054d88f7388f524662888b0ace50fc5
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
@@ -52,13 +47,8 @@ module.exports = {
         });
       } else {
         const code = v4();
-<<<<<<< HEAD
-        
-        let user = User.create({
-=======
         let passwordHashed = await bcrypt.hash(password, 10);
         user = await User.create({
->>>>>>> 63c47c516054d88f7388f524662888b0ace50fc5
           name,
           lastName,
           userName,
@@ -68,9 +58,7 @@ module.exports = {
         }).then(user => user.createShoppingCart({
           quantity: 0,
           totalPrice: 0,
-        }))
-        
-        user.setShoppingCarts = (user.id)
+        }));
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
@@ -167,16 +155,6 @@ module.exports = {
         email,
       },
     });
-<<<<<<< HEAD
-    console.log(user)
-    try { 
-      if (!user) res.status(400).send({ message: "Usuario inexitente. Registrate" });
-      if(user.disabled === true){
-        res.status(400).send({message: "Cuenta de usuario deshabilitada"})
-        return
-      } 
-      if (bcrypt.compare(password, user.password)) res.status(200).send(user);
-=======
 
     try {
       if (!user) {
@@ -197,7 +175,6 @@ module.exports = {
       } else {
         return res.status(400).send({ message: "Contraseña incorrecta" });
       }
->>>>>>> 63c47c516054d88f7388f524662888b0ace50fc5
     } catch (error) {
       return res.status(500).send({ message: "Error en el servidor" });
     }
@@ -295,7 +272,7 @@ module.exports = {
         });
       } else {
         const code = v4();
-        let user = User.create({
+        let user = User.create({ 
           name,
           lastName,
           userName,
@@ -304,6 +281,7 @@ module.exports = {
           password: passwordHashed,
           code,
         });
+        user.setShoppingCarts = (user.id)
         const token = generateToken({ email, code });
         const template = templateAdminInvitation(name, token);
 

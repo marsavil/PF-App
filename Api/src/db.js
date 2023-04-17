@@ -51,8 +51,8 @@ const { User, Product, Review, ShippingAddress, PurchaseOrder, ShoppingCart } = 
 //Relaciones
 
 /* RELACIÓN ENTRE USUARIO Y SHIPPING ADDRESS */
-User.hasMany(ShippingAddress);
-ShippingAddress.hasMany(User);
+//User.hasMany(ShippingAddress);
+//ShippingAddress.hasMany(User);
 /* RELACIÓN ENTRE PRODUCTO Y REVIEW */
 Product.hasMany(Review);
 Review.belongsTo(Product);
@@ -63,11 +63,19 @@ Review.belongsTo(User);
 User.hasOne(ShoppingCart);
 ShoppingCart.belongsTo(User);
 /* RELACIÓN ENTRE PRODUCTO Y CARRITO */
-Product.belongsToMany(ShoppingCart, {through: "shoppingCart_products"}) ;
-ShoppingCart.belongsToMany(Product, {through: "shoppingCart_products"});
+Product.belongsToMany(ShoppingCart, {through: "ShoppingCart_Products"}) ;
+ShoppingCart.belongsToMany(Product, {through: "ShoppingCart_Products"});
 /* RELACIÓN ENTRE PURCHASE ORDER Y CARRITO */
 PurchaseOrder.hasOne(ShoppingCart);
 ShoppingCart.belongsTo(PurchaseOrder);
+
+/* RELACION ENTRE PURCHASE ORDER Y USUARIO */
+User.hasMany(PurchaseOrder)
+PurchaseOrder.belongsTo(User)
+
+/* RELACION ENTRE PURCHASE ORDER Y SHIPPING ADRESS*/
+PurchaseOrder.belongsTo(ShippingAddress)
+ShippingAddress.hasMany(PurchaseOrder)
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
