@@ -1,0 +1,17 @@
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: 1px solid var(--dark-color);
+  border-radius: 5px;
+}
+
+.cart:hover {
+  cursor: pointer;
+  padding: 7px 11px;
+  border: 2px solid var(--dark-color);
+}
