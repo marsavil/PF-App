@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { brands } from "../../functions/constants";
 
 const FilterBrand = ({ filterState, setFilterState, setCurrentPage }) => {
-  const [selectedBrand, setSelectedBrand] = useState("");
-
-  useEffect(() => {
+  const handleBrandChange = (e) => {
+    const brandValue = e.target.value;
     setFilterState({
       ...filterState,
-      brand: selectedBrand,
+      brand: brandValue,
     });
-  }, [selectedBrand]);
-
-  useEffect(() => {
-    setSelectedBrand(filterState.brand);
-  }, [filterState.brand]);
-
-  const handleBrandChange = (e) => {
-    setSelectedBrand(e.target.value);
     setCurrentPage(1);
   };
 
   return (
     <div className="filterBrand">
-      <select value={selectedBrand} onChange={handleBrandChange}>
+      <select value={filterState.brand} onChange={handleBrandChange}>
         <option value="">Seleccione una marca</option>
         {brands.map((brand, index) => {
           return (

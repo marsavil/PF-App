@@ -8,6 +8,20 @@ export const handleOrder = (allProducts, orderProducts) => {
       return allProducts;
     }
   });
-
   return sortedProducts;
 };
+
+export const handleFilters = (products, condition) => {
+  const { brand, category, order } = condition;
+  let filteredProducts = products;
+  if (brand !== "")
+    filteredProducts = filteredProducts.filter(
+      (product) => product.brand === brand
+    );
+  if (category !== "")
+    filteredProducts = filteredProducts.filter(
+      (product) => product.category === category
+    );
+  if (order !== "none") filteredProducts = handleOrder(filteredProducts, order);
+  return filteredProducts;
+}
