@@ -59,7 +59,7 @@ module.exports = {
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
-        await sendEmail(email, template);
+        await sendEmail(email, "Confirm your account", template);
 
         res.json({
           success: true,
