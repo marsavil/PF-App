@@ -6,15 +6,13 @@ import {
   ADD_TO_CART,
   ALL_FILTERS,
 } from "../actions/actions-types";
-
-import { handleOrder } from "../../functions/utils.js";
+import { handleOrder, handleFilters } from "../../functions/utils.js";
 
 const initialState = {
   user: {},
   allProducts: [],
   productDetail: {},
   cart: [],
-  filteredProducts: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -25,17 +23,14 @@ export default function reducer(state = initialState, action) {
       return { ...state, allProducts: action.payload };
     case ADD_TO_CART:
       return { ...state, cart: action.payload };
-
     case ALL_FILTERS:
       const { brand, category, order } = action.payload.condition;
-      let filteredProducts = action.payload.response;
-
-      if (brand !== "") filteredProducts = filteredProducts.filter((product) => product.brand === brand);
-      if (category !== "") filteredProducts = filteredProducts.filter((product) => product.category === category);
-      if (order !== "none") filteredProducts = handleOrder(filteredProducts, order);
-
+      const filteredProducts = handleFilters(action.payload.response, {
+        brand,
+        category,
+        order,
+      });
       return { ...state, allProducts: filteredProducts };
-
     case GET_PRODUCT_DETAIL:
       return { ...state, productDetail: action.payload };
     case CLEAR_DETAIL:

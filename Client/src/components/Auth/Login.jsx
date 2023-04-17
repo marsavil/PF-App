@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getUser } from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
 import "./auth.scss";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [dataLogin, setDataLogin] = useState({
     email: "",
     password: "",
@@ -11,13 +16,17 @@ const Login = () => {
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { errors, isValid } = validateLoginData(dataLogin);
-    if (!isValid) {
-      setErrors(errors);
-    } else {
-      setErrors({});
-      // Enviar datos del formulario
+    try {
+      e.preventDefault();
+      const user = await dispatch(getUser(dataLogin));
+      if (user === undefined) {
+        console.error("El usuario no coincide con los datos ingresados");
+      } else {
+        alert("Bienvenido")
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Error al procesar el formulario:", error);
     }
   };
 
@@ -35,7 +44,13 @@ const Login = () => {
     <div className="authDiv">
       <form className="authForm authFormLogin" onSubmit={handleSubmit}>
         <h1>Iniciar sesion</h1>
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          value={dataLogin.email}
+        />
         {dataLogin.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (

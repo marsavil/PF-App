@@ -1,16 +1,18 @@
 :root {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
   --bg-color: #f2f2f2;
+  --dark-color: #3d3d3d;
   --white-color: #ffffff;
   --light-color: #fcfcfc;
-  --dark-color: #3d3d3d;
-  --midnight-blue-matte: #11114e;
   --steel-blue-matte: #3b719d;
-  --sky-blue-matte: #36a7b4;
-  --light-sky-blue-matte: #cfeff5;
+  --steel-blue-medium-matte: #4a90e2;
+  --light-sky-blue-matte: #d1ecf5;
   --slate-gray-matte: #444444;
   --silver-matte: #c0c0c0;
   --light-gray-matte: #d3d3d3;
   --storm-gray-matte: #5d5d5d;
+  --success-color: #00bd00;
   --error-color: #ff0000;
 }
 
@@ -19,6 +21,7 @@ body {
   margin: 0;
   background-color: var(--bg-color);
   color: var(--dark-color);
+  font-family: Roboto, Arial, sans-serif;
 }
 
 .button {
@@ -28,13 +31,12 @@ body {
   border-radius: 5px;
   padding: 10px 20px;
   margin: 10px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   transition: all 0.5s ease;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: var(--slate-gray-matte);
-  color: var(--bg-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

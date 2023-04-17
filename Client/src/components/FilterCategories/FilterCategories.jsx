@@ -1,25 +1,19 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import { categories } from "../../functions/constants";
-import "../FilterBrand/filterBrand.scss";
 
 const FilterCategories = ({ filterState, setFilterState, setCurrentPage }) => {
-  const [selectCategory, setSelectCategory] = useState("");
-
-  useEffect(() => {
+  const handleBrandChange = (e) => {
+    const categoryValue = e.target.value;
     setFilterState({
       ...filterState,
-      category: selectCategory,
+      category: categoryValue,
     });
-  }, [selectCategory]);
-
-  const handleBrandChange = (e) => {
-    setSelectCategory(e.target.value);
     setCurrentPage(1);
   };
 
   return (
     <div className="filterBrand">
-      <select value={selectCategory} onChange={handleBrandChange}>
+      <select value={filterState.category} onChange={handleBrandChange}>
         <option value="">Seleccione una categoria</option>
         {categories.map((category, index) => {
           return (

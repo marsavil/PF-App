@@ -25,6 +25,7 @@ const Detail = () => {
       {productDetail?.id ? (
         <>
           <div className="detail-image">
+            <button onClick={backToHome}>Volver</button>
             <img src={productDetail.image} alt={productDetail.name} />
           </div>
           <div className="detail-info">
@@ -32,11 +33,14 @@ const Detail = () => {
             <h1>$ {productDetail.price.toLocaleString()}</h1>{" "}
           </div>
           <div className="detail-buy">
+            <p className="p-shipping">Envío gratis a todo el país</p>
             <p>
               Stock: <b>{productDetail.stock} unidades</b>
             </p>
             <button>Comprar ahora</button>
             <button className="button-cart">Agregar al carrito </button>
+            <p className="p-return">Devolución gratis</p>
+            <p className="p-return">Compra protegida</p>
           </div>
           <div className="detail-description">
             <h2>Características del producto</h2>

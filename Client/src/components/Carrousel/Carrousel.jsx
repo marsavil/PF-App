@@ -1,5 +1,5 @@
 import "./carrousel.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import productsCarrousel from "./carrouselProducts.json";
 
@@ -28,7 +28,10 @@ const Carrousel = () => {
 
   return (
     <div className="carrousel">
-      <img src={currentProduct.image} alt={currentProduct.name} />
+      <img
+        src={currentProduct.image}
+        alt={currentProduct.name}
+      />
       <section>
         <h3>{currentProduct.name}</h3>
         <button className="button" onClick={handleDetail}>
