@@ -1,29 +1,25 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import "./searchBar.scss";
 
 const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
-  const [productSearch, setProductSearch] = useState("");
-
-  useEffect(() => {
+  const handleProductSearch = (e) => {
+    const searchValue = e.target.value;
     setFilterState({
       ...filterState,
-      search: productSearch,
+      search: searchValue,
     });
-  }, [productSearch]);
-
-  useEffect(() => {
-    setProductSearch(filterState.search);
-  }, [filterState.search]);
-
-  const handleProductSearch = (e) => {
-    setProductSearch(e.target.value);
     setCurrentPage(1);
   };
 
   return (
     <div>
       <section>
-        <input type="text" value={productSearch} placeholder="Buscar producto" onChange={handleProductSearch} />
+        <input
+          type="text"
+          value={filterState.search}
+          placeholder="Buscar producto"
+          onChange={handleProductSearch}
+        />
       </section>
     </div>
   );

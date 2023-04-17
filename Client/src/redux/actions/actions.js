@@ -7,6 +7,7 @@ import {
   ADD_TO_CART,
   ALL_FILTERS,
 } from "./actions-types";
+import qs from "query-string"; // importar la biblioteca query-string
 
 const API_URL = "http://localhost:3001";
 
@@ -87,18 +88,14 @@ export const addToCart = (product) => {
 };
 
 export function allFilters(payload) {
-  let query = `${API_URL}/products`;
+  const params = {
+    brand: payload.brand || null, 
+    category: payload.category || null,
+    search: payload.search || null,
+  };
 
-  if (payload.brand !== "") {
-    query += `?brand=${payload.brand}`;
-    if (payload.category !== "") query += `&category=${payload.category}`;
-    if (payload.search !== "") query += `&search=${payload.search}`;
-  } else if (payload.category !== "") {
-    query += `?category=${payload.category}`;
-    if (payload.search !== "") query += `&search=${payload.search}`;
-  } else if (payload.search !== "") {
-    query += `?search=${payload.search}`;
-  }
+  // construir la URL de consulta usando query-string
+  const query = `${API_URL}/products?${qs.stringify(params)}`;
 
   return async (dispatch) => {
     try {
