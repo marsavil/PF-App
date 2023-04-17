@@ -5,6 +5,7 @@ import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Profile from "./components/Profile/Profile";
 import Detail from "./components/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>
