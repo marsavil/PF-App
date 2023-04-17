@@ -11,6 +11,7 @@ const {
   sendStatusEmail,
   templateRehabilitacionDeCuenta,
   templateEliminacionDeCuenta,
+  templateAdminSuspension
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
 const sender = process.env.EMAIL;
@@ -169,45 +170,81 @@ module.exports = {
           .status(400)
           .send({ message: "Cuenta de usuario deshabilitada" });
       }
+      if(user.verified === false){
+        return res.status(400).send({message: "Debes confirmar tu cuenta primero. Revisa tu email"})
+      }
+
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        return res.status(200).send(user);
+        const userFormated = {
+          email: user.email,
+          admin: user.admin,
+          verified: user.verified,
+          userName: user.userName,
+          name: user.name,
+          lastName: user.lastName,
+          cellphone: user.cellphone,
+          shoppingCart: user.shoppingCart
+        };
+        const accessToken = generateToken(userFormated) 
+        return res.header('authorization', accessToken).status(200).json(accessToken);
       } else {
         return res.status(400).send({ message: "Contraseña incorrecta" });
       }
     } catch (error) {
-      return res.status(500).send({ message: "Error en el servidor" });
+      return res.status(500).send({message: "rror en el servidor"});
     }
   },
   banUser: async (req, res) => {
     const { id } = req.params;
-
-    const user = await User.findOne({
-      where: {
-        id,
-      },
-    });
-    const template = templateSuspensiónDeCuenta(user.email, sender);
-    await sendStatusEmail(user.email, "Tu cuenta ha sido suspendida", template);
-    user.disabled = true;
-    user.save();
-    res.send({ message: "Usuario inhabilitado" });
+    
+    try {
+      const user = await User.findOne({
+        where: {
+          id,
+        },
+      });
+      if(user.email !== sender){
+        if(user.disabled === true){
+          res.send({message: "Esta cuenta ya se encuentra suspendida"})
+        }else{
+          const template = templateSuspensiónDeCuenta(user.email, sender);
+          await sendStatusEmail(user.email, "Tu cuenta ha sido suspendida", template);
+          user.disabled = true;
+          user.save();
+          return res.send({ message: "Usuario inhabilitado" });
+        }
+      }else{
+        return res.send({message: `La cuenta ${user.userName} no puede ser deshabilitada`})
+      }
+    } catch (error) {
+      return res.status(400).send("oops")
+    }
+    
+    
   },
   unBanUser: async (req, res) => {
     const { id } = req.params;
-
-    const user = await User.findOne({
-      where: {
-        id,
-      },
-    });
-    const template = templateRehabilitacionDeCuenta(user.email, sender);
-    await sendStatusEmail(user.email, "Tu cuenta ha sido restaurada", template);
-    user.disabled = false;
-    user.save();
-    res.send({ message: "Usuario habilitado" });
+    try {
+      const user = await User.findOne({
+        where: {
+          id,
+        },
+      });
+      if(user.disabled === false){
+        res.send({message: "Este usuario ya está habilitado"})
+      }else{
+        const template = templateRehabilitacionDeCuenta(user.email, sender);
+        await sendStatusEmail(user.email, "Tu cuenta ha sido restaurada", template);
+        user.disabled = false;
+        user.save();
+        res.send({ message: "Usuario habilitado" });
+      }
+    } catch (error) {
+      res.send("oops")
+    }
   },
   setAdminRightsToUser: async (req, res) => {
     const { email } = req.body;
@@ -217,37 +254,59 @@ module.exports = {
           email,
         },
       });
-      console.log(newAdmin);
-      if (!newAdmin)
-        res.status(400).send({ message: "No existe usuario con este email" });
-      newAdmin.admin = true;
-      newAdmin.save();
-      res.send({
-        message: `Derechos administrativos otorgados a ${newAdmin.userName}`,
+      if (!newAdmin){
+        return res.status(400).send({ message: "No existe usuario con este email" });
+      }else{
+        if(newAdmin.admin === true){
+          return res.send({message: "Esta cuenta ya tiene derechos administrativos"})
+        }else{
+          newAdmin.admin = true;
+          const token = generateToken({ email, code: newAdmin.code });
+          const template = templateAdminInvitation(newAdmin.name, token);
+  
+          await sendEmail(email, "Invitación", template);
+          newAdmin.save();
+          return res.send({message: `Derechos administrativos otorgados a ${newAdmin.userName}`,
       });
+        }
+      }
+        
+      
     } catch (error) {
-      res.status(400).send("oops");
+      res.status(400).send(error.message);
     }
   },
   removeAdminRightsToUser: async (req, res) => {
     const { email } = req.body;
-    try {
-      const newAdmin = await User.findOne({
-        where: {
-          email,
-        },
-      });
-      console.log(newAdmin);
-      if (!newAdmin)
-        res.status(400).send({ message: "No existe usuario con este email" });
-      newAdmin.admin = false;
-      newAdmin.save();
-      res.send({
-        message: `Derechos administrativos quitados a ${newAdmin.userName}`,
-      });
-    } catch (error) {
-      res.status(400).send("oops");
+    if(email !== sender){
+      try {
+        const formerAdmin = await User.findOne({
+          where: {
+            email,
+          },
+        });
+        if (!formerAdmin)
+          res.status(400).send({ message: "No existe usuario con este email" });
+          if(formerAdmin.admin === false){
+            return res.send({ message: "Esta cuenta no tiene derechos administrativos"})
+          }else{
+            // const token = generateToken({ email, code: formerAdmin.code });
+            //const template = templateAdminSuspension(formerAdmin.name);
+    
+            //await sendEmail(email, "Revocación", template);
+            formerAdmin.admin = false;
+            formerAdmin.save();
+            return res.send({
+            message: `Derechos administrativos quitados a ${formerAdmin.userName}`,
+            });
+          } 
+      } catch (error) {
+        res.status(400).send(error.message);
+      }
+    }else{
+      return res.status(400).send({ message: "No es posible quitarle derechos administrativos a esta cuenta"})
     }
+    
   },
   createAdmin: async (req, res) => {
     const { name, lastName, userName, email, password } = req.body;
@@ -286,7 +345,7 @@ module.exports = {
         const token = generateToken({ email, code });
         const template = templateAdminInvitation(name, token);
 
-        await sendEmail(email, "Confirm your account", template);
+        await sendEmail(email, "Invitación", template);
 
         res.json({
           success: true,

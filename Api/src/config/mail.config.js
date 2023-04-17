@@ -80,9 +80,25 @@ module.exports = {
               <h2>Hola ${email}</h2>
               <p>Has sido invitado a formar parate del equipo administrativo de Electro Shop</p>
               <a
-                  href="http://localhost:3001/user/confirm/${token}"
+                  href="http://localhost:3000/login"
                   target="_blank"
-              >Confirmar Cuenta</a>
+              >Te invitamos a iniciar sesión</a>
+          </div>
+        `;
+  },
+  templateAdminSuspension: (email) => {
+    return `
+          <head>
+              <link rel="stylesheet" href="./style.css">
+          </head>
+          
+          <div id="email___content">
+              <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
+              <h2>Hola ${email}</h2>
+              <p>Te comunicamos que tu permanencia en el equipo administrativo de Electro Shop ha sido revocada. Para más información comunicate con nosotros a ${sender}</p>
+              <a
+                  href="http://localhost:3000"
+                  target="_blank"
           </div>
         `;
   },
