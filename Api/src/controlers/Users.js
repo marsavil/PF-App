@@ -1,5 +1,10 @@
-const { User, ShippingAddress, shoppingCart } = require("../db");
+<<<<<<<<< Temporary merge branch 1
+const { User, ShippingAddress, ShoppingCart } = require("../db"); 
+const bcrypt = require('bcrypt')
+=========
+const { User, ShippingAddress } = require("../db");
 const bcrypt = require("bcrypt");
+>>>>>>>>> Temporary merge branch 2
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
@@ -62,7 +67,7 @@ module.exports = {
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
-        await sendEmail(email, template);
+        await sendEmail(email, "Confirm your account", template);
 
         res.json({
           success: true,
