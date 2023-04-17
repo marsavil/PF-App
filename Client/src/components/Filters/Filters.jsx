@@ -38,16 +38,32 @@ const Filters = ({ setCurrentPage }) => {
   return (
     <div className="filters">
       <h4>Buscar producto</h4>
-      <SearchBar filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+      <SearchBar
+        filterState={filterState}
+        setFilterState={setFilterState}
+        setCurrentPage={setCurrentPage}
+      />
 
       <h4>Ordenar</h4>
-      <Order filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+      <Order
+        filterState={filterState}
+        setFilterState={setFilterState}
+        setCurrentPage={setCurrentPage}
+      />
 
       <h4>Marca:</h4>
-      <FilterBrand filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+      <FilterBrand
+        filterState={filterState}
+        setFilterState={setFilterState}
+        setCurrentPage={setCurrentPage}
+      />
 
       <h4>Categoría:</h4>
-      <FilterCategories filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+      <FilterCategories
+        filterState={filterState}
+        setFilterState={setFilterState}
+        setCurrentPage={setCurrentPage}
+      />
 
       <button className="button cleanFilters" onClick={handleCleanFilters}>
         Limpiar filtros

@@ -11,6 +11,10 @@ const FilterCategories = ({ filterState, setFilterState, setCurrentPage }) => {
     });
   }, [selectCategory]);
 
+  useEffect(() => {
+    setSelectCategory(filterState.category);
+  }, [filterState.category]);
+
   const handleBrandChange = (e) => {
     setSelectCategory(e.target.value);
     setCurrentPage(1);
