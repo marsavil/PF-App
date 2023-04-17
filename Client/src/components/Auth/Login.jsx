@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUser } from "../../redux/actions/actions";
+import { loginUser, setToken } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
 import "./auth.scss";
@@ -18,11 +18,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const user = await dispatch(getUser(dataLogin));
+      const user = await dispatch(loginUser(dataLogin));
       if (user === undefined) {
+        alert("Datos incorrectos");
         console.error("El usuario no coincide con los datos ingresados");
       } else {
-        alert("Bienvenido")
+        dispatch(setToken(true));
+        alert("Bienvenido");
         navigate("/home");
       }
     } catch (error) {

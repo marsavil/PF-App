@@ -46,4 +46,10 @@
   .navbar__links a:hover {
     transform: translateY(-1px);
   }
+
+  .token_true{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
 }
