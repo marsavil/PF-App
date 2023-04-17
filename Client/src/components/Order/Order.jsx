@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./order.scss";
 
 const Order = ({ filterState, setFilterState, setCurrentPage }) => {
-  const [selectOrder, setSelectOrder] = useState("none");
+  const [selectOrder, setSelectOrder] = useState(filterState.order || "none");
 
   useEffect(() => {
     setFilterState({
@@ -10,6 +10,11 @@ const Order = ({ filterState, setFilterState, setCurrentPage }) => {
       order: selectOrder,
     });
   }, [selectOrder]);
+
+  useEffect(() => {
+    setSelectOrder(filterState.order);
+  }, [filterState.order]);
+
 
   const handleOrderChange = (e) => {
     setSelectOrder(e.target.value);

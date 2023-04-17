@@ -11,6 +11,10 @@ const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
     });
   }, [productSearch]);
 
+  useEffect(() => {
+    setProductSearch(filterState.search);
+  }, [filterState.search]);
+
   const handleProductSearch = (e) => {
     setProductSearch(e.target.value);
     setCurrentPage(1);

@@ -11,6 +11,10 @@ const FilterBrand = ({ filterState, setFilterState, setCurrentPage }) => {
     });
   }, [selectedBrand]);
 
+  useEffect(() => {
+    setSelectedBrand(filterState.brand);
+  }, [filterState.brand]);
+
   const handleBrandChange = (e) => {
     setSelectedBrand(e.target.value);
     setCurrentPage(1);
