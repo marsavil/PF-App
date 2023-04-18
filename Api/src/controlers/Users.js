@@ -1,5 +1,6 @@
-const { User, ShippingAddress, ShoppingCart } = require("../db"); 
-const bcrypt = require('bcrypt')
+const { User, ShippingAddress, ShoppingCart } = require("../db");
+const bcrypt = require("bcrypt");
+
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
@@ -11,7 +12,7 @@ const {
   sendStatusEmail,
   templateRehabilitacionDeCuenta,
   templateEliminacionDeCuenta,
-  templateAdminSuspension
+  templateAdminSuspension,
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
 const sender = process.env.EMAIL;
@@ -56,12 +57,12 @@ module.exports = {
           email,
           password: passwordHashed,
           code,
-        }).then(user => user.createShoppingCart({
-          quantity: 0,
-          totalPrice: 0,
-        }))
-        
-        user.setShoppingCarts = (user.id)
+        }).then((user) =>
+          user.createShoppingCart({
+            quantity: 0,
+            totalPrice: 0,
+          })
+        );
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
@@ -148,9 +149,7 @@ module.exports = {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res
-        .status(400)
-        .send({ message: "Por favor, proporciona el email y la contraseña" });
+      return res.status(400).send({ message: "Por favor, proporciona el email y la contraseña" });
     }
 
     const user = await User.findOne({
@@ -161,24 +160,20 @@ module.exports = {
 
     try {
       if (!user) {
-        return res
-          .status(400)
-          .send({ message: "Usuario inexistente. Regístrate" });
+        return res.status(400).send({ message: "Usuario inexistente. Regístrate" });
       }
       if (user.disabled === true) {
-        return res
-          .status(400)
-          .send({ message: "Cuenta de usuario deshabilitada" });
+        return res.status(400).send({ message: "Cuenta de usuario deshabilitada" });
       }
-      if(user.verified === false){
-        return res.status(400).send({message: "Debes confirmar tu cuenta primero. Revisa tu email"})
+      if (user.verified === false) {
+        return res.status(400).send({ message: "Debes confirmar tu cuenta primero. Revisa tu email" });
       }
-
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
         const userFormated = {
+          id: user.id,
           email: user.email,
           admin: user.admin,
           verified: user.verified,
@@ -186,44 +181,46 @@ module.exports = {
           name: user.name,
           lastName: user.lastName,
           cellphone: user.cellphone,
-          shoppingCart: user.shoppingCart
+          shoppingCart: user.shoppingCart,
         };
-        const accessToken = generateToken(userFormated) 
-        return res.header('authorization', accessToken).status(200).json(accessToken);
+        const token = generateToken(userFormated);
+        const payload = {
+          ...userFormated,
+          token,
+        };
+        return res.status(200).json(payload);
       } else {
         return res.status(400).send({ message: "Contraseña incorrecta" });
       }
     } catch (error) {
-      return res.status(500).send({message: "rror en el servidor"});
+      return res.status(500).send({ message: "rror en el servidor" });
     }
   },
   banUser: async (req, res) => {
     const { id } = req.params;
-    
+
     try {
       const user = await User.findOne({
         where: {
           id,
         },
       });
-      if(user.email !== sender){
-        if(user.disabled === true){
-          res.send({message: "Esta cuenta ya se encuentra suspendida"})
-        }else{
+      if (user.email !== sender) {
+        if (user.disabled === true) {
+          res.send({ message: "Esta cuenta ya se encuentra suspendida" });
+        } else {
           const template = templateSuspensiónDeCuenta(user.email, sender);
           await sendStatusEmail(user.email, "Tu cuenta ha sido suspendida", template);
           user.disabled = true;
           user.save();
           return res.send({ message: "Usuario inhabilitado" });
         }
-      }else{
-        return res.send({message: `La cuenta ${user.userName} no puede ser deshabilitada`})
+      } else {
+        return res.send({ message: `La cuenta ${user.userName} no puede ser deshabilitada` });
       }
     } catch (error) {
-      return res.status(400).send("oops")
+      return res.status(400).send("oops");
     }
-    
-    
   },
   unBanUser: async (req, res) => {
     const { id } = req.params;
@@ -233,9 +230,9 @@ module.exports = {
           id,
         },
       });
-      if(user.disabled === false){
-        res.send({message: "Este usuario ya está habilitado"})
-      }else{
+      if (user.disabled === false) {
+        res.send({ message: "Este usuario ya está habilitado" });
+      } else {
         const template = templateRehabilitacionDeCuenta(user.email, sender);
         await sendStatusEmail(user.email, "Tu cuenta ha sido restaurada", template);
         user.disabled = false;
@@ -243,7 +240,7 @@ module.exports = {
         res.send({ message: "Usuario habilitado" });
       }
     } catch (error) {
-      res.send("oops")
+      res.send("oops");
     }
   },
   setAdminRightsToUser: async (req, res) => {
@@ -254,59 +251,54 @@ module.exports = {
           email,
         },
       });
-      if (!newAdmin){
+      if (!newAdmin) {
         return res.status(400).send({ message: "No existe usuario con este email" });
-      }else{
-        if(newAdmin.admin === true){
-          return res.send({message: "Esta cuenta ya tiene derechos administrativos"})
-        }else{
+      } else {
+        if (newAdmin.admin === true) {
+          return res.send({ message: "Esta cuenta ya tiene derechos administrativos" });
+        } else {
           newAdmin.admin = true;
           const token = generateToken({ email, code: newAdmin.code });
           const template = templateAdminInvitation(newAdmin.name, token);
-  
+
           await sendEmail(email, "Invitación", template);
           newAdmin.save();
-          return res.send({message: `Derechos administrativos otorgados a ${newAdmin.userName}`,
-      });
+          return res.send({ message: `Derechos administrativos otorgados a ${newAdmin.userName}` });
         }
       }
-        
-      
     } catch (error) {
       res.status(400).send(error.message);
     }
   },
   removeAdminRightsToUser: async (req, res) => {
     const { email } = req.body;
-    if(email !== sender){
+    if (email !== sender) {
       try {
         const formerAdmin = await User.findOne({
           where: {
             email,
           },
         });
-        if (!formerAdmin)
-          res.status(400).send({ message: "No existe usuario con este email" });
-          if(formerAdmin.admin === false){
-            return res.send({ message: "Esta cuenta no tiene derechos administrativos"})
-          }else{
-            // const token = generateToken({ email, code: formerAdmin.code });
-            //const template = templateAdminSuspension(formerAdmin.name);
-    
-            //await sendEmail(email, "Revocación", template);
-            formerAdmin.admin = false;
-            formerAdmin.save();
-            return res.send({
+        if (!formerAdmin) res.status(400).send({ message: "No existe usuario con este email" });
+        if (formerAdmin.admin === false) {
+          return res.send({ message: "Esta cuenta no tiene derechos administrativos" });
+        } else {
+          // const token = generateToken({ email, code: formerAdmin.code });
+          //const template = templateAdminSuspension(formerAdmin.name);
+
+          //await sendEmail(email, "Revocación", template);
+          formerAdmin.admin = false;
+          formerAdmin.save();
+          return res.send({
             message: `Derechos administrativos quitados a ${formerAdmin.userName}`,
-            });
-          } 
+          });
+        }
       } catch (error) {
         res.status(400).send(error.message);
       }
-    }else{
-      return res.status(400).send({ message: "No es posible quitarle derechos administrativos a esta cuenta"})
+    } else {
+      return res.status(400).send({ message: "No es posible quitarle derechos administrativos a esta cuenta" });
     }
-    
   },
   createAdmin: async (req, res) => {
     const { name, lastName, userName, email, password } = req.body;
@@ -323,13 +315,10 @@ module.exports = {
         },
       });
       if (checkUserName) {
-        res
-          .status(400)
-          .send({ message: "Ya existe un usuario con este nombre" });
+        res.status(400).send({ message: "Ya existe un usuario con este nombre" });
       } else if (checkUserEmail) {
         res.status(400).send({
-          message:
-            "Ya existe un usuario registrado con este email. Utilice la función 'setAdminRightsToUser' ",
+          message: "Ya existe un usuario registrado con este email. Utilice la función 'setAdminRightsToUser' ",
         });
       } else {
         const code = v4();
@@ -342,6 +331,7 @@ module.exports = {
           password: passwordHashed,
           code,
         });
+        user.setShoppingCarts = user.id;
         const token = generateToken({ email, code });
         const template = templateAdminInvitation(name, token);
 
@@ -398,9 +388,7 @@ module.exports = {
       }
 
       user.save();
-      return res
-        .status(200)
-        .send({ message: "Datos modificados correctamente" });
+      return res.status(200).send({ message: "Datos modificados correctamente" });
     } catch (error) {
       res.status(400).send({ message: "oops I did it again" });
     }
@@ -420,11 +408,7 @@ module.exports = {
         },
       });
       const template = templateEliminacionDeCuenta(user.email, sender);
-      await sendStatusEmail(
-        user.email,
-        "Tu cuenta ha sido eliminada",
-        template
-      );
+      await sendStatusEmail(user.email, "Tu cuenta ha sido eliminada", template);
 
       for (let i = 0; i < Addresses.length; i++) {
         Addresses[i].destroy();
