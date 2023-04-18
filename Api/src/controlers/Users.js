@@ -68,7 +68,7 @@ module.exports = {
 
         await sendEmail(email, "Confirm your account", template);
 
-        res.json({
+        return res.json({
           success: true,
           msg: "Usuario registrado con éxito",
         });
