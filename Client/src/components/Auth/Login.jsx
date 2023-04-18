@@ -1,9 +1,11 @@
+import "./auth.scss";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
-import "./auth.scss";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Log from "./Auth0/Log";
 
 const Login = () => {
@@ -19,15 +21,17 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+
       const user = await dispatch(loginUser(dataLogin));
       if (user === undefined) {
         alert("Datos incorrectos");
         console.error("El usuario no coincide con los datos ingresados");
       } else {
-        alert("Bienvenido");
+        toast.success("Bienvenido");
         navigate("/home");
       }
     } catch (error) {
+      toast.success("Bienvenido");
       console.error("Error al procesar el formulario:", error);
     }
   };
@@ -43,10 +47,18 @@ const Login = () => {
   };
 
   return (
+    <>
+    <ToastContainer />
     <div className="authDiv">
       <form className="authForm authFormLogin" onSubmit={handleSubmit}>
         <h1>Iniciar sesion</h1>
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          value={dataLogin.email}
+        />
         {dataLogin.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
@@ -78,6 +90,7 @@ const Login = () => {
         <Log />
       </form>
     </div>
+    </>
   );
 };
 
