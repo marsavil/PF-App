@@ -62,13 +62,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          onChange={handleChange}
-          value={dataRegister.name}
-        />
+        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
 
         {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
@@ -94,13 +88,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={dataRegister.email}
-        />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
         {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
@@ -138,7 +126,9 @@ const Register = () => {
           </p>
         )}
 
-        <button type="submit">Registrarse</button>
+        <button className="authButton" type="submit">
+          Registrarse
+        </button>
         <p>
           ¿Ya tienes cuenta? <Link to="/login">Iniciar sesion</Link>
         </p>
