@@ -10,7 +10,7 @@ import {
 import qs from "query-string"; // importar la biblioteca query-string
 
 // const API_URL = "http://localhost:3001";
-const API_URL = "pf-app-production.up.railway.app";
+const API_URL = "https://pf-app-production.up.railway.app";
 
 export const getUser = (user) => {
   return async (dispatch) => {
