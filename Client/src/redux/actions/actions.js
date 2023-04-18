@@ -1,4 +1,6 @@
 import axios from "axios";
+import Cookies from "universal-cookie";
+
 import {
   GET_USER,
   GET_ALL_PRODUCTS,
@@ -14,10 +16,15 @@ import qs from "query-string";
 
 const API_URL = "http://localhost:3001";
 
+const cookies = new Cookies();
+
 export const loginUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(API_URL + "/user/login/log", user);
+      console.log(response.data);
+      cookies.set("token", response.data.token, { path: "/" });
+      cookies.set("admin", response.data.admin, { path: "/" });
       return dispatch({
         type: GET_USER,
         payload: response.data,
