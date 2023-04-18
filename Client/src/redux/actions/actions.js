@@ -29,11 +29,16 @@ export const loginUser = (user) => {
   };
 };
 
-export const createUser = (user) => {
+export const createUser = async (user) => {
   try {
-    axios.post(API_URL + "/user", user);
+    const response = await axios.post(API_URL + "/user", user);
+    if (response.data.success) {
+    } else {
+      throw new Error(response.data.msg); 
+    }
   } catch (error) {
     console.error("Error while creating user:", error);
+    throw error; 
   }
 };
 
