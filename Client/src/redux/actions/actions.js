@@ -25,15 +25,26 @@ export const loginUser = (user) => {
       });
     } catch (error) {
       console.error("Error while fetching user:", error);
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        console.error("Error from backend:", errorMessage);
+      } else {
+        console.error("Error:", error.message);
+      }
     }
   };
 };
 
-export const createUser = (user) => {
+export const createUser = async (user) => {
   try {
-    axios.post(API_URL + "/user", user);
+    const response = await axios.post(API_URL + "/user", user);
+    if (response.data.success) {
+    } else {
+      throw new Error(response.data.msg);
+    }
   } catch (error) {
     console.error("Error while creating user:", error);
+    throw error;
   }
 };
 

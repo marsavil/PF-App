@@ -24,13 +24,14 @@ const Register = () => {
     delete formData.confirmPassword;
 
     try {
-      createUser(formData);
+      await createUser(formData);
       toast.success("Usuario registrado con éxito");
     } catch (error) {
       console.error("Error al registrar usuario:", error);
-      toast.error("Error al registrar usuario. Por favor, inténtalo de nuevo.");
+      toast.error(`${error.message}`);
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDataRegister({
@@ -62,13 +63,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          onChange={handleChange}
-          value={dataRegister.name}
-        />
+        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
 
         {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
@@ -94,13 +89,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={dataRegister.email}
-        />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
         {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
@@ -138,7 +127,9 @@ const Register = () => {
           </p>
         )}
 
-        <button type="submit">Registrarse</button>
+        <button className="authButton" type="submit">
+          Registrarse
+        </button>
         <p>
           ¿Ya tienes cuenta? <Link to="/login">Iniciar sesion</Link>
         </p>
