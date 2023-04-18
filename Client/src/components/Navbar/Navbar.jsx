@@ -5,9 +5,13 @@ import { setToken } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
 import DarkMode from "../DarkMode/DarkMode";
+import Cookies from "universal-cookie";
 
 const Navbar = () => {
+  const cookies = new Cookies();
+
   const token = useSelector((state) => state.token);
+  const admin = cookies.get("admin");
 
   const dispatch = useDispatch();
 
@@ -17,11 +21,11 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm(
-      "¿Estás seguro/a de que deseas cerrar sesión?"
-    );
+    const confirmLogout = window.confirm("¿Estás seguro/a de que deseas cerrar sesión?");
     if (confirmLogout) {
       dispatch(setToken(false));
+      cookies.remove("token");
+      cookies.remove("admin");
       alert("Has cerrado sesión exitosamente");
     }
   };
@@ -35,6 +39,7 @@ const Navbar = () => {
       </div>
       <div className="navbar__links">
         <Link to="/">Inicio</Link>
+        {admin ? <Link to="/">Agregar producto</Link> : null}
         <Link to="/home" onClick={handleProductsClick}>
           Productos
         </Link>
