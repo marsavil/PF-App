@@ -1,5 +1,5 @@
 const { ShoppingCart,Product , User } = require("../db");
-const { productsByCategory } = require("./products");
+
 
 module.exports = {
 
