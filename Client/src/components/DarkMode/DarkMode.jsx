@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import "./darkMode.scss";
-import Cookies from "js-cookie";
+import Cookies from "universal-cookie";
 import darkIcon from "/assets/img/dark-mode.png";
 import lightIcon from "/assets/img/light-mode.png";
 
 const DarkMode = () => {
-  const [darkMode, setDarkMode] = useState(Cookies.get("darkMode") === "true");
-
+  const cookies=new Cookies()
+  const [darkMode, setDarkMode] = useState(cookies.get("darkMode") === "true");
+  
   const changeColor = (property, color) => {
     document.documentElement.style.setProperty(property, color);
   };
@@ -29,7 +30,7 @@ const DarkMode = () => {
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode);
-    Cookies.set("darkMode", !darkMode);
+    cookies.set("darkMode", !darkMode);
   };
 
   return (
