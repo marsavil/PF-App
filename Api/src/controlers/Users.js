@@ -1,5 +1,7 @@
+
 const { User, ShippingAddress, ShoppingCart } = require("../db"); 
 const bcrypt = require('bcrypt')
+
 const { v4 } = require("uuid");
 const { generateToken } = require("../config/jwt.config");
 const { getTokenData } = require("../config/jwt.config");
@@ -59,9 +61,7 @@ module.exports = {
         }).then(user => user.createShoppingCart({
           quantity: 0,
           totalPrice: 0,
-        }))
-        
-        user.setShoppingCarts = (user.id)
+        }));
         const token = generateToken({ email, code });
         const template = getTemplate(name, token);
 
@@ -333,7 +333,7 @@ module.exports = {
         });
       } else {
         const code = v4();
-        let user = User.create({
+        let user = User.create({ 
           name,
           lastName,
           userName,
@@ -342,6 +342,7 @@ module.exports = {
           password: passwordHashed,
           code,
         });
+        user.setShoppingCarts = (user.id)
         const token = generateToken({ email, code });
         const template = templateAdminInvitation(name, token);
 
