@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
 
 import {
   GET_USER,
@@ -10,20 +9,16 @@ import {
   REMOVE_FROM_CART,
   GET_CART,
   ALL_FILTERS,
-  SET_TOKEN,
 } from "./actions-types";
 import qs from "query-string";
 
 const API_URL = "http://localhost:3001";
 
-const cookies = new Cookies();
-
 export const loginUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(API_URL + "/user/login/log", user);
-      cookies.set("token", response.data.token, { path: "/" });
-      cookies.set("admin", response.data.admin, { path: "/" });
+      localStorage.setItem("userData", JSON.stringify(response.data));
       return dispatch({
         type: GET_USER,
         payload: response.data,
@@ -128,10 +123,3 @@ export function allFilters(payload) {
     }
   };
 }
-
-export const setToken = (token) => {
-  return {
-    type: SET_TOKEN,
-    payload: token,
-  };
-};

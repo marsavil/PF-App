@@ -7,7 +7,6 @@ import {
   REMOVE_FROM_CART,
   GET_CART,
   ALL_FILTERS,
-  SET_TOKEN,
 } from "../actions/actions-types";
 import { handleFilters } from "../../functions/utils.js";
 
@@ -17,7 +16,6 @@ const initialState = {
   productDetail: {},
   cartProducts: [],
   totalPrice: 0,
-  token: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -56,8 +54,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, productDetail: action.payload };
     case CLEAR_DETAIL:
       return { ...state, productDetail: {} };
-    case SET_TOKEN:
-      return { ...state, token: action.payload };
     default:
       return state;
   }

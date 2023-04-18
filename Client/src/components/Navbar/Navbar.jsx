@@ -1,23 +1,15 @@
 import "./navbar.scss";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { setToken } from "../../redux/actions/actions";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
 import DarkMode from "../DarkMode/DarkMode";
-import Cookies from "universal-cookie";
 
 import darkProfileIcon from "/assets/img/profile-dark.png";
 import lightProfileIcon from "/assets/img/profile-ligth.png";
 
 const Navbar = () => {
-  const cookies = new Cookies();
-
-  const darkMode = cookies.get("darkMode");
-  const token = cookies.get("token");
-  const admin = cookies.get("admin");
-
-  const dispatch = useDispatch();
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
+  const { token, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const handleProductsClick = () => {
     const productsRef = document.querySelector(".products");
@@ -27,9 +19,9 @@ const Navbar = () => {
   const handleLogout = () => {
     const confirmLogout = window.confirm("¿Estás seguro/a de que deseas cerrar sesión?");
     if (confirmLogout) {
-      dispatch(setToken(false));
-      cookies.remove("token");
-      cookies.remove("admin");
+      localStorage.removeItem("token");
+      localStorage.removeItem("admin");
+      localStorage.removeItem("userData");
       alert("Has cerrado sesión exitosamente");
     }
   };
@@ -50,7 +42,7 @@ const Navbar = () => {
         {token ? (
           <div className="token_true">
             <Link to="/profile">
-              <img src={darkMode ? lightProfileIcon : darkProfileIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
+              <img src={darkMode ? darkProfileIcon : lightProfileIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
             </Link>
             <Link onClick={handleLogout} to="/home" className="desconectarse">
               Cerrar sesión
@@ -61,7 +53,7 @@ const Navbar = () => {
             Iniciar sesión
           </Link>
         )}
-        <DarkMode />
+        <DarkMode darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
     </div>
   );
