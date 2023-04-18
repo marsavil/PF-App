@@ -1,5 +1,4 @@
 import React from "react";
-import "./searchBar.scss";
 
 const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
   const handleProductSearch = (e) => {
