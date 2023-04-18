@@ -24,13 +24,14 @@ const Register = () => {
     delete formData.confirmPassword;
 
     try {
-      createUser(formData);
+      await createUser(formData);
       toast.success("Usuario registrado con éxito");
     } catch (error) {
       console.error("Error al registrar usuario:", error);
-      toast.error("Error al registrar usuario. Por favor, inténtalo de nuevo.");
+      toast.error(`${error.message}`);
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDataRegister({
