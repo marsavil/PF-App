@@ -1,16 +1,20 @@
 import "./navbar.scss";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
 import DarkMode from "../DarkMode/DarkMode";
 import Cookies from "universal-cookie";
 
+import darkProfileIcon from "/assets/img/profile-dark.png";
+import lightProfileIcon from "/assets/img/profile-ligth.png";
+
 const Navbar = () => {
   const cookies = new Cookies();
 
-  const token = useSelector((state) => state.token);
+  const darkMode = cookies.get("darkMode");
+  const token = cookies.get("token");
   const admin = cookies.get("admin");
 
   const dispatch = useDispatch();
@@ -45,7 +49,9 @@ const Navbar = () => {
         </Link>
         {token ? (
           <div className="token_true">
-            <Link to="/profile">Perfil</Link>
+            <Link to="/profile">
+              <img src={darkMode ? lightProfileIcon : darkProfileIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
+            </Link>
             <Link onClick={handleLogout} to="/home" className="desconectarse">
               Cerrar sesión
             </Link>
