@@ -3,8 +3,8 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define("PurchaseOrder", {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     date: {
@@ -17,12 +17,14 @@ module.exports = (sequelize) => {
     },
     status: {
       type: DataTypes.ENUM(
+        "Created",
         "Processing payment",
         "Preparing for shipping",
         "Sent",
-        "Completed"
+        "Completed",
+        "Canceled"
       ),
-      defaultValue: "Processing payment",
+      defaultValue: "Created",
     },
   });
 };
