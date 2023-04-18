@@ -14,7 +14,7 @@ const Navbar = () => {
   const admin = cookies.get("admin");
 
   const dispatch = useDispatch();
-  
+
   const handleProductsClick = () => {
     const productsRef = document.querySelector(".products");
     productsRef.scrollIntoView();
@@ -24,6 +24,8 @@ const Navbar = () => {
     const confirmLogout = window.confirm("¿Estás seguro/a de que deseas cerrar sesión?");
     if (confirmLogout) {
       dispatch(setToken(false));
+      cookies.remove("token");
+      cookies.remove("admin");
       alert("Has cerrado sesión exitosamente");
     }
   };

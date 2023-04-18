@@ -22,7 +22,6 @@ export const loginUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(API_URL + "/user/login/log", user);
-      console.log(response.data);
       cookies.set("token", response.data.token, { path: "/" });
       cookies.set("admin", response.data.admin, { path: "/" });
       return dispatch({
