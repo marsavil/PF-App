@@ -35,17 +35,11 @@ export const loginUser = (user) => {
 };
 
 export const createUser = (user) => {
-  return async (dispatch) => {
-    try {
-      let response = await axios.post(API_URL + "/user", user);
-      return dispatch({
-        type: GET_USER,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error("Error while creating user:", error);
-    }
-  };
+  try {
+    axios.post(API_URL + "/user", user);
+  } catch (error) {
+    console.error("Error while creating user:", error);
+  }
 };
 
 export const addToCart = (productId, userId) => async (dispatch) => {

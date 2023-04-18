@@ -1,15 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { validateRegisterData } from "../../functions/validate";
 import { createUser } from "../../redux/actions/actions";
-import { useDispatch } from "react-redux";
 
 import "./auth.scss";
 
 const Register = () => {
-  const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
   const [dataRegister, setDataRegister] = useState({
     name: "",
     lastName: "",
@@ -25,10 +21,7 @@ const Register = () => {
     e.preventDefault();
     const formData = { ...dataRegister };
     delete formData.confirmPassword;
-
-    dispatch(createUser(formData));
-
-    // navigate("/login");
+    createUser(formData);
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,13 +53,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          onChange={handleChange}
-          value={dataRegister.name}
-        />
+        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
 
         {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
@@ -92,13 +79,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={dataRegister.email}
-        />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
         {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
