@@ -57,10 +57,7 @@ export default function reducer(state = initialState, action) {
     case CLEAR_DETAIL:
       return { ...state, productDetail: {} };
     case SET_TOKEN:
-      return {
-        ...state,
-        token: action.payload,
-      };
+      return { ...state, token: action.payload };
     default:
       return state;
   }

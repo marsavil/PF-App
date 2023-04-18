@@ -39,7 +39,15 @@
     flex-direction: column;
     gap: 10px;
     .p-shipping {
+      img{
+        height: 22px;
+        padding-right: 6px;
+        padding-bottom: 5px;
+      }
+      display: flex;
+      align-items: center;
       color: var(--success-color);
+      font-size: 12px;
       font-weight: 600;
     }
     button {

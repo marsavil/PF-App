@@ -33,7 +33,7 @@ export const createUser = (user) => {
     try {
       let response = await axios.post(API_URL + "/user", user);
       return dispatch({
-        type: GET_USER,
+        type: CREATE_USER,
         payload: response.data,
       });
     } catch (error) {
