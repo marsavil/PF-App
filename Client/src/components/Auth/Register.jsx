@@ -1,9 +1,10 @@
+import "./auth.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { validateRegisterData } from "../../functions/validate";
 import { createUser } from "../../redux/actions/actions";
-
-import "./auth.scss";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [dataRegister, setDataRegister] = useState({
@@ -21,7 +22,14 @@ const Register = () => {
     e.preventDefault();
     const formData = { ...dataRegister };
     delete formData.confirmPassword;
-    createUser(formData);
+
+    try {
+      createUser(formData);
+      toast.success("Usuario registrado con éxito");
+    } catch (error) {
+      console.error("Error al registrar usuario:", error);
+      toast.error("Error al registrar usuario. Por favor, inténtalo de nuevo.");
+    }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +43,7 @@ const Register = () => {
 
   return (
     <div className="authDiv">
+      <ToastContainer />
       <form className="authForm" onSubmit={handleSubmit}>
         <h1>Registro</h1>
         <input
@@ -53,7 +62,13 @@ const Register = () => {
           </p>
         )}
 
-        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          onChange={handleChange}
+          value={dataRegister.name}
+        />
 
         {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
@@ -79,7 +94,13 @@ const Register = () => {
           </p>
         )}
 
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          value={dataRegister.email}
+        />
         {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (

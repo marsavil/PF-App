@@ -1,9 +1,9 @@
-import "./profile.scss";
-import { useSelector } from "react-redux";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
+
   return (
     <div className="profile">
       <h1>Mis datos</h1>
