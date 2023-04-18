@@ -1,6 +1,6 @@
 const { ShoppingCart,Product , User } = require("../db");
 
-// 
+
 module.exports = {
 
    addProductToShoppingCart: async function(productId, userId){
