@@ -68,12 +68,15 @@ const Login = () => {
             <br />
           </p>
         )}
-        <button type="submit">Ingresar</button>
+        <button className="authButton" type="submit">
+          Ingresar
+        </button>
         <p>
           ¿No tienes cuenta? <Link to="/register">Registrate</Link>
         </p>
+        <p className="pAuth"> O ingresa con: </p>
+        <Log />
       </form>
-      <Log/>
     </div>
   );
 };
