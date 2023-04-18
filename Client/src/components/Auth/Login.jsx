@@ -4,6 +4,7 @@ import { loginUser } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
 import "./auth.scss";
+import Log from "./Auth0/Log";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const Login = () => {
           ¿No tienes cuenta? <Link to="/register">Registrate</Link>
         </p>
       </form>
+      <Log/>
     </div>
   );
 };
