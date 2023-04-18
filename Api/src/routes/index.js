@@ -4,7 +4,7 @@ const products = require("./ProductsRoutes")
 const user = require("./UserRoutes")
 const shipping = require("./ShippingRoutes")
 const shoppingCart = require("./ShoppingCartRoutes")
-const order = require("./OrderRoute")
+const order = require("./OrderRoutes")
 const router = Router()
 
 //
