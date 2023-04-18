@@ -1,5 +1,9 @@
 import "./detail.scss";
-import { getProductDetail, clearDetail } from "../../redux/actions/actions";
+import {
+  getProductDetail,
+  clearDetail,
+  addToCart,
+} from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +19,10 @@ const Detail = () => {
     dispatch(clearDetail());
     navigate("/home");
   }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(productDetail.id, userId));
+  };
 
   useEffect(() => {
     dispatch(getProductDetail(id));
@@ -38,7 +46,9 @@ const Detail = () => {
               Stock: <b>{productDetail.stock} unidades</b>
             </p>
             <button>Comprar ahora</button>
-            <button className="button-cart">Agregar al carrito </button>
+            <button className="button-cart" onClick={handleAddToCart}>
+              Agregar al carrito
+            </button>
             <p className="p-return">Devolución gratis</p>
             <p className="p-return">Compra protegida</p>
           </div>

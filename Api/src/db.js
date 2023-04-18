@@ -61,10 +61,10 @@ User.hasMany(Review);
 Review.belongsTo(User);
 /* RELACIÓN ENTRE USUARIO Y CARRITO */
 User.hasOne(ShoppingCart);
-ShoppingCart.hasMany(User);
+ShoppingCart.belongsTo(User);
 /* RELACIÓN ENTRE PRODUCTO Y CARRITO */
-Product.hasMany(ShoppingCart);
-ShoppingCart.belongsTo(Product);
+Product.belongsToMany(ShoppingCart, {through: "shoppingCart_products"}) ;
+ShoppingCart.belongsToMany(Product, {through: "shoppingCart_products"});
 /* RELACIÓN ENTRE PURCHASE ORDER Y CARRITO */
 PurchaseOrder.hasOne(ShoppingCart);
 ShoppingCart.belongsTo(PurchaseOrder);

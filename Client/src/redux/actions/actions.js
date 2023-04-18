@@ -5,13 +5,16 @@ import {
   GET_PRODUCT_DETAIL,
   CLEAR_DETAIL,
   ADD_TO_CART,
+  REMOVE_FROM_CART,
+  GET_CART,
   ALL_FILTERS,
+  SET_TOKEN,
 } from "./actions-types";
-import qs from "query-string"; // importar la biblioteca query-string
+import qs from "query-string";
 
 const API_URL = "http://localhost:3001";
 
-export const getUser = (user) => {
+export const loginUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(API_URL + "/user/login/log", user);
@@ -37,6 +40,33 @@ export const createUser = (user) => {
       console.error("Error while creating user:", error);
     }
   };
+};
+
+export const addToCart = (productId, userId) => async (dispatch) => {
+  try {
+    const response = await axios.post("/cart/add", { productId, userId });
+    dispatch({ type: ADD_TO_CART, payload: response.data });
+  } catch (error) {
+    console.error("Error al agregar producto al carrito:", error);
+  }
+};
+
+export const removeFromCart = (productId, userId) => async (dispatch) => {
+  try {
+    const response = await axios.post("/cart/del", { productId, userId });
+    dispatch({ type: REMOVE_FROM_CART, payload: response.data });
+  } catch (error) {
+    console.error("Error al eliminar producto del carrito:", error);
+  }
+};
+
+export const getCart = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/cart/user/${userId}`);
+    dispatch({ type: GET_CART, payload: response.data });
+  } catch (error) {
+    console.error("Error al obtener el carrito del usuario:", error);
+  }
 };
 
 export const getAllProducts = () => {
@@ -73,23 +103,9 @@ export const clearDetail = () => {
   };
 };
 
-export const addToCart = (product) => {
-  return async (dispatch) => {
-    try {
-      let response = await axios.post(API_URL + "/cart", product);
-      return dispatch({
-        type: ADD_TO_CART,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error("Error while adding to cart:", error);
-    }
-  };
-};
-
 export function allFilters(payload) {
   const params = {
-    brand: payload.brand || null, 
+    brand: payload.brand || null,
     category: payload.category || null,
     search: payload.search || null,
   };
@@ -112,3 +128,10 @@ export function allFilters(payload) {
     }
   };
 }
+
+export const setToken = (token) => {
+  return {
+    type: SET_TOKEN,
+    payload: token,
+  };
+};
