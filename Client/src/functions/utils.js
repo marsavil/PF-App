@@ -14,14 +14,8 @@ export const handleOrder = (allProducts, orderProducts) => {
 export const handleFilters = (products, condition) => {
   const { brand, category, order } = condition;
   let filteredProducts = products;
-  if (brand !== "")
-    filteredProducts = filteredProducts.filter(
-      (product) => product.brand === brand
-    );
-  if (category !== "")
-    filteredProducts = filteredProducts.filter(
-      (product) => product.category === category
-    );
+  if (brand !== "") filteredProducts = filteredProducts.filter((product) => product.brand === brand);
+  if (category !== "") filteredProducts = filteredProducts.filter((product) => product.category === category);
   if (order !== "none") filteredProducts = handleOrder(filteredProducts, order);
   return filteredProducts;
-}
+};
