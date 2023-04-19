@@ -65,18 +65,25 @@ export const createUser = async (user) => {
   }
 };
 
-export const addToCart = async (productId, userId) => {
-  try {
-    const response = await axios.post(API_URL + "/cart/add", {
-      productId,
-      userId,
-    });
-    if (response.data.success) {
-    } else {
-      throw new Error(response.data.msg);
+export const addToCart = (productId, userId) => {
+  return async () => {
+    try {
+      await axios.post(API_URL + "/cart/add", {
+        productId,
+        userId,
+      });
+    } catch (error) {
+      console.error("Error al agregar producto al carrito:", error);
     }
+  };
+};
+
+export const getCart = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(API_URL + `/cart/user/${userId}`);
+    dispatch({ type: GET_CART, payload: response.data });
   } catch (error) {
-    console.error("Error al agregar producto al carrito:", error);
+    console.error("Error al obtener el carrito del usuario:", error);
   }
 };
 
@@ -89,16 +96,6 @@ export const removeFromCart = (productId, userId) => async (dispatch) => {
     dispatch({ type: REMOVE_FROM_CART, payload: response.data });
   } catch (error) {
     console.error("Error al eliminar producto del carrito:", error);
-  }
-};
-
-export const getCart = (userId) => async (dispatch) => {
-  try {
-    const response = await axios.get(API_URL + `/cart/user/${userId}`);
-    console.log(response.data);
-    dispatch({ type: GET_CART, payload: response.data });
-  } catch (error) {
-    console.error("Error al obtener el carrito del usuario:", error);
   }
 };
 
