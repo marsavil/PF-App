@@ -5,6 +5,7 @@ import { validateRegisterData } from "../../functions/validate";
 import { createUser } from "../../redux/actions/actions";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BeatLoader } from "react-spinners";
 
 const Register = () => {
   const [dataRegister, setDataRegister] = useState({
@@ -18,17 +19,22 @@ const Register = () => {
 
   const [errors, setErrors] = useState({});
 
+  const [isLoading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { ...dataRegister };
     delete formData.confirmPassword;
-
+    setLoading(true);
     try {
       await createUser(formData);
-      toast.success("Usuario registrado con éxito");
+      toast.info("Usuario registrado con éxito, revisa tu bandeja de entrada");
     } catch (error) {
-      console.error("Error al registrar usuario:", error);
       toast.error(`${error.message}`);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
     }
   };
 
@@ -63,7 +69,13 @@ const Register = () => {
           </p>
         )}
 
-        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          onChange={handleChange}
+          value={dataRegister.name}
+        />
 
         {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
@@ -89,7 +101,13 @@ const Register = () => {
           </p>
         )}
 
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          value={dataRegister.email}
+        />
         {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
@@ -127,8 +145,12 @@ const Register = () => {
           </p>
         )}
 
-        <button className="authButton" type="submit">
-          Registrarse
+        <button className="authButton" type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <BeatLoader color={"#ffffff"} size={5} />
+          ) : (
+            "Registrarse"
+          )}
         </button>
         <p>
           ¿Ya tienes cuenta? <Link to="/login">Iniciar sesion</Link>

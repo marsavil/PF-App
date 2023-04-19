@@ -24,16 +24,19 @@ export const loginUser = (user) => {
         payload: response.data,
       });
     } catch (error) {
-      console.error("Error while fetching user:", error);
+      console.error("Error en la petición:", error);
       if (error.response) {
         const errorMessage = error.response.data.message;
-        console.error("Error from backend:", errorMessage);
+        console.error(errorMessage);
+        throw new Error(errorMessage);
       } else {
-        console.error("Error:", error.message);
+        console.error(error.message);
+        throw new Error("Error en la petición");
       }
     }
   };
 };
+
 export const loginGoogle = (user) => {
   return async (dispatch) => {
     try {
@@ -65,7 +68,10 @@ export const createUser = async (user) => {
 
 export const addToCart = (productId, userId) => async (dispatch) => {
   try {
-    const response = await axios.post(API_URL + "/cart/add", { productId, userId });
+    const response = await axios.post(API_URL + "/cart/add", {
+      productId,
+      userId,
+    });
     dispatch({ type: ADD_TO_CART, payload: response.data });
   } catch (error) {
     console.error("Error al agregar producto al carrito:", error);
@@ -74,7 +80,10 @@ export const addToCart = (productId, userId) => async (dispatch) => {
 
 export const removeFromCart = (productId, userId) => async (dispatch) => {
   try {
-    const response = await axios.post(API_URL + "/cart/del", { productId, userId });
+    const response = await axios.post(API_URL + "/cart/del", {
+      productId,
+      userId,
+    });
     dispatch({ type: REMOVE_FROM_CART, payload: response.data });
   } catch (error) {
     console.error("Error al eliminar producto del carrito:", error);

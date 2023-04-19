@@ -42,7 +42,6 @@
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
     padding: 5px 50px;
     border: 1px solid var(--steel-blue-matte);
-    transition: 0.3s ease-in-out;
   }
 
   .authButton:hover {
@@ -119,12 +118,6 @@
 
       &:hover {
         cursor: pointer;
-        background-color: var(--steel-blue-matte);
-        color: #fff;
-      }
-
-      &:active {
-        transform: translateY(2px);
       }
 
       div {
