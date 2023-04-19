@@ -34,6 +34,22 @@ export const loginUser = (user) => {
     }
   };
 };
+export const loginGoogle = (user) => {
+  return async (dispatch) => {
+    console.log(user, 'esto es el actions')
+    try {
+      let response = await axios.post(API_URL + "/user/login/google", user);
+      localStorage.setItem("userData", JSON.stringify(response.data));
+      console.log(response.data)
+      return dispatch({
+        type: GET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error while fetching user:", error);
+    }
+  };
+}
 
 export const createUser = async (user) => {
   try {
