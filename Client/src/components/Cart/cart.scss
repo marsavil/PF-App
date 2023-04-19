@@ -1,3 +1,5 @@
+/* --------------------- Cart button --------------------- */
+
 .cart {
   display: flex;
   justify-content: center;
@@ -13,4 +15,117 @@
 .cart:hover {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------- Cart products --------------------- */
+.cartProduct {
+  padding: 2% 10%;
+
+  .cart-products {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--white-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .cart-product {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    border: 1px solid var(--white-color);
+    border-bottom: 1px solid var(--silver-matte);
+    padding: 5px;
+    width: 100%;
+    color: var(--dark-color);
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--steel-blue-matte);
+      border: 1px solid var(--steel-blue-matte);
+      border-radius: 5px;
+    }
+
+    .cart-product:last-child {
+      border-bottom: none;
+    }
+
+    .cart-product-image {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      padding-right: 20px;
+    }
+
+    .cart-product-name {
+      text-align: start;
+      font-size: 18px;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+
+    .cart-product-quantity {
+      column-gap: 5px;
+      font-size: 17px;
+      border: 1px solid var(--silver-matte);
+      padding: 10px 20px;
+    }
+
+    .cart-product-price {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+.section-totalPrice {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  border-bottom: 1px solid var(--silver-matte);
+  font-size: 25px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  p {
+    font-size: 22px;
+  }
+
+  .labelPrice {
+    grid-column: 3 / 4;
+  }
+
+  .pPrice {
+    grid-column: 4 / 5;
+  }
+
+  button {
+    cursor: pointer;
+    width: 60%;
+    border: none;
+    background-color: var(--steel-blue-medium-matte);
+    color: var(--light-color);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px;
+    align-self: center;
+    transition: all 0.5s ease;
+    grid-column: 3 / 5;
+    margin: 10px;
+    &:hover {
+      background-color: var(--steel-blue-matte);
+    }
+  }
 }
