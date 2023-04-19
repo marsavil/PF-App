@@ -1,4 +1,4 @@
-const {Product, User } = require("../db");
+const { Product, User } = require("../db");
 
 module.exports = {
   addProductToShoppingCart: async function (productId, userId) {
@@ -11,36 +11,40 @@ module.exports = {
         },
       });
 
-      const cart = await user.getShoppingCart()
-      const cartProducts = await cart.getProducts({ where: { id: productId } })
-      if (cartProducts.length) {
-        newQuantity = cartProducts[0].ShoppingCart_Products.quantity + 1;
-        await cart.addProduct(cartProducts[0], {
-          through: { quantity: newQuantity },});
-      }
-      else{
-        const productToAdd = await Product.findByPk(productId)
-        console.log(productToAdd)
-        await cart.addProduct(productToAdd, {
-          through: { quantity: newQuantity },});
-      }
-      
-      /*await user.getShoppingCart().then(async(cart) => {
+      // const cart = await user.getShoppingCart();
+      // console.log(cart);
+
+      // const cartProducts = await cart.getProducts({ where: { id: productId } });
+      // if (cartProducts.length) {
+      //   newQuantity = cartProducts[0].ShoppingCart_Products.quantity + 1;
+      //   await cart.addProduct(cartProducts[0], {
+      //     through: { quantity: newQuantity },
+      //   });
+      // } else {
+      //   const productToAdd = await Product.findByPk(productId);
+      //   console.log(productToAdd);
+      //   await cart.addProduct(productToAdd, {
+      //     through: { quantity: newQuantity },
+      //   });
+      // }
+
+      user.getShoppingCart().then((cart) => {
         fetchedCart = cart;
-        await cart.getProducts({ where: { id: productId } })
-          .then((products) =>  {
+        cart
+          .getProducts({ where: { id: productId } })
+          .then((products) => {
             if (products.length) {
               newQuantity = products[0].ShoppingCart_Products.quantity + 1;
               return products[0];
             }
             return Product.findByPk(productId);
           })
-          .then(async (product) => {
-            return  await fetchedCart.addProduct(product, {
+          .then((product) => {
+            return fetchedCart.addProduct(product, {
               through: { quantity: newQuantity },
             });
           });
-      });*/
+      });
     } catch (error) {
       return error;
     }
@@ -52,10 +56,10 @@ module.exports = {
           id: userId,
         },
       });
-      const cart = await user.getShoppingCart()
+      const cart = await user.getShoppingCart();
       const cartProducts = await cart.getProducts({ where: { id: productId } });
-      cartProducts[0].destroy()
-        /*.then((cart) => {
+      cartProducts[0].destroy();
+      /*.then((cart) => {
           return cart.getProducts({ where: { id: productId } });
         })
         .then((products) => {

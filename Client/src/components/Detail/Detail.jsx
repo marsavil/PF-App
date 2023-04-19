@@ -1,9 +1,5 @@
 import "./detail.scss";
-import {
-  getProductDetail,
-  clearDetail,
-  addToCart,
-} from "../../redux/actions/actions";
+import { getProductDetail, clearDetail, addToCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Detail = () => {
   let dispatch = useDispatch();
   let { id } = useParams();
+  const { id: userId } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const productDetail = useSelector((state) => state.productDetail);
   const navigate = useNavigate();
@@ -25,8 +22,7 @@ const Detail = () => {
   }
 
   const handleBuyNow = () => {
-    toast.success("Compra realizada con éxito", {
-    });
+    toast.success("Compra realizada con éxito", {});
   };
 
   const handleAddToCart = () => {
