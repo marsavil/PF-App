@@ -1,4 +1,4 @@
-const {Product, User } = require("../db");
+const { Product, User } = require("../db");
 
 module.exports = {
   addProductToShoppingCart: async function (productId, userId) {
@@ -25,18 +25,20 @@ module.exports = {
           through: { quantity: newQuantity },});
       }*/
       
-      await user.getShoppingCart().then(async(cart) => {
+      await user.getShoppingCart().then((cart) => {
+
         fetchedCart = cart;
-        await cart.getProducts({ where: { id: productId } })
-          .then((products) =>  {
+        cart
+          .getProducts({ where: { id: productId } })
+          .then((products) => {
             if (products.length) {
               newQuantity = products[0].ShoppingCart_Products.quantity + 1;
               return products[0];
             }
             return Product.findByPk(productId);
           })
-          .then(async (product) => {
-            return  await fetchedCart.addProduct(product, {
+          .then((product) => {
+            return fetchedCart.addProduct(product, {
               through: { quantity: newQuantity },
             });
           });
@@ -52,12 +54,13 @@ module.exports = {
           id: userId,
         },
       });
+
     
       /*const cartProducts = await cart.getProducts({ where: { id: productId } });
       cartProducts[0].destroy()*/
       await user.getShoppingCart().then((cart) => {
           return cart.destroy({where: {productId: productId}})
-        })
+
         
     } catch (error) {
       return error;

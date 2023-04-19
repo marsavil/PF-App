@@ -196,6 +196,16 @@ module.exports = {
       return res.status(500).send({ message: "rror en el servidor" });
     }
   },
+  loginGoogle: (req, res) => {
+    const user = req.body;
+    console.log(user, 'lo que llega')
+    const token = generateToken(user);
+    const payload = {
+      ...user,
+      token,
+    };
+    return res.status(200).json(payload);
+  },
   banUser: async (req, res) => {
     const { id } = req.params;
 

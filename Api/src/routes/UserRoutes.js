@@ -11,6 +11,7 @@ const {
   createAdmin,
   updateUser,
   deleteUser,
+  loginGoogle
 } = require("../controlers/Users");
 const router = express.Router();
 router.use(express.json());
@@ -21,6 +22,7 @@ router.put("/setadmin", setAdminRightsToUser);
 router.put("/removeadmin", removeAdminRightsToUser);
 router.post("/createadmin", createAdmin);
 router.post("/login/log", logInUser);
+router.post("/login/google", loginGoogle);
 router.put("/ban/:id", banUser);
 router.put("/unban/:id", unBanUser);
 router.get("/confirm/:token", confirm);
