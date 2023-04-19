@@ -13,7 +13,7 @@ const Cart = () => {
     dispatch(getCart(id));
   }, []);
 
-  console.log(cartProducts);
+  // console.log(cartProducts);
 
   return (
     <div className="cart">
