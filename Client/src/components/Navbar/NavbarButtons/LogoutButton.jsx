@@ -8,7 +8,7 @@ const LogoutButton = () => {
       localStorage.removeItem("admin");
       localStorage.removeItem("userData");
       window.location.reload();
-    }, 1000);
+    }, 500);
   };
   return (
     <Link onClick={handleLogout} to="/home" className="desconectarse">

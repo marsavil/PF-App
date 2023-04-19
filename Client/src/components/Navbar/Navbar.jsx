@@ -3,14 +3,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
 import DarkMode from "../DarkMode/DarkMode";
-
 import ProfileButton from "./NavbarButtons/ProfileButton";
 import LogoutButton from "./NavbarButtons/LogoutButton";
 import CartButton from "./NavbarButtons/CartButton";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
-  const { token, admin, id: userId } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
+  const { token, id: userId } =
+    JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const handleProductsClick = () => {
     const productsRef = document.querySelector(".products");
@@ -28,11 +30,6 @@ const Navbar = () => {
         <Link to="/" className="links">
           Inicio
         </Link>
-        {admin ? (
-          <Link to="/addProduct" className="links">
-            Agregar producto
-          </Link>
-        ) : null}
         <Link to="/home" className="links" onClick={handleProductsClick}>
           Productos
         </Link>

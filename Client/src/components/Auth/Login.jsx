@@ -25,7 +25,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const user = await dispatch(loginUser(dataLogin));
+      const user = await dispatch(loginUser(dataLogin, "log"));
       if (user === undefined) {
         toast.error("El usuario no coincide con los datos ingresados");
       } else {

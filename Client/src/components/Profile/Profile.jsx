@@ -1,8 +1,12 @@
 import React from "react";
 import "./profile.scss";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
+  const {
+    admin,
+  } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   return (
     <div className="profile">
@@ -27,9 +31,23 @@ const Profile = () => {
         </div>
         <button>Modificar datos</button>
       </div>
-      <div className="purchases">
-        <h2>Historial de compras</h2>
-      </div>
+      {admin ? null : (
+        <div className="purchases">
+          <h2>Historial de compras</h2>
+        </div>
+      )}
+
+      {admin ? (
+        <div className="panel-admin">
+          <h2>Panel de Admin</h2>
+          <Link to="/addProduct" className="links">
+            Agregar Productos
+          </Link>
+          <Link to="/home" className="links">
+            Administrar Usuarios
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 };

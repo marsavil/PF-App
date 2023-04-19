@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
-import { loginGoogle } from "../../../redux/actions/actions";
+import { loginUser } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { DotLoader } from "react-spinners";
 
@@ -27,7 +27,7 @@ function log() {
     };
     const startSession = () => {
       try {
-        dispatch(loginGoogle(loginData));
+        dispatch(loginUser(loginData, "google"));
       } catch (error) {
         console.error("Error al registrar usuario:", error);
       }
