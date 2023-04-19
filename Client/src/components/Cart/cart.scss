@@ -141,6 +141,10 @@
   .pPrice {
     grid-column: 4 / 5;
   }
+}
+
+.section-totalPrice-buttons {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   button {
     cursor: pointer;
@@ -155,9 +159,18 @@
     align-self: center;
     transition: all 0.5s ease;
     grid-column: 3 / 5;
-    margin: 10px;
+    margin: 10px 0;
     &:hover {
       background-color: var(--steel-blue-matte);
+    }
+  }
+
+  .empty-cart {
+    grid-column: 1 / 2;
+    background-color: var(--white-color);
+    color: var(--steel-blue-medium-matte);
+    &:hover {
+      background-color: var(--light-sky-blue-matte);
     }
   }
 }

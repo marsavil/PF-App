@@ -112,6 +112,15 @@ export const removeFromCart = (productId, userId) => async (dispatch) => {
   }
 };
 
+export const emptyCart = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.post(API_URL + `/cart/empty/${userId}`);
+    dispatch({ type: REMOVE_FROM_CART, payload: response.data });
+  } catch (error) {
+    console.error("Error al vaciar el carrito:", error);
+  }
+};
+
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {

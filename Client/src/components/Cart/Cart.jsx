@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
-import { addToCart, subToCart, removeFromCart } from "../../redux/actions/actions";
+import { addToCart, subToCart, removeFromCart, emptyCart } from "../../redux/actions/actions";
 import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 
 const Cart = () => {
@@ -29,6 +29,11 @@ const Cart = () => {
 
   const handleRemoveFromCart = async (idProduct) => {
     await dispatch(removeFromCart(idProduct, id));
+    dispatch(getCart(id));
+  };
+
+  const handleEmptyCart = async () => {
+    await dispatch(emptyCart(id));
     dispatch(getCart(id));
   };
 
@@ -59,8 +64,11 @@ const Cart = () => {
             <p className="labelPrice">Precio total: </p>
             <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
           </section>
-          <section className="section-totalPrice">
-            <PurchaseOrderButton products={cartProducts} user={id}/>
+          <section className="section-totalPrice section-totalPrice-buttons">
+            <button onClick={handleEmptyCart} className="empty-cart">
+              Vaciar carrito
+            </button>
+            <PurchaseOrderButton products={cartProducts} user={id} />
           </section>
         </div>
       ) : (
