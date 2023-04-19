@@ -113,6 +113,19 @@ export const getAllProducts = () => {
   };
 };
 
+export const addProduct = async (product) => {
+  try {
+    const response = await axios.post(API_URL + "/products", product);
+    if (response.data.success) {
+    } else {
+      throw new Error(response.data.msg);
+    }
+  } catch (error) {
+    console.error("Error while creating product:", error);
+    throw error;
+  }
+};
+
 export function getProductDetail(id) {
   return async function (dispatch) {
     try {
