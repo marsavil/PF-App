@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
-  margin: 0 20px 5px;
+  margin: 20px 50px;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
 
@@ -18,7 +18,7 @@
       border: none;
       transition: all 0.5s ease;
       background-color: transparent;
-      color: var(--dar-color);
+      color: var(--dark-color);
       &:hover {
         color: var(--steel-blue-medium-matte);
       }
