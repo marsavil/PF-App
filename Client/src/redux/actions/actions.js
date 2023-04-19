@@ -78,6 +78,19 @@ export const addToCart = (productId, userId) => {
   };
 };
 
+export const subToCart = (productId, userId) => {
+  return async () => {
+    try {
+      await axios.post(API_URL + "/cart/sub", {
+        productId,
+        userId,
+      });
+    } catch (error) {
+      console.error("Error al agregar producto al carrito:", error);
+    }
+  };
+};
+
 export const getCart = (userId) => async (dispatch) => {
   try {
     const response = await axios.get(API_URL + `/cart/user/${userId}`);

@@ -68,6 +68,20 @@ module.exports = {
     }
     return updatedProduct;
   },
+  logicDeleteProduct: async function (id) {
+    try {
+      const product = await Product.findByPk(id);
+      if (!product) {
+        return { error: 'Product not found' };
+      }
+      product.disable = true
+      await product.save();
+      return { message: 'Product hided successfully' };
+    } catch (error) {
+      console.error(error);
+      return { error: 'Server error' };
+    }
+  },
   deleteProduct: async function (id) {
     try {
       const product = await Product.findByPk(id);

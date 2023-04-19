@@ -25,15 +25,21 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar__links">
-        <Link to="/">Inicio</Link>
-        {admin ? <Link to="/addProduct">Agregar producto</Link> : null}
-        <Link to="/home" onClick={handleProductsClick}>
+        <Link to="/" className="links">
+          Inicio
+        </Link>
+        {admin ? (
+          <Link to="/addProduct" className="links">
+            Agregar producto
+          </Link>
+        ) : null}
+        <Link to="/home" className="links" onClick={handleProductsClick}>
           Productos
         </Link>
         {token ? (
           <div className="token_true">
             <ProfileButton darkMode={darkMode} setDarkMode={setDarkMode} />
-            <CartButton userId={userId} />
+            <CartButton darkMode={darkMode} userId={userId} />
             <LogoutButton />
           </div>
         ) : (

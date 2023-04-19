@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
+import { addToCart, subToCart, removeFromCart } from "../../redux/actions/actions";
 import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 
 const Cart = () => {
@@ -16,26 +17,50 @@ const Cart = () => {
     dispatch(getCart(id));
   }, []);
 
+  const handleAddProduct = async (idProduct) => {
+    await dispatch(addToCart(idProduct, id));
+    dispatch(getCart(id));
+  };
+
+  const handleSubProduct = async (idProduct) => {
+    await dispatch(subToCart(idProduct, id));
+    dispatch(getCart(id));
+  };
+
+  const handleRemoveFromCart = async (idProduct) => {
+    await dispatch(removeFromCart(idProduct, id));
+    dispatch(getCart(id));
+  };
+
   return (
     <div className="cartProduct">
       {cartProducts?.length > 0 ? (
         <div className="cart-products">
           {cartProducts?.map((product) => (
-            <Link to={`/detail/${product.id}`} className="cart-product" key={product.id}>
+            <section className="cart-product" key={product.id}>
+              <button className="cart-delete-button" onClick={() => handleRemoveFromCart(product.id)}>
+                Eliminar
+              </button>
               <img className="cart-product-image" src={product.image} alt={product.name} />
-              <h2 className="cart-product-name">{product.name}</h2>
-              <p className="cart-product-quantity">{product.ShoppingCart_Products.quantity}</p>
+              <Link to={`/detail/${product.id}`} className="cart-product-name">
+                {product.name}
+              </Link>
+              <div className="cart-product-quantity">
+                <button onClick={() => handleSubProduct(product.id)}>-</button>
+                <h4>{product.ShoppingCart_Products.quantity}</h4>
+                <button onClick={() => handleAddProduct(product.id)}>+</button>
+              </div>
               <h3 className="cart-product-price">
                 $ {(product.ShoppingCart_Products.quantity * product.price).toLocaleString()}
               </h3>
-            </Link>
+            </section>
           ))}
           <section className="section-totalPrice">
             <p className="labelPrice">Precio total: </p>
             <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
           </section>
           <section className="section-totalPrice">
-            <PurchaseOrderButton products = {cartProducts}/>
+            <PurchaseOrderButton products={cartProducts} user={id}/>
           </section>
         </div>
       ) : (
