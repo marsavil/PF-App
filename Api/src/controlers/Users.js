@@ -196,15 +196,35 @@ module.exports = {
       return res.status(500).send({ message: "rror en el servidor" });
     }
   },
-  loginGoogle: (req, res) => {
-    const user = req.body;
-    console.log(user, 'lo que llega')
-    const token = generateToken(user);
-    const payload = {
-      ...user,
-      token,
+  loginGoogle: async (req, res) => {
+    const user = req.body;  
+    const verified = await User.findOne({
+      where: {
+        email: user.email
+      }
+    })
+    if(verified){
+      const userJson = verified.toJSON()
+      const token = generateToken(userJson);
+      const payload = {
+        ...userJson,
+        token,
+      }
+      return res.status(200).json(payload);
+    }else{
+      const code = v4()
+      const newUser = {
+        ...user,
+        code
+      }
+      const token = generateToken(user);
+      const payload = {
+        ...user,
+        token,
+    }
+    User.create(newUser)
+    return res.status(200).json(payload)
     };
-    return res.status(200).json(payload);
   },
   banUser: async (req, res) => {
     const { id } = req.params;
