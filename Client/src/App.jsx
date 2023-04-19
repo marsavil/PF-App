@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import Detail from "./components/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 import Cart from "./components/Cart/Cart";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/detail/:id" element={<Detail />} />
