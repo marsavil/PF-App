@@ -10,6 +10,8 @@ module.exports = {
                   id: userId
                 },
             })
+
+            if(!user) return "user not found"
             let totalPrice = 0
             
             const cart = await user.getShoppingCart()
@@ -40,7 +42,7 @@ module.exports = {
             })
             return order
         } catch (error) {
-            return error   
+            return error 
         }
     },
     getAllPurchaseOrders: async function(){
@@ -54,6 +56,7 @@ module.exports = {
     getPurchaseOrderById:async function(Id){
         try {
             const foundOrder = await PurchaseOrder.findByPk(Id)
+            if (!foundOrder) return "order not found"
             return foundOrder
         } catch (error) {
             return error
@@ -68,5 +71,6 @@ module.exports = {
         } catch (error) {
             return error
         }
-    }
+    },
+ 
 }
