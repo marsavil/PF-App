@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCart } from "../../../redux/actions/actions";
 
-const CartButton = ({ userId }) => {
+import darkCartIcon from "/assets/img/cart-dark.png";
+import lightCartIcon from "/assets/img/cart-ligth.png";
+
+const CartButton = ({ darkMode, userId }) => {
   const dispatch = useDispatch();
   const totalQuantity = useSelector((state) => state.totalQuantity);
 
@@ -15,12 +18,7 @@ const CartButton = ({ userId }) => {
     <Link to="/cart" className="perfil">
       <div className="cart">
         {totalQuantity}
-        <img
-          src="https://cdn0.iconfinder.com/data/icons/iconoteka-stroke/24/iconoteka_shopping_cart__grocery_store_b_s-256.png"
-          alt=""
-          width={25}
-          height={25}
-        />
+        <img src={darkMode ? darkCartIcon : lightCartIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
       </div>
     </Link>
   );
