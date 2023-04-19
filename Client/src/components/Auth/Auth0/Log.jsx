@@ -1,58 +1,71 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { gapi } from "gapi-script";
-import GoogleLogin from 'react-google-login';
+import GoogleLogin from "react-google-login";
+import { loginGoogle } from "../../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 function log() {
-    const clientID = "301297638298-q7q0crhrkrbfmdt75ci4uvhvmfo8h66q.apps.googleusercontent.com"
-    const [user, setUser] = useState({});
-    const [loggeIn, setLoggetInfo] = useState(false);
+  const dispatch = useDispatch();
+  const clientID =
+    "301297638298-q7q0crhrkrbfmdt75ci4uvhvmfo8h66q.apps.googleusercontent.com";
+  const [user, setUser] = useState({});
+  const [loggeIn, setLoggetInfo] = useState(false);
 
-    const onSuccess = (response) => {
-        setUser(response.profileObj);
-        document.getElementsByClassName("btn").hidden = true;
+  const onSuccess = (response) => {
+    setUser(response.profileObj);
+    const loginData = {
+      name: response.profileObj.givenName,
+      lastName: response.profileObj.familyName,
+      userName: response.profileObj.name,
+      email: response.profileObj.email,
+      verified: true,
+      admin: false,
+    };
+    const startSession = () => {
+      try {
+        dispatch(loginGoogle(loginData));
+      } catch (error) {
+        console.error("Error al registrar usuario:", error);
+      }
+    };
+    document.getElementsByClassName("btn").hidden = true;
+    startSession();
+  };
+  const onFailure = (response) => {
+    console.log("Something went wrong");
+  };
+  const handleLogout = () => {
+    setUser({});
+  };
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientID,
+      });
     }
-    const onFailure = (response) => {
-        console.log("Something went wrong");
-    }
-    const handleLogout = () => {
-        setUser({});
-    }
-    useEffect(() => {
-        function start() {
-            gapi.client.init({
-                clientId: clientID,
-            });
-        }
-        gapi.load("client:auth2", start);
-    });
+    gapi.load("client:auth2", start);
+  });
 
-    return (
-        <div className="center">
-            <h1>Login</h1>
+  return (
+    <div className="center">
+      <h1>Login</h1>
 
-            <div className='btn'>
+      <div className="btn">
+        <GoogleLogin
+          clientId={clientID}
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          buttonText="Continue  with Google"
+          cookiePolicy={"single_host_origin"}
+        />
+      </div>
 
-                <GoogleLogin
-
-                    clientId={clientID}
-                    onSuccess={onSuccess}
-                    onFailure={onFailure}
-                    buttonText="Continue  with Google"
-                    cookiePolicy={"single_host_origin"}
-                />
-
-            </div>
-
-            <div className={user ? "profile" : "hidden"}>
-                <img src={user.imageUrl} />
-                <h3>{user.name}</h3>
-
-            </div>
-
-
-
-        </div>
-    );
+      <div className={user ? "profile" : "hidden"}>
+        <img src={user.imageUrl} />
+        <h3>{user.name}</h3>
+      </div>
+    </div>
+  );
 }
 
 export default log;
