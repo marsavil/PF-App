@@ -33,6 +33,7 @@ module.exports = {
             return error
         }
     },
+    
     getPurchaseOrderByUser: async function(userId){
         try {
             const order = await PurchaseOrder.findAll({

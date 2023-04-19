@@ -1,5 +1,5 @@
 const {
-    addProductToShoppingCart, getShoppingCart, changeQuantityOfProduct,
+    addProductToShoppingCart, getShoppingCart, changeQuantityOfProduct, emptyShoppingCart
 } = require("../controlers/ShoppingCart");
 const express = require("express");
 const router = express.Router();
@@ -33,6 +33,18 @@ router.get("/user/:userId", async(req, res) =>{
         res.status(200).json(getCart)
     } catch (error) {
         res.status(500).json({ error: "Server error" });
+    }
+})
+router.post("/empty/:userId", async(req, res) =>{
+    const {userId} = req.params
+    
+    try {
+        
+        const emptyCart = await emptyShoppingCart(userId)
+        console.log(emptyCart)
+        res.status(200).json(emptyCart)
+    } catch (error) {
+        res.status(500).json({error: "Server error"})
     }
 })
 
