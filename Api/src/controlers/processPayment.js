@@ -6,6 +6,7 @@ mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 const payment = async (req, res) => {
   const products = req.body.items;
+  const id = req.body.cartId
   const preference = await {
     items: products.map((p) => {
 

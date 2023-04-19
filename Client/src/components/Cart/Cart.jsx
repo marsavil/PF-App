@@ -60,7 +60,7 @@ const Cart = () => {
             <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
           </section>
           <section className="section-totalPrice">
-            <PurchaseOrderButton products={cartProducts} />
+            <PurchaseOrderButton products={cartProducts} cart={id}/>
           </section>
         </div>
       ) : (
