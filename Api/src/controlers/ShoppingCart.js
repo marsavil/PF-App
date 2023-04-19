@@ -4,14 +4,14 @@ module.exports = {
   addProductToShoppingCart: async function (productId, userId) {
     try {
       let newQuantity = 1;
-      let fetchedCart;
       const user = await User.findOne({
         where: {
           id: userId,
         },
       });
 
-      const cart = await user.getShoppingCart()
+    /*const cart = await user.getShoppingCart()
+      console.log(cart)
       const cartProducts = await cart.getProducts({ where: { id: productId } })
       if (cartProducts.length) {
         newQuantity = cartProducts[0].ShoppingCart_Products.quantity + 1;
@@ -23,9 +23,9 @@ module.exports = {
         console.log(productToAdd)
         await cart.addProduct(productToAdd, {
           through: { quantity: newQuantity },});
-      }
+      }*/
       
-      /*await user.getShoppingCart().then(async(cart) => {
+      await user.getShoppingCart().then(async(cart) => {
         fetchedCart = cart;
         await cart.getProducts({ where: { id: productId } })
           .then((products) =>  {
@@ -40,7 +40,7 @@ module.exports = {
               through: { quantity: newQuantity },
             });
           });
-      });*/
+      });
     } catch (error) {
       return error;
     }
@@ -52,15 +52,13 @@ module.exports = {
           id: userId,
         },
       });
-      const cart = await user.getShoppingCart()
-      const cartProducts = await cart.getProducts({ where: { id: productId } });
-      cartProducts[0].destroy()
-        /*.then((cart) => {
-          return cart.getProducts({ where: { id: productId } });
+    
+      /*const cartProducts = await cart.getProducts({ where: { id: productId } });
+      cartProducts[0].destroy()*/
+      await user.getShoppingCart().then((cart) => {
+          return cart.destroy({where: {productId: productId}})
         })
-        .then((products) => {
-          return products[0].destroy();
-        });*/
+        
     } catch (error) {
       return error;
     }
