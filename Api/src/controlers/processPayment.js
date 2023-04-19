@@ -1,12 +1,13 @@
 const mercadopago = require("mercadopago");
 const { Product }= require("../db");
+const { emptyShoppingCart } = require('./ShoppingCart')
 
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 const payment = async (req, res) => {
   const products = req.body.items;
-  const id = req.body.cartId
+  const id = req.body.userId
   const preference = await {
     items: products.map((p) => {
 
@@ -19,6 +20,7 @@ const payment = async (req, res) => {
       const quant = prod.stock - p.ShoppingCart_Products.quantity
       prod.stock = quant
       prod.save()
+      emptyShoppingCart(id)
     }
     update()
       return {
