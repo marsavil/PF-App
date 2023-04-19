@@ -47,18 +47,14 @@ function log() {
   });
 
   return (
-    <div className="center">
-      <h1>Login</h1>
-
-      <div className="btn">
-        <GoogleLogin
-          clientId={clientID}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          buttonText="Continue  with Google"
-          cookiePolicy={"single_host_origin"}
-        />
-      </div>
+    <div className="loginAuth0">
+      <GoogleLogin
+        clientId={clientID}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        buttonText="Google"
+        cookiePolicy={"single_host_origin"}
+      />
 
       <div className={user ? "profile" : "hidden"}>
         <img src={user.imageUrl} />

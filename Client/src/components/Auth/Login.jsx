@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { validateLoginData } from "../../functions/validate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BeatLoader } from "react-spinners";
 import Log from "./Auth0/Log";
 
 const Login = () => {
@@ -17,22 +18,30 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-
       const user = await dispatch(loginUser(dataLogin));
       if (user === undefined) {
-        alert("Datos incorrectos");
-        console.error("El usuario no coincide con los datos ingresados");
+        toast.error("El usuario no coincide con los datos ingresados");
       } else {
-        toast.success("Bienvenido");
-        navigate("/home");
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
       }
     } catch (error) {
-      toast.success("Bienvenido");
-      console.error("Error al procesar el formulario:", error);
+      if (error.message === "Error en la petición") {
+      } else {
+        toast.error(error.message);
+      }
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     }
   };
 
@@ -48,48 +57,52 @@ const Login = () => {
 
   return (
     <>
-    <ToastContainer />
-    <div className="authDiv">
-      <form className="authForm authFormLogin" onSubmit={handleSubmit}>
-        <h1>Iniciar sesion</h1>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={dataLogin.email}
-        />
-        {dataLogin.email !== "" && errors.email ? (
-          <p className="error">{errors.email}</p>
-        ) : (
-          <p className="error">
-            <br />
+      <ToastContainer />
+      <div className="authDiv">
+        <form className="authForm authFormLogin" onSubmit={handleSubmit}>
+          <h1>Iniciar sesion</h1>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            value={dataLogin.email}
+          />
+          {dataLogin.email !== "" && errors.email ? (
+            <p className="error">{errors.email}</p>
+          ) : (
+            <p className="error">
+              <br />
+            </p>
+          )}
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            onChange={handleChange}
+            value={dataLogin.password}
+          />
+          {dataLogin.password !== "" && errors.password ? (
+            <p className="error">{errors.password}</p>
+          ) : (
+            <p className="error">
+              <br />
+            </p>
+          )}
+          <button className="authButton" type="submit" disabled={isLoading}>
+            {isLoading ? (
+              <BeatLoader color={"#ffffff"} size={5} />
+            ) : (
+              "Ingresar"
+            )}
+          </button>
+          <p>
+            ¿No tienes cuenta? <Link to="/register">Registrate</Link>
           </p>
-        )}
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          onChange={handleChange}
-          value={dataLogin.password}
-        />
-        {dataLogin.password !== "" && errors.password ? (
-          <p className="error">{errors.password}</p>
-        ) : (
-          <p className="error">
-            <br />
-          </p>
-        )}
-        <button className="authButton" type="submit">
-          Ingresar
-        </button>
-        <p>
-          ¿No tienes cuenta? <Link to="/register">Registrate</Link>
-        </p>
-        <p className="pAuth"> O ingresa con: </p>
-        <Log />
-      </form>
-    </div>
+          <p className="pAuth"> O ingresa con: </p>
+          <Log />
+        </form>
+      </div>
     </>
   );
 };
