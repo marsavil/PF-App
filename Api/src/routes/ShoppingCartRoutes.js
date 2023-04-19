@@ -14,7 +14,7 @@ router.post("/add", async(req, res) =>{
       res.status(500).json({ error: "Server error" });
     } 
 })
-router.post("/del", async(req, res) => {
+router.delete("/del", async(req, res) => {
     const {productId, userId} = req.body
     try {
         const deleteProduct = deleteProductFromShoppingCart(productId, userId);
