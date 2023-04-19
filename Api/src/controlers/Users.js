@@ -203,7 +203,7 @@ module.exports = {
         return res.status(400).send({ message: "Contraseña incorrecta" });
       }
     } catch (error) {
-      return res.status(500).send(error.message);
+      return res.status(500).send({ message: "Inicia sesión con Google" });
     }
   },
   loginGoogle: async (req, res) => {
