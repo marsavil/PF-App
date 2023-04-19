@@ -5,7 +5,6 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
   CLEAR_DETAIL,
-  ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CART,
   ALL_FILTERS,
@@ -66,13 +65,16 @@ export const createUser = async (user) => {
   }
 };
 
-export const addToCart = (productId, userId) => async (dispatch) => {
+export const addToCart = async (productId, userId) => {
   try {
     const response = await axios.post(API_URL + "/cart/add", {
       productId,
       userId,
     });
-    dispatch({ type: ADD_TO_CART, payload: response.data });
+    if (response.data.success) {
+    } else {
+      throw new Error(response.data.msg);
+    }
   } catch (error) {
     console.error("Error al agregar producto al carrito:", error);
   }
@@ -93,7 +95,7 @@ export const removeFromCart = (productId, userId) => async (dispatch) => {
 export const getCart = (userId) => async (dispatch) => {
   try {
     const response = await axios.get(API_URL + `/cart/user/${userId}`);
-
+    console.log(response.data);
     dispatch({ type: GET_CART, payload: response.data });
   } catch (error) {
     console.error("Error al obtener el carrito del usuario:", error);

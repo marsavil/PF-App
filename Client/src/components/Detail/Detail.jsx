@@ -71,6 +71,7 @@ const Detail = () => {
               <button className="button-cart" onClick={handleAddToCart}>
                 Agregar al carrito
               </button>
+
               <p className="p-return">Devolución gratis</p>
               <p className="p-return">Compra protegida</p>
             </div>
