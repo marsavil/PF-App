@@ -1,4 +1,4 @@
-const { Product, User } = require("../db");
+const { Product, ShoppingCart_Products, User } = require("../db");
 
 module.exports = {
   addProductToShoppingCart: async function (productId, userId) {
@@ -103,4 +103,25 @@ module.exports = {
       return error;
     }
   },
+  emptyShoppingCart: async function(userId){
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    const cart = await user.getShoppingCart();
+    console.log(cart.id)
+    const cartProducts = await cart.getProducts()
+    
+    ShoppingCart_Products.destroy({
+      where:{
+        ShoppingCartId: cart.id
+      }
+    })
+
+
+    return "cart empty"
+
+    
+  }
 };
