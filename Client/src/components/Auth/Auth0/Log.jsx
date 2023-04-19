@@ -8,6 +8,7 @@ function log() {
   const dispatch = useDispatch();
   const clientID =
     "301297638298-q7q0crhrkrbfmdt75ci4uvhvmfo8h66q.apps.googleusercontent.com";
+
   const [user, setUser] = useState({});
   const [loggeIn, setLoggetInfo] = useState(false);
 
@@ -30,6 +31,7 @@ function log() {
     };
     document.getElementsByClassName("btn").hidden = true;
     startSession();
+
   };
   const onFailure = (response) => {
     console.log("Something went wrong");
@@ -47,6 +49,7 @@ function log() {
   });
 
   return (
+
     <div className="center">
       <h1>Login</h1>
 
@@ -59,6 +62,7 @@ function log() {
           cookiePolicy={"single_host_origin"}
         />
       </div>
+
 
       <div className={user ? "profile" : "hidden"}>
         <img src={user.imageUrl} />
