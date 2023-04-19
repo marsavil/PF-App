@@ -44,7 +44,7 @@ module.exports = {
       /*const cartProducts = await cart.getProducts({ where: { id: productId } });
       cartProducts[0].destroy()*/
       await user.getShoppingCart().then((cart) => {
-          return cart.destroy({where: {productId: productId}})
+          return cart.destroy({where: {productId: productId}})})
 
         
     } catch (error) {
@@ -52,7 +52,7 @@ module.exports = {
     }
   },
 
-  getShoppingCart: async function (userId) {
+  getShoppingCart: async function(userId) {
     try {
       const user = await User.findOne({
         where: {
