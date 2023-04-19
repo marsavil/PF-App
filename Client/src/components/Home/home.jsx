@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "../../redux/actions/actions";
@@ -8,7 +8,6 @@ import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
 import Pagination from "../Pagination/Pagination";
-import Cart from "../Cart/Cart";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,8 +20,6 @@ const Home = () => {
   const numOfLastProduct = currentPage * productsPerPage;
   const numOfFirstProduct = numOfLastProduct - productsPerPage;
   const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
-
-  const productsRef = useRef(null);
 
   const handlePagination = (page) => {
     setCurrentPage(page);
@@ -45,8 +42,6 @@ const Home = () => {
               handlePagination={handlePagination}
               currentPage={currentPage}
             />
-
-            <Cart />
           </div>
 
           {allProducts && allProducts.length === 0 ? (

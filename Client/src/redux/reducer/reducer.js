@@ -16,6 +16,7 @@ const initialState = {
   productDetail: {},
   cartProducts: [],
   totalPrice: 0,
+  totalProducts: 0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -35,6 +36,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         cartProducts: action.payload.cartProducts,
         totalPrice: action.payload.totalPrice,
+        totalProducts: action.payload.totalProducts,
       };
     case REMOVE_FROM_CART:
       return {

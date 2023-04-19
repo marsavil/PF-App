@@ -4,26 +4,17 @@ import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
 import DarkMode from "../DarkMode/DarkMode";
 
-import darkProfileIcon from "/assets/img/profile-dark.png";
-import lightProfileIcon from "/assets/img/profile-ligth.png";
+import ProfileButton from "./NavbarButtons/ProfileButton";
+import LogoutButton from "./NavbarButtons/LogoutButton";
+import CartButton from "./NavbarButtons/CartButton";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
-  const { token, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { token, admin, id: userId } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const handleProductsClick = () => {
     const productsRef = document.querySelector(".products");
     productsRef.scrollIntoView();
-  };
-
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("¿Estás seguro/a de que deseas cerrar sesión?");
-    if (confirmLogout) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("admin");
-      localStorage.removeItem("userData");
-      alert("Has cerrado sesión exitosamente");
-    }
   };
 
   return (
@@ -41,12 +32,9 @@ const Navbar = () => {
         </Link>
         {token ? (
           <div className="token_true">
-            <Link to="/profile">
-              <img src={darkMode ? darkProfileIcon : lightProfileIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
-            </Link>
-            <Link onClick={handleLogout} to="/home" className="desconectarse">
-              Cerrar sesión
-            </Link>
+            <ProfileButton darkMode={darkMode} setDarkMode={setDarkMode} />
+            <CartButton userId={userId} />
+            <LogoutButton />
           </div>
         ) : (
           <Link to="/login" className="ingresar">

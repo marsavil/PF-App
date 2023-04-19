@@ -1,17 +1,23 @@
 import "./cart.scss";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "../../redux/actions/actions";
 
 const Cart = () => {
-  const productCart = 0;
+  const dispatch = useDispatch();
+  const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
+
+  const cartProducts = useSelector((state) => state.cartProducts);
+
+  useEffect(() => {
+    dispatch(getCart(id));
+  }, []);
+
+  // console.log(cartProducts);
 
   return (
     <div className="cart">
-      {productCart}
-      <img
-        src="https://cdn0.iconfinder.com/data/icons/iconoteka-stroke/24/iconoteka_shopping_cart__grocery_store_b_s-256.png"
-        alt=""
-        width={25}
-        height={25}
-      />
+      <h1>cart</h1>
     </div>
   );
 };

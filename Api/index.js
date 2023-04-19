@@ -1,6 +1,6 @@
 const server = require("./src/app.js");
 const { addProducts } = require("./src/controlers/products.js");
-const { serverAdmin } = require("./src/controlers/Users.js")
+const { serverAdmin } = require("./src/controlers/Users.js");
 const { conn } = require("./src/db.js");
 
 require("dotenv").config();

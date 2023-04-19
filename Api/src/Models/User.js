@@ -28,7 +28,6 @@ module.exports = (sequelize) => {
     },
 		code: {
 			type: DataTypes.STRING,
-			allowNull: false
 		},
     name: {
       type: DataTypes.STRING,
@@ -55,4 +54,3 @@ module.exports = (sequelize) => {
     }
   });
 };
- 
