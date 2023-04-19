@@ -8,6 +8,7 @@ import Register from "./components/Auth/Register";
 import Profile from "./components/Profile/Profile";
 import Detail from "./components/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>

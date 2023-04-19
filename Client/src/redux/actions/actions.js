@@ -36,11 +36,10 @@ export const loginUser = (user) => {
 };
 export const loginGoogle = (user) => {
   return async (dispatch) => {
-    console.log(user, 'esto es el actions')
     try {
       let response = await axios.post(API_URL + "/user/login/google", user);
       localStorage.setItem("userData", JSON.stringify(response.data));
-      console.log(response.data)
+      console.log(response.data);
       return dispatch({
         type: GET_USER,
         payload: response.data,
@@ -49,7 +48,7 @@ export const loginGoogle = (user) => {
       console.error("Error while fetching user:", error);
     }
   };
-}
+};
 
 export const createUser = async (user) => {
   try {
@@ -66,7 +65,7 @@ export const createUser = async (user) => {
 
 export const addToCart = (productId, userId) => async (dispatch) => {
   try {
-    const response = await axios.post("/cart/add", { productId, userId });
+    const response = await axios.post(API_URL + "/cart/add", { productId, userId });
     dispatch({ type: ADD_TO_CART, payload: response.data });
   } catch (error) {
     console.error("Error al agregar producto al carrito:", error);
@@ -75,7 +74,7 @@ export const addToCart = (productId, userId) => async (dispatch) => {
 
 export const removeFromCart = (productId, userId) => async (dispatch) => {
   try {
-    const response = await axios.post("/cart/del", { productId, userId });
+    const response = await axios.post(API_URL + "/cart/del", { productId, userId });
     dispatch({ type: REMOVE_FROM_CART, payload: response.data });
   } catch (error) {
     console.error("Error al eliminar producto del carrito:", error);
@@ -84,7 +83,8 @@ export const removeFromCart = (productId, userId) => async (dispatch) => {
 
 export const getCart = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/cart/user/${userId}`);
+    const response = await axios.get(API_URL + `/cart/user/${userId}`);
+    console.log(response.data)
     dispatch({ type: GET_CART, payload: response.data });
   } catch (error) {
     console.error("Error al obtener el carrito del usuario:", error);
