@@ -8,8 +8,10 @@ router.use(express.json());
 router.post("/add", async(req, res) =>{
     const { productId, userId} = req.body
     try {
-      const addProduct = addProductToShoppingCart(productId, userId);
-      return res.status(200).json("product successfully added to shopping cart")
+      const addProduct = await addProductToShoppingCart(productId, userId);
+     
+        return   res.status(200).json(addProduct)
+      
     } catch (error) {
       res.status(500).json({ error: "Server error" });
     } 
