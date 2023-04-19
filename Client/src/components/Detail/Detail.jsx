@@ -7,6 +7,7 @@ import shipping from "/assets/img/shipping.png";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PurchaseOrderButton from "../purchaseOrderButton/PurchaseOrderButton";
 
 const Detail = () => {
   let dispatch = useDispatch();
@@ -67,7 +68,8 @@ const Detail = () => {
               <p>
                 Stock: <b>{productDetail.stock} unidades</b>
               </p>
-              <button onClick={handleBuyNow}>Comprar ahora</button>
+
+              <PurchaseOrderButton />
 
               <button className="button-cart" onClick={handleAddToCart}>
                 Agregar al carrito

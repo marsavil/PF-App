@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { gapi } from "gapi-script";
+import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import { loginGoogle } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
 function log() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const clientID =
     "301297638298-q7q0crhrkrbfmdt75ci4uvhvmfo8h66q.apps.googleusercontent.com";
   const [user, setUser] = useState({});
@@ -30,6 +32,9 @@ function log() {
     };
     document.getElementsByClassName("btn").hidden = true;
     startSession();
+    setTimeout(() => {
+      navigate("/home");
+    }, 1000);
   };
   const onFailure = (response) => {
     console.log("Something went wrong");
