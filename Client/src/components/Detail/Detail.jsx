@@ -7,7 +7,7 @@ import shipping from "/assets/img/shipping.png";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PurchaseOrderButton from "../purchaseOrderButton/PurchaseOrderButton";
+import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 
 const Detail = () => {
   let dispatch = useDispatch();

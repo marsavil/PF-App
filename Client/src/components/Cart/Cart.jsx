@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
-import PurchaseOrderButton from "../purchaseOrderButton/PurchaseOrderButton";
+import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const Cart = () => {
             <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
           </section>
           <section className="section-totalPrice">
-            <PurchaseOrderButton />
+            <PurchaseOrderButton products = {cartProducts}/>
           </section>
         </div>
       ) : (
