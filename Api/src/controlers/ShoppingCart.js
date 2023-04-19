@@ -43,26 +43,45 @@ module.exports = {
       return "Stock limit reached" 
     }  
   },
-  deleteProductFromShoppingCart: async function (productId, userId) {
+  changeQuantityOfProduct: async function (productId, userId, action) {
     try {
       const user = await User.findOne({
         where: {
           id: userId,
         },
       });
+      console.log(action)
+      
+      const cart = await user.getShoppingCart()
+      const cartProduct = await cart.getProducts({ where: { id: productId } })
+      const productQuantity = cartProduct[0].ShoppingCart_Products.quantity
+      
+     
+      if (action === "del"){
+        await cartProduct[0].ShoppingCart_Products.destroy()
+        return "Product Deleted"
+      }
+      if (action == "sub"){
+        if (productQuantity == 1){
+        await cartProduct[0].ShoppingCart_Products.destroy()
+        return "Product deleted"
+        }
+        else{
 
-      const cart = await user.getShoppingCart();
-      console.log(cart);
-      const cartProducts = await cart.getProducts({ where: { id: productId } });
-      await cartProducts[0].ShoppingCart_Products.destroy();
-
-      return "Product Deleted";
+          cart.addProduct(cartProduct, {
+            through: { quantity: productQuantity -1 },
+          })
+          return "-1"
+        }
+      }
+        
     } catch (error) {
       return error;
     }
   },
 
-  getShoppingCart: async function (userId) {
+
+  getShoppingCart: async function(userId) {
     try {
       const user = await User.findOne({
         where: {
