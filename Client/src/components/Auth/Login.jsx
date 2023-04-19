@@ -18,7 +18,7 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  
+
   const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -31,7 +31,7 @@ const Login = () => {
       } else {
         setTimeout(() => {
           navigate("/home");
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       if (error.message === "Error en la petición") {
@@ -41,7 +41,7 @@ const Login = () => {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 1000);
     }
   };
 
@@ -61,13 +61,7 @@ const Login = () => {
       <div className="authDiv">
         <form className="authForm authFormLogin" onSubmit={handleSubmit}>
           <h1>Iniciar sesion</h1>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            value={dataLogin.email}
-          />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
           {dataLogin.email !== "" && errors.email ? (
             <p className="error">{errors.email}</p>
           ) : (
@@ -90,11 +84,7 @@ const Login = () => {
             </p>
           )}
           <button className="authButton" type="submit" disabled={isLoading}>
-            {isLoading ? (
-              <BeatLoader color={"#ffffff"} size={5} />
-            ) : (
-              "Ingresar"
-            )}
+            {isLoading ? <BeatLoader color={"#ffffff"} size={5} /> : "Ingresar"}
           </button>
           <p>
             ¿No tienes cuenta? <Link to="/register">Registrate</Link>
