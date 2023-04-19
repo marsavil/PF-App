@@ -3,7 +3,6 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
   CLEAR_DETAIL,
-  ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CART,
   ALL_FILTERS,
@@ -16,7 +15,7 @@ const initialState = {
   productDetail: {},
   cartProducts: [],
   totalPrice: 0,
-  totalProducts: 0,
+  totalQuantity: 0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -25,18 +24,12 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: action.payload };
     case GET_ALL_PRODUCTS:
       return { ...state, allProducts: action.payload };
-    case ADD_TO_CART:
-      return {
-        ...state,
-        cartProducts: action.payload.cartProducts,
-        totalPrice: action.payload.totalPrice,
-      };
     case GET_CART:
       return {
         ...state,
         cartProducts: action.payload.cartProducts,
         totalPrice: action.payload.totalPrice,
-        totalProducts: action.payload.totalProducts,
+        totalQuantity: action.payload.totalQuantity,
       };
     case REMOVE_FROM_CART:
       return {

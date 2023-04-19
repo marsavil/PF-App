@@ -5,7 +5,7 @@ import { getCart } from "../../../redux/actions/actions";
 
 const CartButton = ({ userId }) => {
   const dispatch = useDispatch();
-  const totalProducts = useSelector((state) => state.totalProducts);
+  const totalQuantity = useSelector((state) => state.totalQuantity);
 
   useEffect(() => {
     dispatch(getCart(userId));
@@ -14,8 +14,7 @@ const CartButton = ({ userId }) => {
   return (
     <Link to="/cart" className="perfil">
       <div className="cart">
-        {/* {totalProducts} */}
-        0
+        {totalQuantity}
         <img
           src="https://cdn0.iconfinder.com/data/icons/iconoteka-stroke/24/iconoteka_shopping_cart__grocery_store_b_s-256.png"
           alt=""
