@@ -26,7 +26,7 @@ const Navbar = () => {
       </div>
       <div className="navbar__links">
         <Link to="/">Inicio</Link>
-        {admin ? <Link to="/">Agregar producto</Link> : null}
+        {admin ? <Link to="/addProduct">Agregar producto</Link> : null}
         <Link to="/home" onClick={handleProductsClick}>
           Productos
         </Link>
