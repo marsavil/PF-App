@@ -9,9 +9,8 @@ module.exports = {
           id: userId,
         },
       });
-      
-      await user.getShoppingCart().then((cart) => {
 
+      await user.getShoppingCart().then((cart) => {
         fetchedCart = cart;
         cart
           .getProducts({ where: { id: productId } })
@@ -39,21 +38,19 @@ module.exports = {
           id: userId,
         },
       });
- 
-      const cart = await user.getShoppingCart()
-      console.log(cart)
-      const cartProducts = await cart.getProducts({ where: { id: productId } });
-      await cartProducts[0].ShoppingCart_Products.destroy()
-     
-      return "Product Deleted"
 
-        
+      const cart = await user.getShoppingCart();
+      console.log(cart);
+      const cartProducts = await cart.getProducts({ where: { id: productId } });
+      await cartProducts[0].ShoppingCart_Products.destroy();
+
+      return "Product Deleted";
     } catch (error) {
       return error;
     }
   },
 
-  getShoppingCart: async function(userId) {
+  getShoppingCart: async function (userId) {
     try {
       const user = await User.findOne({
         where: {
@@ -68,7 +65,7 @@ module.exports = {
         totalPrice += product.ShoppingCart_Products.quantity * product.price;
       }
       for (let product of cartProducts) {
-        totalQuantity += product.ShoppingCart_Products.quantity
+        totalQuantity += product.ShoppingCart_Products.quantity;
       }
       return { cartProducts, totalPrice, totalQuantity };
     } catch (error) {
