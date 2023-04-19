@@ -13,10 +13,10 @@ const Order = ({ filterState, setFilterState, setCurrentPage }) => {
 
   return (
     <div className="order">
-      <select value={filterState.order} onChange={handleOrderChange}>
-        <option value="none">Seleccione un orden</option>
-        <option value="menor">Menor precio</option>
-        <option value="mayor">Mayor precio</option>
+      <select className="option" value={filterState.order} onChange={handleOrderChange}>
+        <option className="option" value="none">Seleccione un orden</option>
+        <option className="option" value="menor">Menor precio</option>
+        <option className="option" value="mayor">Mayor precio</option>
       </select>
     </div>
   );

@@ -42,10 +42,9 @@
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
     padding: 5px 50px;
     border: 1px solid var(--steel-blue-matte);
-  }
-
-  .authButton:hover {
-    cursor: pointer;
+    &:hover{
+      cursor: pointer;
+    }
   }
 
   .authForm p {
