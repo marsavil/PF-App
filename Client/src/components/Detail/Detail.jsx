@@ -1,5 +1,5 @@
 import "./detail.scss";
-import { getProductDetail, clearDetail, addToCart } from "../../redux/actions/actions";
+import { getProductDetail, clearDetail, addToCart, getCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,8 +25,9 @@ const Detail = () => {
     toast.success("Compra realizada con éxito", {});
   };
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(productDetail.id, userId));
+  const handleAddToCart = async () => {
+    await dispatch(addToCart(productDetail.id, userId));
+    dispatch(getCart(userId));
   };
 
   useEffect(() => {
