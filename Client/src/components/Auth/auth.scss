@@ -42,7 +42,7 @@
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
     padding: 5px 50px;
     border: 1px solid var(--steel-blue-matte);
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
@@ -103,6 +103,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 5px 0 5px 0;
 
     button {
       display: flex;
@@ -114,6 +115,7 @@
       width: 200px;
       padding: 2px 10px !important;
       transition: all 0.3s ease-in-out;
+      margin-bottom: 10px;
 
       &:hover {
         cursor: pointer;
@@ -123,14 +125,19 @@
         display: flex;
         justify-content: center;
         padding-right: 0 !important;
+        translate: -5px;
       }
 
       span {
+        translate: -10px;
         display: flex;
         justify-content: center;
         text-align: center;
         font-size: 18px;
         padding: 0 !important;
+      }
+      .loading {
+        margin-left: 20px;
       }
     }
   }

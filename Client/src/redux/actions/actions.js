@@ -13,10 +13,10 @@ import qs from "query-string";
 
 const API_URL = "http://localhost:3001";
 
-export const loginUser = (user) => {
+export const loginUser = (user, url) => {
   return async (dispatch) => {
     try {
-      let response = await axios.post(API_URL + "/user/login/log", user);
+      let response = await axios.post(API_URL + `/user/login/${url}`, user);
       localStorage.setItem("userData", JSON.stringify(response.data));
       return dispatch({
         type: GET_USER,
@@ -32,22 +32,6 @@ export const loginUser = (user) => {
         console.error(error.message);
         throw new Error("Error en la petición");
       }
-    }
-  };
-};
-
-export const loginGoogle = (user) => {
-  return async (dispatch) => {
-    try {
-      let response = await axios.post(API_URL + "/user/login/google", user);
-      localStorage.setItem("userData", JSON.stringify(response.data));
-      console.log(response.data);
-      return dispatch({
-        type: GET_USER,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error("Error while fetching user:", error);
     }
   };
 };
@@ -133,19 +117,6 @@ export const getAllProducts = () => {
       console.error("Error while fetching all products:", error);
     }
   };
-};
-
-export const addProduct = async (product) => {
-  try {
-    const response = await axios.post(API_URL + "/products", product);
-    if (response.data.success) {
-    } else {
-      throw new Error(response.data.msg);
-    }
-  } catch (error) {
-    console.error("Error while creating product:", error);
-    throw error;
-  }
 };
 
 export function getProductDetail(id) {

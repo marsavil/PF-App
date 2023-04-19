@@ -18,7 +18,7 @@
       border: none;
       transition: all 0.5s ease;
       background-color: transparent;
-      color: var(--steel-blue-medium-matte);
+      color: var(--dar-color);
       &:hover {
         color: var(--steel-blue-medium-matte);
       }
@@ -82,12 +82,11 @@
   .detail-description {
     display: flex;
     padding: 20px;
-    grid-column: span 2;
+    grid-column: span 3;
     flex-direction: column;
-    justify-content: space-around;
     p {
       font-size: 18px;
-      color: var(--storm-gray-matte);
+      color: var(--storm-gray-medium-matte);
     }
   }
 

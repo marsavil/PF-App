@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
-import { loginGoogle } from "../../../redux/actions/actions";
+import { loginUser } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import { DotLoader } from "react-spinners";
 
 function log() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const clientID =
     "301297638298-q7q0crhrkrbfmdt75ci4uvhvmfo8h66q.apps.googleusercontent.com";
   const [user, setUser] = useState({});
-  const [loggeIn, setLoggetInfo] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const onSuccess = (response) => {
+    setLoading(true);
     setUser(response.profileObj);
     const loginData = {
       name: response.profileObj.givenName,
@@ -25,7 +27,7 @@ function log() {
     };
     const startSession = () => {
       try {
-        dispatch(loginGoogle(loginData));
+        dispatch(loginUser(loginData, "google"));
       } catch (error) {
         console.error("Error al registrar usuario:", error);
       }
@@ -36,12 +38,11 @@ function log() {
       navigate("/home");
     }, 1000);
   };
-  const onFailure = (response) => {
+
+  const onFailure = () => {
     console.log("Something went wrong");
   };
-  const handleLogout = () => {
-    setUser({});
-  };
+
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -57,14 +58,15 @@ function log() {
         clientId={clientID}
         onSuccess={onSuccess}
         onFailure={onFailure}
-        buttonText="Google"
         cookiePolicy={"single_host_origin"}
-      />
-
-      <div className={user ? "profile" : "hidden"}>
-        <img src={user.imageUrl} />
-        <h3>{user.name}</h3>
-      </div>
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <DotLoader className="loading" color={"#4a90e2"} size={7} />
+        ) : (
+          "Google"
+        )}
+      </GoogleLogin>
     </div>
   );
 }
