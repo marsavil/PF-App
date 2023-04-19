@@ -1,15 +1,22 @@
 import React from "react";
+import "./profile.scss";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
 
   return (
     <div className="profile">
-      <h1>Mis datos</h1>
-      <h2>Usuario: {user.userName}</h2>
-      <h2>Nombre: {user.name}</h2>
-      <h2>Apellido: {user.lastName}</h2>
-      <h2>Email: {user.email}</h2>
+      <div className="data">
+        <h2>{user.userName}</h2>
+        <h3>Mis datos</h3>
+        <h4>Usuario: {user.userName}</h4>
+        <h4>Nombre: {user.name}</h4>
+        <h4>Apellido: {user.lastName}</h4>
+        <h4>E-mail: {user.email}</h4>
+      </div>
+      <div className="purchases">
+        <h2>Historial de compras</h2>
+      </div>
     </div>
   );
 };

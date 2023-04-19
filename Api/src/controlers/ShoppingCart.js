@@ -39,12 +39,13 @@ module.exports = {
           id: userId,
         },
       });
-
-    
-      /*const cartProducts = await cart.getProducts({ where: { id: productId } });
-      cartProducts[0].destroy()*/
-      await user.getShoppingCart().then((cart) => {
-          return cart.destroy({where: {productId: productId}})})
+ 
+      const cart = await user.getShoppingCart()
+      console.log(cart)
+      const cartProducts = await cart.getProducts({ where: { id: productId } });
+      await cartProducts[0].ShoppingCart_Products.destroy()
+     
+      return "Product Deleted"
 
         
     } catch (error) {
