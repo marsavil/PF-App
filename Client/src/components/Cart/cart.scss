@@ -29,6 +29,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
     border-radius: 5px;
+    text-align: center;
   }
 
   .cart-product {
@@ -128,4 +129,9 @@
       background-color: var(--steel-blue-matte);
     }
   }
+}
+
+.cart-empty {
+  font-size: 30px;
+  letter-spacing: 1px;
 }
