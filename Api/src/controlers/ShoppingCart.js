@@ -52,14 +52,15 @@ module.exports = {
           id: userId,
         },
       });
-      user
-        .getShoppingCart()
-        .then((cart) => {
+      const cart = await user.getShoppingCart()
+      const cartProducts = await cart.getProducts({ where: { id: productId } });
+      cartProducts[0].destroy()
+        /*.then((cart) => {
           return cart.getProducts({ where: { id: productId } });
         })
         .then((products) => {
           return products[0].destroy();
-        });
+        });*/
     } catch (error) {
       return error;
     }

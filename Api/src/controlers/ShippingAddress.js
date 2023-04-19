@@ -9,7 +9,7 @@ module.exports = {
           id: orderId
         }
       })
-      console.log(order)
+      
       order.createShippingAddress({
         street,
         number, 
@@ -28,7 +28,7 @@ module.exports = {
         id: orderId
       }
     })
-    const address = order.getShippingAddress()
+    const address = await order.getShippingAddress()
     return address
   },
 
