@@ -1,5 +1,5 @@
 import React from "react";
-import { categories } from "../../functions/constants";
+import { categories } from "../../../functions/constants";
 import './filterCategories.scss'
 
 const FilterCategories = ({ filterState, setFilterState, setCurrentPage }) => {

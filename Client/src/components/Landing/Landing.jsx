@@ -5,6 +5,9 @@ import "./landing.scss";
 const Landing = () => {
   const navigate = useNavigate();
 
+  const { token, id: userId } =
+    JSON.parse(localStorage.getItem("userData")) ?? {};
+
   const handleExploreClick = () => {
     navigate("/home");
   };

@@ -14,7 +14,7 @@ import Error404 from "./components/Error404/Error404";
 
 import Payment from "./components/Payment/payment";
 
-import AddProduct from "./components/AddProduct/AddProduct";
+import AddProduct from "./components/Profile/AddProduct/AddProduct";
 
 function App() {
   const location = useLocation();

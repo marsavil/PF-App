@@ -2,7 +2,7 @@ import "./navbar.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
-import DarkMode from "../DarkMode/DarkMode";
+import DarkMode from "./NavbarButtons/DarkMode/DarkMode";
 import ProfileButton from "./NavbarButtons/ProfileButton";
 import LogoutButton from "./NavbarButtons/LogoutButton";
 import CartButton from "./NavbarButtons/CartButton";
