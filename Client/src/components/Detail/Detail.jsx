@@ -66,8 +66,8 @@ const Detail = () => {
                 <img src={productDetail.image} alt={productDetail.name} />
               </div>
               <div className="detail-info">
-                <h2>{productDetail.name}</h2>
-                <h1>$ {productDetail.price.toLocaleString()}</h1>{" "}
+                <h3>{productDetail.name}</h3>
+                <h2>$ {productDetail.price.toLocaleString()}</h2>{" "}
               </div>
               <div className="detail-buy">
                 <p className="p-shipping">
@@ -88,10 +88,10 @@ const Detail = () => {
                 <p className="p-return">Compra protegida</p>
               </div>
               <div className="detail-description">
-                <h2>Características del producto</h2>
-                <h3>Categoría: {productDetail.category}</h3>
-                <h3>Marca: {productDetail.brand}</h3>
-                <h2>Descripción</h2>
+                <h3>Características del producto</h3>
+                <h4>Categoría: {productDetail.category}</h4>
+                <h4>Marca: {productDetail.brand}</h4>
+                <h3>Descripción</h3>
                 <p>{productDetail.description}</p>
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
