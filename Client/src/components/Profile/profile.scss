@@ -39,12 +39,13 @@
         color: var(--steel-blue-matte);
       }
     }
-    .purchases {
-      padding: 10px;
-      border: 1px solid var(--light-gray-matte);
-    }
   }
-
+  .purchases {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
   .panel-admin {
     display: flex;
     flex-direction: column;

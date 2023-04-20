@@ -131,13 +131,13 @@ export const getAllUsers = () => {
   };
 };
 
-// export const deleteUser = (id) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.post(API_URL + `/user/del/${id}`);
-//       return dispatch(getAllUsers());
-//     } catch (error) {
-//       console.error("Error while deleting user:", error);
-//     }
-//   };
-// }
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(API_URL + `/user/del/${id}`);
+      return dispatch(getAllUsers());
+    } catch (error) {
+      console.error("Error while deleting user:", error);
+    }
+  };
+}

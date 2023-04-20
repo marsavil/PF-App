@@ -2,10 +2,10 @@ import "./filters.scss";
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { allFilters } from "../../redux/actions/actions";
-import SearchBar from "../SearchBar/SearchBar";
-import Order from "../Order/Order";
-import FilterBrand from "../FilterBrand/FilterBrand";
-import FilterCategories from "../FilterCategories/FilterCategories";
+import SearchBar from "./SearchBar/SearchBar";
+import Order from "./Order/Order";
+import FilterBrand from "./FilterBrand/FilterBrand";
+import FilterCategories from "./FilterCategories/FilterCategories";
 
 const Filters = ({ setCurrentPage }) => {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import React from "react";
 import "./profile.scss";
 import { useState } from "react";
-import AddProduct from "../AddProduct/AddProduct";
-import ManageUsers from "../ManageUsers/ManageUsers";
+import AddProduct from "./AddProduct/AddProduct";
+import ManageUsers from "./ManageUsers/ManageUsers";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
@@ -53,6 +53,10 @@ const Profile = () => {
       {admin ? null : (
         <div className="purchases">
           <h2>Historial de compras</h2>
+          <h3>
+            Aún no has realizado ninguna compra. ¡Visita nuestra tienda y
+            comprá!
+          </h3>
         </div>
       )}
 

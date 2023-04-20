@@ -1,7 +1,7 @@
 import "./manageUsers.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllUsers } from "../../redux/actions/actions";
+import { getAllUsers } from "../../../redux/actions/actions";
 
 const ManageUsers = () => {
   const dispatch = useDispatch();
