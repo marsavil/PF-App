@@ -5,7 +5,6 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
   CLEAR_DETAIL,
-  REMOVE_FROM_CART,
   GET_CART,
   ALL_FILTERS,
 } from "./actions-types";
@@ -49,59 +48,12 @@ export const createUser = async (user) => {
   }
 };
 
-export const addToCart = (productId, userId) => {
-  return async () => {
-    try {
-      await axios.post(API_URL + "/cart/add", {
-        productId,
-        userId,
-      });
-    } catch (error) {
-      console.error("Error al agregar producto al carrito:", error);
-    }
-  };
-};
-
-export const subToCart = (productId, userId) => {
-  return async () => {
-    try {
-      await axios.post(API_URL + "/cart/sub", {
-        productId,
-        userId,
-      });
-    } catch (error) {
-      console.error("Error al agregar producto al carrito:", error);
-    }
-  };
-};
-
 export const getCart = (userId) => async (dispatch) => {
   try {
     const response = await axios.get(API_URL + `/cart/user/${userId}`);
     dispatch({ type: GET_CART, payload: response.data });
   } catch (error) {
     console.error("Error al obtener el carrito del usuario:", error);
-  }
-};
-
-export const removeFromCart = (productId, userId) => async (dispatch) => {
-  try {
-    const response = await axios.post(API_URL + "/cart/del", {
-      productId,
-      userId,
-    });
-    dispatch({ type: REMOVE_FROM_CART, payload: response.data });
-  } catch (error) {
-    console.error("Error al eliminar producto del carrito:", error);
-  }
-};
-
-export const emptyCart = (userId) => async (dispatch) => {
-  try {
-    const response = await axios.post(API_URL + `/cart/empty/${userId}`);
-    dispatch({ type: REMOVE_FROM_CART, payload: response.data });
-  } catch (error) {
-    console.error("Error al vaciar el carrito:", error);
   }
 };
 

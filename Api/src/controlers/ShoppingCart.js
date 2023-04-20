@@ -94,25 +94,22 @@ module.exports = {
       return error;
     }
   },
-  emptyShoppingCart: async function(userId){
+  emptyShoppingCart: async function (userId) {
     const user = await User.findOne({
       where: {
         id: userId,
       },
     });
     const cart = await user.getShoppingCart();
-    console.log(cart.id)
-    const cartProducts = await cart.getProducts()
-    
+    console.log(cart.id);
+    const cartProducts = await cart.getProducts();
+
     ShoppingCart_Products.destroy({
-      where:{
-        ShoppingCartId: cart.id
-      }
-    })
+      where: {
+        ShoppingCartId: cart.id,
+      },
+    });
 
-
-    return "cart empty"
-
-    
-  }
+    return "cart empty";
+  },
 };

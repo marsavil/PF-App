@@ -3,7 +3,6 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
   CLEAR_DETAIL,
-  REMOVE_FROM_CART,
   GET_CART,
   ALL_FILTERS,
 } from "../actions/actions-types";
@@ -31,12 +30,7 @@ export default function reducer(state = initialState, action) {
         totalPrice: action.payload.totalPrice,
         totalQuantity: action.payload.totalQuantity,
       };
-    case REMOVE_FROM_CART:
-      return {
-        ...state,
-        cartProducts: action.payload.cartProducts,
-        totalPrice: action.payload.totalPrice,
-      };
+
     case ALL_FILTERS:
       const { brand, category, order } = action.payload.condition;
       const filteredProducts = handleFilters(action.payload.response, {
