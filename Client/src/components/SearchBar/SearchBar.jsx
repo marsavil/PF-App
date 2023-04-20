@@ -2,10 +2,9 @@ import React from "react";
 
 const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
   const handleProductSearch = (e) => {
-    const searchValue = e.target.value;
     setFilterState({
       ...filterState,
-      search: searchValue,
+      search: e.target.value,
     });
     setCurrentPage(1);
   };
@@ -13,12 +12,7 @@ const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
   return (
     <div>
       <section>
-        <input
-          type="text"
-          value={filterState.search}
-          placeholder="Buscar producto"
-          onChange={handleProductSearch}
-        />
+        <input type="text" value={filterState.search} placeholder="Buscar producto" onChange={handleProductSearch} />
       </section>
     </div>
   );

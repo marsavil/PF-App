@@ -1,10 +1,5 @@
 import "./detail.scss";
-import {
-  getProductDetail,
-  clearDetail,
-  addToCart,
-  getCart,
-} from "../../redux/actions/actions";
+import { getProductDetail, clearDetail, getCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +7,7 @@ import shipping from "/assets/img/shipping.png";
 import "react-toastify/dist/ReactToastify.css";
 import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import error404 from "/assets/img/404.png";
+import axios from "axios";
 
 const Detail = () => {
   let dispatch = useDispatch();
@@ -31,8 +27,15 @@ const Detail = () => {
   };
 
   const handleAddToCart = async () => {
-    await dispatch(addToCart(productDetail.id, userId));
-    dispatch(getCart(userId));
+    try {
+      await axios.post("http://localhost:3001/cart/add", {
+        productId: productDetail.id,
+        userId,
+      });
+      dispatch(getCart(userId));
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   useEffect(() => {
