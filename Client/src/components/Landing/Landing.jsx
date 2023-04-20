@@ -32,9 +32,11 @@ const Landing = () => {
         <button className="button-landing" onClick={handleExploreClick}>
           Explorar productos
         </button>
-        <button className="button-landing" onClick={handleLogin}>
-          Iniciar sesión
-        </button>
+        {token ? null : (
+          <button className="button-landing" onClick={handleLogin}>
+            Iniciar sesión
+          </button>
+        )}
       </aside>
     </div>
   );
