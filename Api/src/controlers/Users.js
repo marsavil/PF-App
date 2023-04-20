@@ -537,11 +537,11 @@ module.exports = {
         },
       });
 
-      const Addresses = await ShippingAddress.findAll({
-        where: {
-          UserId: user.id,
-        },
-      });
+      // const Addresses = await ShippingAddress.findAll({
+      //   where: {
+      //     UserId: user.id,
+      //   },
+      // });
       const template = templateEliminacionDeCuenta(user.email, sender);
       await sendStatusEmail(
         user.email,
@@ -549,9 +549,9 @@ module.exports = {
         template
       );
 
-      for (let i = 0; i < Addresses.length; i++) {
-        Addresses[i].destroy();
-      }
+      // for (let i = 0; i < Addresses.length; i++) {
+      //   Addresses[i].destroy();
+      // }
       if (user.email === sender) {
         return res.status(400).send({
           message: `La cuenta ${user.userName} no puede ser eliminada`,

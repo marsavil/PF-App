@@ -84,7 +84,6 @@ export function getProductDetail(id) {
   };
 }
 
-
 export function allFilters(payload) {
   const params = {
     brand: payload.brand || null,
@@ -124,14 +123,3 @@ export const getAllUsers = () => {
     }
   };
 };
-
-export const deleteUser = (id) => {
-  return async (dispatch) => {
-    try {
-      await axios.post(API_URL + `/user/del/${id}`);
-      return dispatch(getAllUsers());
-    } catch (error) {
-      console.error("Error while deleting user:", error);
-    }
-  };
-}
