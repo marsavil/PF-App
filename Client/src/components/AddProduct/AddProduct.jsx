@@ -17,6 +17,27 @@ const AddProduct = () => {
   });
 
   const [isLoading, setLoading] = useState(false);
+  
+  var uploadedImage = ""
+  const uploadImage = (e) => {
+
+    const data = new FormData();
+
+    data.append("file", e.target.files[0]);
+    data.append("upload_preset", "uq7hpsv9");
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data)
+      .then((response) => {
+        console.log(response);
+        uploadedImage = response.data.secure_url;
+        console.log(uploadedImage)
+        setFormData({
+            ...formData,
+            image: uploadedImage,
+        })
+      });
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -76,11 +97,11 @@ const AddProduct = () => {
           <div className="form-group">
             <label htmlFor="image">Imagen:</label>
             <input
-              type="text"
+              type="file"
               name="image"
               id="image"
-              value={formData.image}
-              onChange={handleChange}
+              value={uploadedImage}
+              onChange={uploadImage}
             />
           </div>
           <div className="form-group">
@@ -122,6 +143,10 @@ const AddProduct = () => {
               onChange={handleChange}
             />
           </div>
+          <div>
+                  <img src={formData.image} alt="" width={"100px"} />
+                  Preview
+                </div>
           <button type="submit" disabled={isLoading}>
             {isLoading ? (
               <BeatLoader color={"#ffffff"} size={7} />

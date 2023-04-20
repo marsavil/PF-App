@@ -13,6 +13,7 @@ const {
   templateRehabilitacionDeCuenta,
   templateEliminacionDeCuenta,
   templateAdminSuspension,
+  templateChangePassword
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
 const sender = process.env.EMAIL;
@@ -360,8 +361,10 @@ module.exports = {
           //await sendEmail(email, "Revocación", template);
           formerAdmin.admin = false;
           formerAdmin.save();
+          const template = templateAdminSuspension(email, sender);
+          await sendEmail(email, "Derechos administrativos revocados", template);
           return res.send({
-            message: `Derechos administrativos quitados a ${formerAdmin.userName}`,
+            message: `Derechos administrativos revocados a ${formerAdmin.userName}`,
           });
         }
       } catch (error) {
@@ -452,26 +455,77 @@ module.exports = {
   },
   updateUser: async (req, res) => {
     const { email, name, lastName, cellphone, password } = req.body;
+    console.log(cellphone)
     try {
       const user = await User.findOne({
         where: {
           email,
         },
       });
-      if (name) user.name = name;
-      if (lastName) user.lastName = lastName;
-      if (cellphone) user.cellphone = cellphone;
+      if (name) {
+        user.name = name;
+        user.save();
+      }
+      if (lastName) {
+        user.lastName = lastName;
+        user.save();
+      }
+      if (cellphone) {
+        console.log(user.cellphone)
+        console.log(cellphone)
+        user.cellphone = cellphone;
+        user.save()
+      } 
       if (password) {
         let passwordHashed = await bcrypt.hash(password, 10);
-        user.password = passwordHashed;
-      }
+        const token = generateToken({ email, passwordHashed });
+        const template = templateChangePassword(name, token);
 
-      user.save();
+        await sendEmail(email, "Cambio de contraseña", template);
+      }
       return res
         .status(200)
         .send({ message: "Datos modificados correctamente" });
     } catch (error) {
-      res.status(400).send({ message: "oops I did it again" });
+      res.status(400).send(error.message);
+    }
+  },
+  confirmPasswordChange: async (req, res) => {
+    try {
+      const { token } = req.params;
+
+      const data = getTokenData(token);
+
+      if (data === null) {
+        return res.json({
+          success: false,
+          msg: "Error. Data couldn't be acccessed ",
+        });
+      }
+
+      const { email, passwordHashed } = data;
+      console.log(email)
+      console.log(passwordHashed)
+      let user = await User.findOne({
+        where: {
+          email,
+        },
+      });
+      if (user === null) {
+        return res.json({
+          success: false,
+          msg: "The user doesn't exist",
+        });
+      }
+      user.password = passwordHashed;
+      await user.save();
+      return res.redirect("http://localhost:3000/home");
+      //return res.redirect("home del deploy")
+    } catch (error) {
+      return res.json({
+        success: false,
+        msg: error.message,
+      });
     }
   },
   deleteUser: async (req, res) => {

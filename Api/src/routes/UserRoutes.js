@@ -11,7 +11,8 @@ const {
   createAdmin,
   updateUser,
   deleteUser,
-  loginGoogle
+  loginGoogle,
+  confirmPasswordChange
 } = require("../controlers/Users");
 const router = express.Router();
 router.use(express.json());
@@ -27,6 +28,7 @@ router.put("/ban/:id", banUser);
 router.put("/unban/:id", unBanUser);
 router.get("/confirm/:token", confirm);
 router.put("/update", updateUser);
-router.get("/del", deleteUser);
+router.delete("/del", deleteUser);
+router.get("/confirmchange/:token", confirmPasswordChange)
 
 module.exports = router;
