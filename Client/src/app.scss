@@ -13,7 +13,7 @@
   --light-gray-matte: #d3d3d3;
   --storm-gray-matte: #5d5d5d;
   --storm-gray-medium-matte: #666;
-  --storm-gra-light-matte: #999;
+  --storm-gray-light-matte: #999;
   --success-color: #00bd00;
   --error-color: #ff0000;
 }
@@ -36,6 +36,8 @@ body {
   font-size: 14px;
   font-weight: bold;
   transition: all 0.5s ease;
+}
+button{
   cursor: pointer;
 }
 

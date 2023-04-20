@@ -1,13 +1,17 @@
 import "./detail.scss";
-import { getProductDetail, clearDetail, addToCart, getCart } from "../../redux/actions/actions";
+import {
+  getProductDetail,
+  clearDetail,
+  addToCart,
+  getCart,
+} from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import shipping from "/assets/img/shipping.png";
-
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
+import error404 from "/assets/img/404.png";
 
 const Detail = () => {
   let dispatch = useDispatch();
@@ -37,18 +41,6 @@ const Detail = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="detail-container">
         {productDetail?.id ? (
           <>
@@ -87,8 +79,9 @@ const Detail = () => {
             </div>
           </>
         ) : (
-          <div className="redirect">
+          <div className="product404">
             <h1>Parece que esta página no existe</h1>
+            <img src={error404} alt="error404" />
             <button onClick={backToHome}>Ir a la página principal</button>
           </div>
         )}

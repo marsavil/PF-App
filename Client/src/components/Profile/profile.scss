@@ -8,16 +8,18 @@
     flex-direction: column;
     margin-left: 100px;
     margin-right: 50px;
-    .border{
+    .border {
       border: 1px solid var(--light-gray-matte);
       width: 100%;
       margin-bottom: 20px;
       padding: 10px;
     }
-    h4 {
-      margin: 0;
+    h2,
+    h3 {
+      text-align: center;
     }
     h4 {
+      margin: 0;
       font-weight: 400;
       color: rgba(0, 0, 0, 0.8);
     }
@@ -40,6 +42,37 @@
     .purchases {
       padding: 10px;
       border: 1px solid var(--light-gray-matte);
+    }
+  }
+
+  .panel-admin {
+    display: flex;
+    flex-direction: column;
+    h2,
+    a {
+      text-align: center;
+    }
+    .options-container {
+      border: 1px solid var(--light-gray-matte);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      .options{
+        cursor: pointer;
+        font-size: 16px;
+        height: 50px;
+
+        border: 1px solid var( --light-gray-matte);
+      }
+    }
+  }
+  .option-set{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: span 2;
+    button{
+      margin: 20px;
+      border: none;
     }
   }
 }

@@ -1,33 +1,52 @@
 import React from "react";
 import "./profile.scss";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import AddProduct from "../AddProduct/AddProduct";
+import ManageUsers from "../ManageUsers/ManageUsers";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
-  const {
-    admin,
-  } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { userName, name, lastName, email } = user;
+  const { admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+
+  const [showManageProducts, setShowManageProducts] = useState(false);
+  const [showManageUsers, setShowManageUsers] = useState(false);
+
+  const handleManageUsersClick = () => {
+    setShowManageUsers(true);
+    setShowManageProducts(false);
+  };
+
+  const handleManageProductsClick = () => {
+    setShowManageProducts(true);
+    setShowManageUsers(false);
+  };
+
+  const closeOptions = () => {
+    setShowManageProducts(false);
+    setShowManageUsers(false);
+  };
 
   return (
     <div className="profile">
       <div className="data">
-        <h2>{user.userName}</h2>
+        <h2>{userName}</h2>
         <h3>Mis datos</h3>
         <div className="border">
           <h4>Nombre de usuario</h4>
-          <p>{user.userName}</p>
+          <p>{userName}</p>
         </div>
         <div className="border">
           <h4>Nombre</h4>
-          <p>{user.name}</p>
+          <p>{name}</p>
         </div>
         <div className="border">
           <h4>Apellido</h4>
-          <p>{user.lastName}</p>
+          <p>{lastName}</p>
         </div>
         <div className="border">
           <h4>E-mail</h4>
-          <p>{user.email}</p>
+          <p>{email}</p>
         </div>
         <button>Modificar datos</button>
       </div>
@@ -39,13 +58,27 @@ const Profile = () => {
 
       {admin ? (
         <div className="panel-admin">
-          <h2>Panel de Admin</h2>
-          <Link to="/addProduct" className="links">
-            Agregar Productos
-          </Link>
-          <Link to="/home" className="links">
-            Administrar Usuarios
-          </Link>
+          <h2>Panel de Administrador</h2>
+          <div className="options-container">
+            <button className="options" onClick={handleManageProductsClick}>
+              Agregar Productos
+            </button>
+            <button className="options" onClick={handleManageUsersClick}>
+              Administrar Usuarios
+            </button>
+            {showManageProducts && (
+              <div className="option-set">
+                <AddProduct />
+                <button onClick={closeOptions}>Cerrar</button>
+              </div>
+            )}
+            {showManageUsers && (
+              <div className="option-set">
+                <ManageUsers />
+                <button onClick={closeOptions}>Cerrar</button>
+              </div>
+            )}
+          </div>
         </div>
       ) : null}
     </div>

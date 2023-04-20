@@ -1,0 +1,15 @@
+.manageUsers {
+  border: 1px solid var(--storm-gray-light-matte);
+  .admin-users {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      list-style-type: none;
+      li {
+        padding: 10px;
+        border: 1px solid var(--storm-gray-light-matte);
+      }
+    }
+  }
+}
