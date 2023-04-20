@@ -84,13 +84,24 @@
     padding: 20px;
     grid-column: span 3;
     flex-direction: column;
+    h3 {
+      margin: 5px;
+    }
     p {
       font-size: 18px;
       color: var(--storm-gray-medium-matte);
+      margin: 0;
     }
   }
 
-  .redirect {
+  .product404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: span 3;
+    h1 {
+      font-size: 20px;
+    }
     button {
       cursor: pointer;
       border: none;

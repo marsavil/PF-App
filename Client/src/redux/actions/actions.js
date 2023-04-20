@@ -164,3 +164,28 @@ export function allFilters(payload) {
     }
   };
 }
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(API_URL + "/user");
+      return dispatch({
+        type: GET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error while fetching all users:", error);
+    }
+  };
+};
+
+// export const deleteUser = (id) => {
+//   return async (dispatch) => {
+//     try {
+//       await axios.post(API_URL + `/user/del/${id}`);
+//       return dispatch(getAllUsers());
+//     } catch (error) {
+//       console.error("Error while deleting user:", error);
+//     }
+//   };
+// }
