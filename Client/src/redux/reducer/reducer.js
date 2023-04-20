@@ -1,11 +1,4 @@
-import {
-  GET_USER,
-  GET_ALL_PRODUCTS,
-  GET_PRODUCT_DETAIL,
-  CLEAR_DETAIL,
-  GET_CART,
-  ALL_FILTERS,
-} from "../actions/actions-types";
+import { GET_USER, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_CART, ALL_FILTERS } from "../actions/actions-types";
 import { handleFilters } from "../../functions/utils.js";
 
 const initialState = {
@@ -41,8 +34,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, allProducts: filteredProducts };
     case GET_PRODUCT_DETAIL:
       return { ...state, productDetail: action.payload };
-    case CLEAR_DETAIL:
-      return { ...state, productDetail: {} };
     default:
       return state;
   }

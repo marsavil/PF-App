@@ -1,9 +1,5 @@
 import "./detail.scss";
-import {
-  getProductDetail,
-  clearDetail,
-  getCart,
-} from "../../redux/actions/actions";
+import { getProductDetail, getCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,22 +9,27 @@ import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import error404 from "/assets/img/404.png";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
+import AdminOptions from "./AdminOptions/AdminOptions";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const { id: userId } = JSON.parse(localStorage.getItem("userData")) ?? {};
-  const productDetail = useSelector((state) => state.productDetail);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const productDetail = useSelector((state) => state.productDetail);
+
+  const buyProduct = [
+    {
+      ...productDetail,
+      ShoppingCart_Products: {
+        quantity: 1,
+      },
+    },
+  ];
 
   const backToHome = () => {
-    dispatch(clearDetail());
     navigate("/home");
-  };
-
-  const handleBuyNow = () => {
-    toast.success("Compra realizada con éxito", {});
   };
 
   const handleAddToCart = async () => {
@@ -77,7 +78,7 @@ const Detail = () => {
                   Stock: <b>{productDetail.stock} unidades</b>
                 </p>
 
-                <PurchaseOrderButton />
+                <PurchaseOrderButton products={buyProduct} user={userId} />
 
                 <button className="button-cart" onClick={handleAddToCart}>
                   Agregar al carrito
@@ -93,6 +94,7 @@ const Detail = () => {
                 <h2>Descripción</h2>
                 <p>{productDetail.description}</p>
               </div>
+              {admin && <AdminOptions productDetail={productDetail} />}
             </>
           ) : (
             <div className="product404">

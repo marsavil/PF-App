@@ -4,7 +4,6 @@ import {
   GET_USER,
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
-  CLEAR_DETAIL,
   GET_CART,
   ALL_FILTERS,
 } from "./actions-types";
@@ -85,11 +84,6 @@ export function getProductDetail(id) {
   };
 }
 
-export const clearDetail = () => {
-  return {
-    type: CLEAR_DETAIL,
-  };
-};
 
 export function allFilters(payload) {
   const params = {
