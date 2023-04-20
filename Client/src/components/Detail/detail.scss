@@ -18,6 +18,7 @@
       object-fit: contain;
     }
     button {
+      font-size: 13px;
       cursor: pointer;
       border: none;
       transition: all 0.5s ease;
@@ -92,7 +93,7 @@
       margin: 5px;
     }
     p {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--storm-gray-medium-matte);
       margin: 0;
     }
