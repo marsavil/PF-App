@@ -55,8 +55,25 @@ module.exports = {
     return product;
   },
   createProduct: async function (productData) {
-    const newProduct = await Product.create(productData);
-    return newProduct;
+
+    const verified = await Product.findOne({
+      where:{
+        name: productData.name
+      }
+    })
+    if (verified){
+      verified.brand = productData.brand;
+      verified.price = productData.price;
+      verified.image = productData.image;
+      verified.description = productData.description;
+      verified.stock = verified.stock + productData.stock;
+      verified.disable = false;
+      verified.save();
+    }else {
+      const newProduct = await Product.create(productData);
+      return newProduct;
+    }
+
   },
   updateProduct: async function (id, updatedData) {
     const [rowsUpdated, [updatedProduct]] = await Product.update(updatedData, {
