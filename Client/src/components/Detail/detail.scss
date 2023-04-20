@@ -1,3 +1,8 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
 .detail-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5,7 +10,6 @@
   margin: 20px 50px;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
-
   .detail-image {
     img {
       display: flex;
