@@ -58,14 +58,14 @@ module.exports = {
 
       const cart = await user.getShoppingCart();
       const cartProduct = await cart.getProducts({ where: { id: productId } });
-      const product = await Product.findByPk(productId)
+
       const productQuantity = cartProduct[0].ShoppingCart_Products.quantity;
     
       
       if (action === "del") {
-        console.log(cart.totalPrice)
-        cart.totalPrice = cart.totalPrice - product.price * cartProduct[0].quantity
-        cart.discountPrice = cart.discountPrice - product.price * cartProduct[0].quantity  
+  
+        cart.totalPrice = cart.totalPrice - cartProduct[0].price * cartProduct[0].ShoppingCart_Products.quantity
+        cart.discountPrice = cart.discountPrice - cartProduct[0].price * cartProduct[0].ShoppingCart_Products.quantity  
         await cart.save().then(cartProduct[0].ShoppingCart_Products.destroy())
        
         
@@ -74,12 +74,11 @@ module.exports = {
       if (action == "sub") {
         if (productQuantity == 1) {
 
-          
-          
           cart.totalPrice = cart.totalPrice - cartProduct[0].price 
           cart.discountPrice = cart.discountPrice - cartProduct[0].price 
-          await cartProduct[0].ShoppingCart_Products.destroy();
           await cart.save()
+          await cartProduct[0].ShoppingCart_Products.destroy();
+          
           
           return "Product deleted";
         } else {
@@ -87,7 +86,7 @@ module.exports = {
           cart.totalPrice = cart.totalPrice - cartProduct[0].price 
           cart.discountPrice = cart.discountPrice - cartProduct[0].price 
           await cart.save()
-          cart.addProduct(cartProduct, {
+          await cart.addProduct(cartProduct, {
             through: { quantity: productQuantity - 1 },
           });
           return "-1";
