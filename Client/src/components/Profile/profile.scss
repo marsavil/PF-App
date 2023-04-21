@@ -65,6 +65,7 @@
   .panel-admin {
     display: flex;
     flex-direction: column;
+
     h2,
     a {
       text-align: center;
@@ -84,4 +85,7 @@
       }
     }
   }
+} 
+.option-title{
+  margin-left: 36%
 }

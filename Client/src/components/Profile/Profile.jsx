@@ -155,16 +155,20 @@ const Profile = () => {
               <button className="optionButton">Enviar Cupones</button>
 
               {showProductModal && (
-                <Modal
-                  show={showProductModal}
-                  onHide={() => setshowProductModal(false)}
-                  size="lg"
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title>Agregar Producto</Modal.Title>
-                  </Modal.Header>
-                  <AddProduct />
-                </Modal>
+                <div className="option-title">
+                  <Modal
+                    show={showProductModal}
+                    onHide={() => setshowProductModal(false)}
+                    size="lg"
+                  >
+                    <Modal.Header closeButton>
+                      <div className="option-title">
+                        <Modal.Title>Agregar Producto</Modal.Title>
+                      </div>
+                    </Modal.Header>
+                    <AddProduct />
+                  </Modal>
+                </div>
               )}
               {showUsersModal && (
                 <Modal
@@ -173,7 +177,9 @@ const Profile = () => {
                   size="lg"
                 >
                   <Modal.Header closeButton>
-                    <Modal.Title>Administrar Usuarios</Modal.Title>
+                    <div className="option-title">
+                      <Modal.Title>Administrar Usuarios</Modal.Title>
+                    </div>
                   </Modal.Header>
                   <ManageUsers />
                 </Modal>
