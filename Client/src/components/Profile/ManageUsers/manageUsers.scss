@@ -1,15 +1,47 @@
 .manageUsers {
   border: 1px solid var(--storm-gray-light-matte);
+  padding: 20px;
   .admin-users {
     display: flex;
     flex-direction: column;
 
     ul {
       list-style-type: none;
-      li {
+      .user-card {
         padding: 10px;
         border: 1px solid var(--storm-gray-light-matte);
+        margin-bottom: 10px;
+        .user-data {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          column-gap: 10px;
+          span {
+            font-weight: bold;
+            margin-right: 5px;
+          }
+        }
+        .button-section {
+          display: flex;
+          justify-content: space-around;
+          grid-column: span 3;
+          button {
+            padding: 5px 10px;
+          }
+        }
       }
+    }
+    input[type="text"] {
+      margin-top: 10px;
+      padding: 5px;
+      border: 1px solid var(--storm-gray-light-matte);
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: var(--storm-blue);
+      padding: 5px 10px;
+      cursor: pointer;
     }
   }
 }

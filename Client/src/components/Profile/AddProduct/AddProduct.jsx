@@ -17,10 +17,9 @@ const AddProduct = () => {
   });
 
   const [isLoading, setLoading] = useState(false);
-  
-  var uploadedImage = ""
-  const uploadImage = (e) => {
 
+  var uploadedImage = "";
+  const uploadImage = (e) => {
     const data = new FormData();
 
     data.append("file", e.target.files[0]);
@@ -31,11 +30,11 @@ const AddProduct = () => {
       .then((response) => {
         console.log(response);
         uploadedImage = response.data.secure_url;
-        console.log(uploadedImage)
+        console.log(uploadedImage);
         setFormData({
-            ...formData,
-            image: uploadedImage,
-        })
+          ...formData,
+          image: uploadedImage,
+        });
       });
   };
 
@@ -50,7 +49,10 @@ const AddProduct = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:3001/products", formData);
+      const response = await axios.post(
+        "http://localhost:3001/products",
+        formData
+      );
       if (response) {
         toast.success("Producto agregado exitosamente");
       }
@@ -69,14 +71,25 @@ const AddProduct = () => {
       <ToastContainer />
       <div className="add-product">
         <form onSubmit={handleSubmit}>
-          <h2>Agregar Producto</h2>
           <div className="form-group">
             <label htmlFor="name">Nombre:</label>
-            <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="price">Precio:</label>
-            <input type="number" name="price" id="price" value={formData.price} onChange={handleChange} />
+            <input
+              type="number"
+              name="price"
+              id="price"
+              value={formData.price}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="image">Imagen:</label>
@@ -88,30 +101,56 @@ const AddProduct = () => {
               value={uploadedImage}
               onChange={uploadImage}
             />
-
           </div>
           <div className="form-group">
             <label htmlFor="brand">Marca:</label>
-            <input type="text" name="brand" id="brand" value={formData.brand} onChange={handleChange} />
+            <input
+              type="text"
+              name="brand"
+              id="brand"
+              value={formData.brand}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="stock">Cantidad en Stock:</label>
-            <input type="number" name="stock" id="stock" value={formData.stock} onChange={handleChange} />
+            <input
+              type="number"
+              name="stock"
+              id="stock"
+              value={formData.stock}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="category">Categoría:</label>
-            <input type="text" name="category" id="category" value={formData.category} onChange={handleChange} />
+            <input
+              type="text"
+              name="category"
+              id="category"
+              value={formData.category}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group form-group-description">
             <label htmlFor="description">Descripción:</label>
-            <textarea name="description" id="description" value={formData.description} onChange={handleChange} />
+            <textarea
+              name="description"
+              id="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
           </div>
           <div>
-                  <img src={formData.image} alt="" width={"100px"} />
-                  Preview
-                </div>
+            <img src={formData.image} alt="" width={"100px"} />
+            Preview
+          </div>
           <button type="submit" disabled={isLoading}>
-            {isLoading ? <BeatLoader color={"#ffffff"} size={7} /> : "Agregar Producto"}
+            {isLoading ? (
+              <BeatLoader color={"#ffffff"} size={7} />
+            ) : (
+              "Agregar Producto"
+            )}
           </button>
         </form>
       </div>
