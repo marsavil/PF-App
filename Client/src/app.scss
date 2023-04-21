@@ -45,6 +45,35 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-a{
+a {
   text-decoration: none;
+}
+
+/* ------------------------------ MODAL ------------------------------ */
+
+.modal-content {
+  background-color: var(--white-color);
+  color: var(--dark-color);
+
+  .modal-header {
+    background-color: var(--white-color);
+  }
+
+  .modal-body {
+    input,
+    textarea {
+      background-color: var(--white-color);
+      color: var(--dark-color);
+    }
+  }
+
+  .modal-footer {
+    button {
+      color: var(--dark-color);
+
+      &:hover {
+        color: var(--dark-color);
+      }
+    }
+  }
 }

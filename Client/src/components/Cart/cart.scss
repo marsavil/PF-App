@@ -153,8 +153,7 @@
       color: var(--storm-gray-light-matte);
       text-decoration: line-through;
       letter-spacing: 1px;
-      margin-right: auto;
-      margin-left: 15px;
+      margin: 0 auto 0 15px;
     }
     div {
       display: flex;
@@ -168,7 +167,7 @@
       .pDiscount {
         font-size: 13px;
         background-color: var(--success-color);
-        color: var(--light-color);
+        color: #fcfcfc;
         padding: 1px 5px;
         border-radius: 5px;
         position: relative;
@@ -229,7 +228,6 @@
     color: var(--steel-blue-medium-matte);
     &:hover {
       background-color: var(--light-sky-blue-matte);
-      color: var(--light-color);
     }
   }
 }
