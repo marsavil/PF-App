@@ -18,6 +18,8 @@ const Cart = () => {
 
   const [hasDiscount, setHasDiscount] = useState(false);
 
+  console.log(cartProducts[0]?.ShoppingCart_Products?.quantity);
+
   const handleCart = () => {
     dispatch(getCart(id));
     setHasDiscount(true);
@@ -88,7 +90,7 @@ const Cart = () => {
                 </div>
               </div>
             ) : (
-              <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
+              <p className="pPrice">$ {totalPrice?.toLocaleString()}</p>
             )}
           </section>
           <section className="section-totalPrice section-totalPrice-buttons">

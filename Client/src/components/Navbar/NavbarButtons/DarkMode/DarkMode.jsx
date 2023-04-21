@@ -17,6 +17,7 @@ const DarkMode = ({ darkMode, setDarkMode }) => {
       "--slate-gray-matte": darkMode ? "#c0c0c0" : "#3d3d3d",
       "--silver-matte": darkMode ? "#f2f2f2" : "#c0c0c0",
       "--storm-gray-matte": darkMode ? "#f2f2f2" : "#444444",
+      "--error-color": darkMode ? "#fa5555 " : "#ff0000",
     };
 
     Object.entries(colors).forEach(([key, value]) => {
