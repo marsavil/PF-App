@@ -70,7 +70,7 @@ const ManageUsers = () => {
     }
   };
 
-  const deleteUser = async (email) => {
+  const deleteUser = async (email, id) => {
     try {
       await axios.delete("http://localhost:3001/user/del", {
         data: { email },
@@ -84,8 +84,12 @@ const ManageUsers = () => {
 
   const banUser = async (id) => {
     try {
-      await axios.put(`http://localhost:3001/user/ban/${id}`);
-      toast.success("Usuario deshabilitado");
+      if (id === 1) {
+        toast.error("No se puede deshabilitar este usuario");
+      } else {
+        await axios.put(`http://localhost:3001/user/ban/${id}`);
+        toast.success("Usuario deshabilitado");
+      }
     } catch (error) {
       console.error("Error baneando usuario:", error);
       toast.error("Error deshabilitando usuario");
@@ -113,8 +117,14 @@ const ManageUsers = () => {
 
   const removeAdmin = async (email) => {
     try {
-      await axios.put("http://localhost:3001/user/removeadmin", { email });
-      toast.success("Permisos revocados");
+      if (email === "auxiliarparaproyectos@gmail.com") {
+        toast.error(
+          "No se puede quitar permisos de administrador a este usuario"
+        );
+      } else {
+        await axios.put("http://localhost:3001/user/removeadmin", { email });
+        toast.success("Permisos revocados");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -125,7 +135,6 @@ const ManageUsers = () => {
       <ToastContainer />
       <div className="manageUsers">
         <div className="admin-users">
-          <button onClick={showAllUsers}>Ver todos los usuarios</button>
           <ul>
             {users.map((user) => (
               <li key={user.id} className="user-card">
@@ -134,19 +143,25 @@ const ManageUsers = () => {
                   <p>{user.id}</p>
                   <span>Nombre</span>
                   <p>{user.name}</p>
+                  <span>Email</span>
+                  <p>{user.email}</p>
                   <span>Apellido</span>
                   <p>{user.lastName}</p>
-                  <span>Email:</span>
-                  <p>{user.email}</p>
+
                   <span>Nombre de usuario</span>
                   <p>{user.userName}</p>
+                  <span>Admin</span>
+                  <p>{user.admin ? "Si" : "No"}</p>
+                  <span>Deshabilitado</span>
+                  <p>{user.disabled ? "Si" : "No"}</p>
+                  <span>Historial de compras</span>
+                  <p></p>
                 </div>
                 <div className="button-section">
-                  <button onClick={() => handleModModalOpen(user)}>
-                    Modificar
-                  </button>
-
-                  <button onClick={() => handleDeleteModalOpen(user)}>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteModalOpen(user)}
+                  >
                     Eliminar
                   </button>
                   {user.disabled ? (
@@ -177,87 +192,117 @@ const ManageUsers = () => {
             ))}
           </ul>
 
-          <Modal onRequestClose={handleModalClose} show={showDeleteModal}>
-            <h2>Eliminar Usuario</h2>
-            <p>
+          <Modal
+            onRequestClose={handleModalClose}
+            show={showDeleteModal}
+            size="sm"
+          >
+            <p style={{ margin: "20px" }}>
               ¿Estás seguro que deseas eliminar al usuario{" "}
               {selectedUser && selectedUser.userName}?
             </p>
-            <button
-              onClick={() => {
-                deleteUser(selectedUser.email);
-                handleModalClose();
-              }}
-            >
-              Eliminar
-            </button>
-            <button onClick={handleModalClose}>Cancelar</button>
+            <div className="confirm-options">
+              <button
+                onClick={() => {
+                  deleteUser(selectedUser.email);
+                  handleModalClose();
+                }}
+                className="delete-button"
+              >
+                Eliminar
+              </button>
+              <button onClick={handleModalClose}>Cancelar</button>
+            </div>
           </Modal>
 
-          <Modal onRequestClose={handleModalClose} show={showBanModal}>
-            <h2>Deshabilitar Usuario</h2>
-            <p>
+          <Modal
+            onRequestClose={handleModalClose}
+            show={showBanModal}
+            size="sm"
+          >
+            <p style={{ margin: "20px" }}>
               ¿Estás seguro que deseas deshabilitar al usuario{" "}
               {selectedUser && selectedUser.userName}?
             </p>
-            <button
-              onClick={() => {
-                banUser(selectedUser.id);
-                handleModalClose();
-              }}
-            >
-              Deshabilitar
-            </button>
-            <button onClick={handleModalClose}>Cancelar</button>
+            <div className="confirm-options">
+              <button
+                onClick={() => {
+                  banUser(selectedUser.id);
+                  handleModalClose();
+                }}
+                className="delete-button"
+              >
+                Deshabilitar
+              </button>
+              <button onClick={handleModalClose}>Cancelar</button>
+            </div>
           </Modal>
 
-          <Modal onRequestClose={handleModalClose} show={showUnbanModal}>
-            <h2>Habilitar Usuario</h2>
-            <p>
+          <Modal
+            onRequestClose={handleModalClose}
+            show={showUnbanModal}
+            size="sm"
+          >
+            <p style={{ margin: "20px" }}>
               ¿Estás seguro que deseas habilitar al usuario{" "}
               {selectedUser && selectedUser.userName}?
             </p>
-            <button
-              onClick={() => {
-                unBanUser(selectedUser.id);
-                handleModalClose();
-              }}
-            >
-              Habilitar
-            </button>
-            <button onClick={handleModalClose}>Cancelar</button>
+            <div className="confirm-options">
+              <button
+                onClick={() => {
+                  unBanUser(selectedUser.id);
+                  handleModalClose();
+                }}
+                className="delete-button"
+              >
+                Habilitar
+              </button>
+              <button onClick={handleModalClose}>Cancelar</button>
+            </div>
           </Modal>
 
-          <Modal onRequestClose={handleModalClose} show={showAdmModal}>
-            <h2>Hacer Admin</h2>
-            <p>
+          <Modal
+            onRequestClose={handleModalClose}
+            show={showAdmModal}
+            size="sm"
+          >
+            <p style={{ margin: "20px" }}>
               ¿Hacer Admin al usuario {selectedUser && selectedUser.userName}?
             </p>
-            <button
-              onClick={() => {
-                makeAdmin(selectedUser.email);
-                handleModalClose();
-              }}
-            >
-              Actualizar
-            </button>
-            <button onClick={handleModalClose}>Cancelar</button>
+            <div className="confirm-options">
+              <button
+                onClick={() => {
+                  makeAdmin(selectedUser.email);
+                  handleModalClose();
+                }}
+                className="delete-button"
+              >
+                Actualizar
+              </button>
+              <button onClick={handleModalClose}>Cancelar</button>
+            </div>
           </Modal>
 
-          <Modal onRequestClose={handleModalClose} show={showUnAdmModal}>
-            <h2>Quitar Admin</h2>
-            <p>
+          <Modal
+            onRequestClose={handleModalClose}
+            show={showUnAdmModal}
+            size="sm"
+          >
+            <p style={{ margin: "20px" }}>
               ¿Quitar Admin al usuario {selectedUser && selectedUser.userName}?
             </p>
-            <button
-              onClick={() => {
-                removeAdmin(selectedUser.email);
-                handleModalClose();
-              }}
-            >
-              Actualizar
-            </button>
-            <button onClick={handleModalClose}>Cancelar</button>
+            <div className="confirm-options">
+              <button
+                onClick={() => {
+                  removeAdmin(selectedUser.email);
+                  handleModalClose();
+                }}
+                className="delete-button"
+              >
+                Actualizar
+              </button>
+              <button onClick={handleModalClose}>Cancelar</button>
+            </div>
           </Modal>
         </div>
       </div>
