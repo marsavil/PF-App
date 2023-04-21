@@ -25,9 +25,10 @@ router.post("/desc/", async (req, res) =>{
   const {string, userId} = req.body 
   try {
     const getDis = await applyDiscount(string, userId)
-    res.status(200).json("Discount Applied")
+    if (getDis == 0) return res.status(400).json("codigo no valido")
+    return res.status(200).json(getDis)
   } catch (error) {
-    res.status(500).json("server error")
+    res.status(500).json("getDis")
   }
 })
 
