@@ -137,9 +137,6 @@ module.exports = {
       return error
 
     }
-    
-    
-   
   },
 
   getShoppingCart: async function (userId) {
