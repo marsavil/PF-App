@@ -120,7 +120,7 @@ module.exports = {
       cart.discountPrice = totalPrice * (1 - 99/100)
       cart.save()
     }
-    if (string.toLowerCase() == " "){
+    if (string.toLowerCase() == ""){
       cart.discountPrice =  cart.totalPrice
       cart.save()
     }
