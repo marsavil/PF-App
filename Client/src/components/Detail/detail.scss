@@ -11,12 +11,6 @@
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
   .detail-image {
-    img {
-      display: flex;
-      width: 450px;
-      height: 400px;
-      object-fit: contain;
-    }
     button {
       font-size: 13px;
       cursor: pointer;
@@ -28,13 +22,19 @@
         color: var(--steel-blue-medium-matte);
       }
     }
+    img {
+      display: flex;
+      width: 450px;
+      height: 400px;
+      object-fit: contain;
+    }
   }
   .detail-info {
     display: flex;
     margin-top: 20px;
     flex-direction: column;
-    h1 {
-      font-weight: 300;
+    h2 {
+      margin-top: 10px;
     }
   }
 
@@ -90,12 +90,10 @@
     grid-column: span 2;
     flex-direction: column;
     h3 {
-      margin: 5px;
+      margin: 10px 0;
     }
     p {
-      font-size: 16px;
       color: var(--storm-gray-medium-matte);
-      margin: 0;
     }
   }
 
