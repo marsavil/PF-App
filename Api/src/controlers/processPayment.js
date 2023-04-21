@@ -20,7 +20,7 @@ const payment = async (req, res) => {
       const quant = prod.stock - p.ShoppingCart_Products.quantity
       prod.stock = quant
       prod.save()
-      emptyShoppingCart(id)
+      //emptyShoppingCart(id)
     }
     update()
       return {
@@ -35,9 +35,10 @@ const payment = async (req, res) => {
       };
     }),
     back_urls: {
-      success: "http://localhost:3000/payment",
+      success: "http://localhost:3000/accepted",
       //success: "/payment"
-      failure: "",
+      failure: "http://localhost:3000/rejected",
+      //failure: "/payment",
       pending: "",
     },
     auto_return: "approved",

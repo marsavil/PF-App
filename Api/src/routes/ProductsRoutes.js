@@ -7,7 +7,8 @@ const {
   updateProduct,
   deleteProduct,
   searchProduct,
-  logicDeleteProduct
+  logicDeleteProduct,
+  productByName
 } = require("../controlers/products");
 const express = require("express");
 const router = express.Router();
@@ -113,4 +114,7 @@ router.put("hide/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+//Busca el producto por name
+router.get("/name/:name", productByName);
+
 module.exports = router;
