@@ -107,24 +107,36 @@ module.exports = {
     const cart = await user.getShoppingCart(); 
     const discountPrice = cart.discountPrice
     const totalPrice = cart.totalPrice
-    
-    if (string.toLowerCase() == "desc10"){
+
+    try {
+      if (string.toLowerCase() == "desc10"){
       cart.discountPrice = totalPrice * (1 - 10/100)
       cart.save()
+      return cart.discountPrice
+      }
+      if (string.toLowerCase() == "electroshop"){
+        cart.discountPrice = totalPrice * (1 - 15/100)
+        cart.save()
+        return cart.discountPrice
+      }
+      if (string.toLowerCase() == "pfaprobado"){
+        cart.discountPrice = totalPrice * (1 - 99/100)
+        cart.save()
+        return cart.discountPrice
+      }
+      if (string.toLowerCase() == ""){
+        cart.discountPrice =  cart.totalPrice
+        cart.save()
+        return cart.discountPrice
+      }
+      else{
+        return 0
+      }
+      
+    } catch (error) {
+      return error
+
     }
-    if (string.toLowerCase() == "electroshop"){
-      cart.discountPrice = totalPrice * (1 - 15/100)
-      cart.save()
-    }
-    if (string.toLowerCase() == "pfaprobado"){
-      cart.discountPrice = totalPrice * (1 - 99/100)
-      cart.save()
-    }
-    if (string.toLowerCase() == ""){
-      cart.discountPrice =  cart.totalPrice
-      cart.save()
-    }
-    return cart.discountPrice
   },
 
   getShoppingCart: async function (userId) {
