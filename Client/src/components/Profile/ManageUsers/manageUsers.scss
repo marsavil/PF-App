@@ -27,7 +27,7 @@
           .delete-button {
             &:hover {
               color: var(--bg-color);
-              background-color: #d9534f;
+              background-color: var(--modal-red-button);
             }
           }
           button {
@@ -40,6 +40,9 @@
               background-color: var(--steel-blue-medium-matte);
               color: var(--bg-color);
             }
+          }
+          button:nth-child(2):hover {
+            background-color: var(--modal-yellow-button); 
           }
         }
       }
@@ -58,10 +61,10 @@
   }
   .delete-button {
     background-color: var(--ligth-color);
-    color: #d9534f;
+    color: var(--modal-red-button);
     &:hover {
       color: var(--bg-color);
-      background-color: #d9534f;
+      background-color: var(--modal-red-button);
     }
   }
 }
