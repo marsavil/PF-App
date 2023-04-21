@@ -58,17 +58,35 @@ module.exports = {
 
       const cart = await user.getShoppingCart();
       const cartProduct = await cart.getProducts({ where: { id: productId } });
+      const product = await Product.findByPk(productId)
       const productQuantity = cartProduct[0].ShoppingCart_Products.quantity;
-
+    
+      
       if (action === "del") {
-        await cartProduct[0].ShoppingCart_Products.destroy();
+        console.log(cart.totalPrice)
+        cart.totalPrice = cart.totalPrice - product.price * cartProduct[0].quantity
+        cart.discountPrice = cart.discountPrice - product.price * cartProduct[0].quantity  
+        await cart.save().then(cartProduct[0].ShoppingCart_Products.destroy())
+       
+        
         return "Product Deleted";
       }
       if (action == "sub") {
         if (productQuantity == 1) {
+
+          
+          
+          cart.totalPrice = cart.totalPrice - cartProduct[0].price 
+          cart.discountPrice = cart.discountPrice - cartProduct[0].price 
           await cartProduct[0].ShoppingCart_Products.destroy();
+          await cart.save()
+          
           return "Product deleted";
         } else {
+          
+          cart.totalPrice = cart.totalPrice - cartProduct[0].price 
+          cart.discountPrice = cart.discountPrice - cartProduct[0].price 
+          await cart.save()
           cart.addProduct(cartProduct, {
             through: { quantity: productQuantity - 1 },
           });
@@ -140,12 +158,14 @@ module.exports = {
     
     const cartProducts = await cart.getProducts();
 
-    ShoppingCart_Products.destroy({
+    await ShoppingCart_Products.destroy({
       where: {
         ShoppingCartId: cart.id,
       },
     });
-
+    cart.totalPrice = "0"
+    cart.discountPrice = "0"
+    cart.save()
     return "cart empty";
   },
 };
