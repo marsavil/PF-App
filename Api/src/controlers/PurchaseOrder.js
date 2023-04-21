@@ -1,4 +1,4 @@
-const { PurchaseOrder, User } = require("../db");
+const { PurchaseOrder, Order_Products, User } = require("../db");
 
 module.exports = {
   createPurchaseOrder: async function (userId) {
@@ -32,13 +32,22 @@ module.exports = {
 
   getPurchaseOrderByUser: async function (userId) {
     try {
-      const order = await PurchaseOrder.findAll({
+      const orders = await PurchaseOrder.findAll({
         where: {
           UserId: userId,
         },
       });
+      const allOrders = []
+    
+      for (let i = 0; i < orders.length; i++) {
+        let product = await orders[i].getProducts()
+        allOrders.push(product)
+        
+      }
       
-      return order;
+      return allOrders
+      
+      
     } catch (error) {
       return error;
     }
