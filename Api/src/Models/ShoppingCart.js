@@ -7,5 +7,15 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
+    totalPrice:{
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: "0"
+    },
+    discountPrice:{
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: "0"
+    }
   });
 };

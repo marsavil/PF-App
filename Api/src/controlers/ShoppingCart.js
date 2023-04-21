@@ -1,3 +1,4 @@
+const { discount_campaign } = require("mercadopago");
 const { Product, ShoppingCart_Products, User } = require("../db");
 
 module.exports = {
@@ -9,30 +10,37 @@ module.exports = {
           id: userId,
         },
       });
-      const product = await Product.findByPk(productId);
-
-      const productStock = product.stock;
-      console.log(productStock);
       const cart = await user.getShoppingCart();
+      const product = await Product.findByPk(productId);
+      const productStock = product.stock;
+      
       const cartProducts = await cart.getProducts({ where: { id: productId } });
+
       if (productStock > 0) {
         if (cartProducts.length) {
           if (cartProducts[0].ShoppingCart_Products.quantity < productStock) {
             newQuantity = cartProducts[0].ShoppingCart_Products.quantity + 1;
-
             const productAdded = cart.addProduct(cartProducts[0], {
               through: { quantity: newQuantity },
             });
+           
+            cart.totalPrice = cart.totalPrice + cartProducts[0].price
+            cart.discountPrice = cart.discountPrice + cartProducts[0].price
+            cart.save()
             return "Product added";
           } else {
             throw new Error();
           }
         }
-        const product = Product.findByPk(productId).then((product) => {
-          cart.addProduct(product, {
+        const product = await Product.findByPk(productId)
+        cart.addProduct(product, {
             through: { quantity: newQuantity },
           });
-        });
+          cart.totalPrice = cart.totalPrice + product.price
+          cart.discountPrice = cart.discountPrice + product.price
+          cart.save()
+
+       
         return "Product added";
       }
     } catch (Error) {
@@ -46,7 +54,7 @@ module.exports = {
           id: userId,
         },
       });
-      console.log(action);
+     
 
       const cart = await user.getShoppingCart();
       const cartProduct = await cart.getProducts({ where: { id: productId } });
@@ -71,6 +79,35 @@ module.exports = {
       return error;
     }
   },
+  
+  applyDiscount: async function(string, userId){
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    const cart = await user.getShoppingCart(); 
+    const discountPrice = cart.discountPrice
+    const totalPrice = cart.totalPrice
+    
+    if (string.toLowerCase() == "desc10"){
+      cart.discountPrice = totalPrice * (1 - 10/100)
+      cart.save()
+    }
+    if (string.toLowerCase() == "electroshop"){
+      cart.discountPrice = totalPrice * (1 - 15/100)
+      cart.save()
+    }
+    if (string.toLowerCase() == "pfaprobado"){
+      cart.discountPrice = totalPrice * (1 - 99/100)
+      cart.save()
+    }
+    if (string.toLowerCase() == " "){
+      cart.discountPrice =  cart.totalPrice
+      cart.save()
+    }
+    return cart.discountPrice
+  },
 
   getShoppingCart: async function (userId) {
     try {
@@ -81,15 +118,14 @@ module.exports = {
       });
       const cart = await user.getShoppingCart();
       const cartProducts = await cart.getProducts();
-      let totalPrice = 0;
+      let totalPrice = cart.totalPrice
+      let discountPrice = cart.discountPrice
       let totalQuantity = 0;
-      for (let product of cartProducts) {
-        totalPrice += product.ShoppingCart_Products.quantity * product.price;
-      }
+      
       for (let product of cartProducts) {
         totalQuantity += product.ShoppingCart_Products.quantity;
       }
-      return { cartProducts, totalPrice, totalQuantity };
+      return { cartProducts, totalPrice: totalPrice, discountPrice: discountPrice, totalQuantity };
     } catch (error) {
       return error;
     }
@@ -101,7 +137,7 @@ module.exports = {
       },
     });
     const cart = await user.getShoppingCart();
-    console.log(cart.id);
+    
     const cartProducts = await cart.getProducts();
 
     ShoppingCart_Products.destroy({

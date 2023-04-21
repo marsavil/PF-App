@@ -1,8 +1,10 @@
+
 const {
   addProductToShoppingCart,
   getShoppingCart,
   changeQuantityOfProduct,
   emptyShoppingCart,
+  applyDiscount
 } = require("../controlers/ShoppingCart");
 const express = require("express");
 const router = express.Router();
@@ -10,8 +12,6 @@ router.use(express.json());
 //
 router.post("/add", async (req, res) => {
   const { productId, userId } = req.body;
-
-  console.log(productId, userId);
 
   try {
     const addProduct = await addProductToShoppingCart(productId, userId);
@@ -21,6 +21,16 @@ router.post("/add", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+router.post("/desc/", async (req, res) =>{
+  const {string, userId} = req.body 
+  try {
+    const getDis = await applyDiscount(string, userId)
+    res.status(200).json("Discount Applied")
+  } catch (error) {
+    res.status(500).json("server error")
+  }
+})
+
 router.post("/:action", async (req, res) => {
   const { action } = req.params;
   const { productId, userId } = req.body;
@@ -45,7 +55,6 @@ router.post("/empty/:userId", async (req, res) => {
 
   try {
     const emptyCart = await emptyShoppingCart(userId);
-    console.log(emptyCart);
     res.status(200).json(emptyCart);
   } catch (error) {
     res.status(500).json({ error: "Server error" });
