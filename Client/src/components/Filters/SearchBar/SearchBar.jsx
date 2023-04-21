@@ -12,7 +12,7 @@ const SearchBar = ({ filterState, setFilterState, setCurrentPage }) => {
   return (
     <div>
       <section>
-        <input type="text" value={filterState.search} placeholder="Buscar producto" onChange={handleProductSearch} />
+        <input type="text" value={filterState.search} className="searchBar-input" placeholder="Buscar producto" onChange={handleProductSearch} />
       </section>
     </div>
   );

@@ -48,7 +48,7 @@ const AdminOptions = ({ productDetail }) => {
         Modificar producto
       </button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Modificar Producto</Modal.Title>
         </Modal.Header>
@@ -56,44 +56,20 @@ const AdminOptions = ({ productDetail }) => {
           <form className="adminForm">
             <div className="form-group">
               <label htmlFor="name">Nombre</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={productEdit.name}
-                onChange={handleInputChange}
-              />
+              <input type="text" name="name" id="name" value={productEdit.name} onChange={handleInputChange} />
             </div>
 
             <div className="form-group">
               <label htmlFor="price">Precio</label>
-              <input
-                type="number"
-                name="price"
-                id="price"
-                value={productEdit.price}
-                onChange={handleInputChange}
-              />
+              <input type="number" name="price" id="price" value={productEdit.price} onChange={handleInputChange} />
             </div>
             <div className="form-group">
               <label htmlFor="stock">Stock</label>
-              <input
-                type="number"
-                name="stock"
-                id="stock"
-                value={productEdit.stock}
-                onChange={handleInputChange}
-              />
+              <input type="number" name="stock" id="stock" value={productEdit.stock} onChange={handleInputChange} />
             </div>
             <div className="form-group">
               <label htmlFor="image">Imagen</label>
-              <input
-                type="text"
-                name="image"
-                id="image"
-                value={productEdit.image}
-                onChange={handleInputChange}
-              />
+              <input type="text" name="image" id="image" value={productEdit.image} onChange={handleInputChange} />
             </div>
             <div className="form-group">
               <label htmlFor="category">Categoría</label>
@@ -107,13 +83,7 @@ const AdminOptions = ({ productDetail }) => {
             </div>
             <div className="form-group">
               <label htmlFor="brand">Marca</label>
-              <input
-                type="text"
-                name="brand"
-                id="brand"
-                value={productEdit.brand}
-                onChange={handleInputChange}
-              />
+              <input type="text" name="brand" id="brand" value={productEdit.brand} onChange={handleInputChange} />
             </div>
             <div className="form-group description">
               <label htmlFor="description">Descripción</label>

@@ -60,7 +60,7 @@
       width: 100%;
       border: none;
       background-color: var(--steel-blue-medium-matte);
-      color: var(--light-color);
+      color: #fcfcfc;
       border-radius: 5px;
       font-size: 16px;
       font-weight: 600;
@@ -71,6 +71,7 @@
         background-color: var(--steel-blue-matte);
       }
     }
+
     .button-cart {
       background-color: var(--bg-color);
       color: var(--steel-blue-medium-matte);

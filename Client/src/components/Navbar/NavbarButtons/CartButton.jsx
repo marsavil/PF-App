@@ -8,7 +8,7 @@ import lightCartIcon from "/assets/img/cart-ligth.png";
 
 const CartButton = ({ darkMode, userId }) => {
   const dispatch = useDispatch();
-  const totalQuantity = useSelector((state) => state.totalQuantity);
+  const totalQuantity = useSelector((state) => state.cartDetail.totalQuantity);
 
   useEffect(() => {
     dispatch(getCart(userId));

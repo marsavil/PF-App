@@ -19,7 +19,7 @@
 
   .modify {
     background-color: #5cb85c;
-    color: var(--light-color);
+    color: #fcfcfc;
     &:hover {
       background-color: #449d44;
     }
@@ -28,12 +28,12 @@
 .adminForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 30px;
 
   .form-group {
     label {
       display: block;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 300;
       margin-bottom: 5px;
       font-weight: 600;
@@ -41,13 +41,24 @@
 
     input,
     textarea {
-      width: 100%;
-      padding: 5px 10px;
-      border: 1px solid var(--light-gray-matte);
+      width: 90%;
+      padding: 3px 10px;
+      border: 1px solid var(--silver-matte);
       border-radius: 5px;
       font-size: 16px;
       font-weight: 300;
       outline: none;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    input,
+    textarea {
+      &:focus {
+        border: 1px solid var(--steel-blue-matte);
+      }
     }
   }
 

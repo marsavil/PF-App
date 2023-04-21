@@ -11,7 +11,7 @@ const PurchaseOrderButton = ({products, user}) => {
       });
   };
   
-  return <button onClick={handlePayment}>Continuar compra</button>;
+  return <button className="buyButton" onClick={handlePayment}>Continuar compra</button>;
 };
 
 export default PurchaseOrderButton;

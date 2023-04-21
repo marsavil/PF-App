@@ -5,6 +5,7 @@ const Rejected = () => {
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const API_URL = "http://localhost:3001/cart/";
+
   const handleEmptyCart = async () => {
     try {
       await axios.post(API_URL + `empty/${id}`);
@@ -13,6 +14,7 @@ const Rejected = () => {
       throw new Error(error);
     }
   };
+  
   return (
     <div>
       <h1>Tu compra se ha completado exitosamente</h1>
