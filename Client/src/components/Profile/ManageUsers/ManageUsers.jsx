@@ -14,6 +14,7 @@ const ManageUsers = () => {
   const [showBanModal, setShowBanModal] = useState(false);
   const [showUnbanModal, setShowUnbanModal] = useState(false);
   const [showAdmModal, setShowAdmModal] = useState(false);
+  const [showUnAdmModal, setShowUnAdmModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleModalClose = () => {
@@ -21,6 +22,7 @@ const ManageUsers = () => {
     setShowBanModal(false);
     setShowUnbanModal(false);
     setShowAdmModal(false);
+    setShowUnAdmModal(false);
     setSelectedUser(null);
   };
 
@@ -47,6 +49,11 @@ const ManageUsers = () => {
   const handleAdmModalOpen = (user) => {
     setSelectedUser(user);
     setShowAdmModal(true);
+  };
+
+  const handleUnAdmModalOpen = (user) => {
+    setSelectedUser(user);
+    setShowUnAdmModal(true);
   };
 
   useEffect(() => {
@@ -157,7 +164,7 @@ const ManageUsers = () => {
                   )}
 
                   {user.admin ? (
-                    <button onClick={() => handleAdmModalOpen(user)}>
+                    <button onClick={() => handleUnAdmModalOpen(user)}>
                       Quitar Admin
                     </button>
                   ) : (
@@ -222,14 +229,29 @@ const ManageUsers = () => {
           </Modal>
 
           <Modal onRequestClose={handleModalClose} show={showAdmModal}>
-            <h2>Actualizar Usuario</h2>
+            <h2>Hacer Admin</h2>
             <p>
-              ¿Estás seguro que deseas actualizar al usuario{" "}
-              {selectedUser && selectedUser.userName}?
+              ¿Hacer Admin al usuario {selectedUser && selectedUser.userName}?
             </p>
             <button
               onClick={() => {
                 makeAdmin(selectedUser.email);
+                handleModalClose();
+              }}
+            >
+              Actualizar
+            </button>
+            <button onClick={handleModalClose}>Cancelar</button>
+          </Modal>
+
+          <Modal onRequestClose={handleModalClose} show={showUnAdmModal}>
+            <h2>Quitar Admin</h2>
+            <p>
+              ¿Quitar Admin al usuario {selectedUser && selectedUser.userName}?
+            </p>
+            <button
+              onClick={() => {
+                removeAdmin(selectedUser.email);
                 handleModalClose();
               }}
             >
