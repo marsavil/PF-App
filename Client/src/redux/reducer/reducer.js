@@ -6,8 +6,7 @@ const initialState = {
   allProducts: [],
   productDetail: {},
   cartProducts: [],
-  totalPrice: 0,
-  totalQuantity: 0,
+  cartDetail: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -20,8 +19,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         cartProducts: action.payload.cartProducts,
-        totalPrice: action.payload.totalPrice,
-        totalQuantity: action.payload.totalQuantity,
+        cartDetail: {
+          totalPrice: action.payload.totalPrice,
+          totalQuantity: action.payload.totalQuantity,
+          discountPrice: action.payload.discountPrice,
+        },
       };
 
     case ALL_FILTERS:

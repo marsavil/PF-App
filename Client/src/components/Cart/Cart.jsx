@@ -1,10 +1,11 @@
 import "./cart.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import axios from "axios";
+import DiscountCodeInput from "./DiscountCodeInput/DiscountCodeInput";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -12,8 +13,15 @@ const Cart = () => {
 
   const API_URL = "http://localhost:3001/cart/";
 
-  const cartProducts = useSelector((state) => state.cartProducts);
-  const totalPrice = useSelector((state) => state.totalPrice);
+  const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
+  const { totalPrice, discountPrice } = useSelector((state) => state.cartDetail);
+
+  const [hasDiscount, setHasDiscount] = useState(false);
+
+  const handleCart = () => {
+    dispatch(getCart(id));
+    setHasDiscount(true);
+  };
 
   useEffect(() => {
     dispatch(getCart(id));
@@ -21,11 +29,15 @@ const Cart = () => {
 
   const handleProduct = async (productId, url) => {
     try {
-      await axios.post(API_URL + url, {
+      const response = await axios.post(API_URL + url, {
         productId,
         userId: id,
       });
-      dispatch(getCart(id));
+
+      if (response.status === 200) {
+        setHasDiscount(false);
+        dispatch(getCart(id));
+      }
     } catch (error) {
       throw new Error(error);
     }
@@ -34,6 +46,7 @@ const Cart = () => {
   const handleEmptyCart = async () => {
     try {
       await axios.post(API_URL + `empty/${id}`);
+
       dispatch(getCart(id));
     } catch (error) {
       throw new Error(error);
@@ -64,8 +77,19 @@ const Cart = () => {
             </section>
           ))}
           <section className="section-totalPrice">
+            <DiscountCodeInput userId={id} handleCart={handleCart} />
             <p className="labelPrice">Precio total: </p>
-            <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
+            {hasDiscount ? (
+              <div className="divDiscount">
+                <p className="pPriceWithDiscount">$ {totalPrice.toLocaleString()}</p>
+                <div>
+                  <p className="pPrice">$ {discountPrice.toLocaleString()}</p>
+                  <p className="pDiscount">{Math.round(((totalPrice - discountPrice) / totalPrice) * 100)}% OFF</p>
+                </div>
+              </div>
+            ) : (
+              <p className="pPrice">$ {totalPrice.toLocaleString()}</p>
+            )}
           </section>
           <section className="section-totalPrice section-totalPrice-buttons">
             <button onClick={handleEmptyCart} className="empty-cart">
