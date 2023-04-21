@@ -1,4 +1,4 @@
-const { PurchaseOrder, ShoppingCart, Product, User } = require("../db");
+const { PurchaseOrder, User } = require("../db");
 
 module.exports = {
   createPurchaseOrder: async function (userId) {
@@ -10,7 +10,6 @@ module.exports = {
       });
 
       if (!user) return "user not found";
-      let totalPrice = 0;
 
       const cart = await user.getShoppingCart();
       const cartProducts = await cart.getProducts();
@@ -21,9 +20,7 @@ module.exports = {
 
         return product;
       });
-      for (let product of cartProducts) {
-        totalPrice += product.ShoppingCart_Products.quantity * product.price;
-      }
+      const totalPrice = cart.discountPrice
       const newOrder = await user.createPurchaseOrder({
         totalPrice: totalPrice,
       });
@@ -45,6 +42,8 @@ module.exports = {
       return error;
     }
   },
+
+
   getAllPurchaseOrders: async function () {
     try {
       const allOrders = await PurchaseOrder.findAll();
