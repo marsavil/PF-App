@@ -64,7 +64,7 @@ function DiscountCodeInput({ userId, handleCart }) {
         <img src={discountIcon} alt="" />
         <p>Ingresar código de cupón</p>
       </button>
-      <Modal show={showModal} onHide={handleClose} size="s">
+      <Modal show={showModal} onHide={handleClose} size="s" className="modal">
         <Modal.Header closeButton>
           <Modal.Title>Ingresa tu código de descuento:</Modal.Title>
         </Modal.Header>
