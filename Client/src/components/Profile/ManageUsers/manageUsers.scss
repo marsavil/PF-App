@@ -1,5 +1,4 @@
 .manageUsers {
-  border: 1px solid var(--storm-gray-light-matte);
   padding: 20px;
   .admin-users {
     display: flex;
@@ -16,8 +15,11 @@
           display: grid;
           grid-template-columns: 1fr 1fr 1fr 1fr;
           justify-self: center;
+          margin: 10px 0;
           span {
             font-weight: bold;
+            margin-left: 10px;
+            width: 100px;
           }
         }
         .button-section {
