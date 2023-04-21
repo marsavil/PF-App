@@ -9,7 +9,8 @@ import Detail from "./components/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 import Cart from "./components/Cart/Cart";
 import Error404 from "./components/Error404/Error404";
-import Payment from "./components/Payment/payment";
+import Accepted  from "./components/Payment/Accepted"
+import Rejected from "./components/Payment/Rejected";
 import AddProduct from "./components/Profile/AddProduct/AddProduct";
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/accepted" element={<Accepted />} />
+        <Route path="/rejected" element={<Rejected />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>

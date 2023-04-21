@@ -54,6 +54,26 @@ module.exports = {
     });
     return product;
   },
+  productByName: async (req, res) => {
+    const { name } = req.params
+    console.log(name)
+    try {
+      const product  = await Product.findOne({
+        where: {
+          name
+        }
+      })
+      if (product){
+        return res.status(200).json(product)
+      }else{
+        return res.send({})
+      }
+      
+    } catch (error) {
+      return res.send("oops")
+    }
+    
+  },
   createProduct: async function (productData) {
 
     const verified = await Product.findOne({
