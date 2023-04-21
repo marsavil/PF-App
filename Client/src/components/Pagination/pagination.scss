@@ -30,15 +30,16 @@
   text-decoration: none;
   border: none;
   transition: all 0.2s ease;
+  font-size: 15px;
 }
 
 .linksPagination ul li button:hover {
   background-color: var(--steel-blue-matte);
-  color: var(--light-color);
+  color: #fcfcfc;
   cursor: pointer;
 }
 
 .linksPagination ul li button.active {
   background-color: var(--steel-blue-matte);
-  color: var(--light-color);
+  color: #fcfcfc;
 }
