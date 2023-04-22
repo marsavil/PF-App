@@ -54,7 +54,7 @@ const Accepted = () => {
     };
 
     handleAccepted();
-  }, [cartProducts, dispatch, id, navigate]);
+  }, []);
 
   return (
     <div className="payment-status">
