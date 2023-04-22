@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./addProduct.scss";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
 
@@ -67,94 +66,91 @@ const AddProduct = () => {
   };
 
   return (
-    <>
-      <ToastContainer />
-      <div className="add-product">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Nombre:</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="price">Precio:</label>
-            <input
-              type="number"
-              name="price"
-              id="price"
-              value={formData.price}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="image">Imagen:</label>
+    <div className="add-product">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Nombre:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="price">Precio:</label>
+          <input
+            type="number"
+            name="price"
+            id="price"
+            value={formData.price}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="image">Imagen:</label>
 
-            <input
-              type="file"
-              name="image"
-              id="image"
-              value={uploadedImage}
-              onChange={uploadImage}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="brand">Marca:</label>
-            <input
-              type="text"
-              name="brand"
-              id="brand"
-              value={formData.brand}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="stock">Cantidad en Stock:</label>
-            <input
-              type="number"
-              name="stock"
-              id="stock"
-              value={formData.stock}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="category">Categoría:</label>
-            <input
-              type="text"
-              name="category"
-              id="category"
-              value={formData.category}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group form-group-description">
-            <label htmlFor="description">Descripción:</label>
-            <textarea
-              name="description"
-              id="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <img src={formData.image} alt="" width={"100px"} />
-            Preview
-          </div>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? (
-              <BeatLoader color={"#ffffff"} size={7} />
-            ) : (
-              "Agregar Producto"
-            )}
-          </button>
-        </form>
-      </div>
-    </>
+          <input
+            type="file"
+            name="image"
+            id="image"
+            value={uploadedImage}
+            onChange={uploadImage}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="brand">Marca:</label>
+          <input
+            type="text"
+            name="brand"
+            id="brand"
+            value={formData.brand}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="stock">Cantidad en Stock:</label>
+          <input
+            type="number"
+            name="stock"
+            id="stock"
+            value={formData.stock}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="category">Categoría:</label>
+          <input
+            type="text"
+            name="category"
+            id="category"
+            value={formData.category}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group form-group-description">
+          <label htmlFor="description">Descripción:</label>
+          <textarea
+            name="description"
+            id="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <img src={formData.image} alt="" width={"100px"} />
+          Preview
+        </div>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <BeatLoader color={"#ffffff"} size={7} />
+          ) : (
+            "Agregar Producto"
+          )}
+        </button>
+      </form>
+    </div>
   );
 };
 
