@@ -8,6 +8,10 @@
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+    h3 {
+      font-size: 22px;
+      margin-top: 20px;
+    }
     .cards {
       margin-top: 15px;
       padding: 10px;
@@ -60,6 +64,10 @@
     flex-direction: column;
     align-items: center;
     margin: 0 30px;
+    h3 {
+      font-size: 22px;
+      margin-top: 20px;
+    }
   }
 
   .panel-admin {
@@ -85,7 +93,7 @@
       }
     }
   }
-} 
-.option-title{
-  margin-left: 36%
+}
+.option-title {
+  margin-left: 36%;
 }

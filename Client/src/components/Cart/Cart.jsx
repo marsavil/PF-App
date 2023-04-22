@@ -13,8 +13,12 @@ const Cart = () => {
 
   const API_URL = "http://localhost:3001/cart/";
 
-  const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
-  const { totalPrice, discountPrice } = useSelector((state) => state.cartDetail);
+  const cartProducts = useSelector((state) =>
+    state.cartProducts.sort((a, b) => a.id - b.id)
+  );
+  const { totalPrice, discountPrice } = useSelector(
+    (state) => state.cartDetail
+  );
 
   const [hasDiscount, setHasDiscount] = useState(false);
 
@@ -61,20 +65,34 @@ const Cart = () => {
         <div className="cart-products">
           {cartProducts?.map((product) => (
             <section className="cart-product" key={product.id}>
-              <button className="cart-delete-button" onClick={() => handleProduct(product.id, "del")}>
+              <button
+                className="cart-delete-button"
+                onClick={() => handleProduct(product.id, "del")}
+              >
                 Eliminar
               </button>
-              <img className="cart-product-image" src={product.image} alt={product.name} />
+              <img
+                className="cart-product-image"
+                src={product.image}
+                alt={product.name}
+              />
               <Link to={`/detail/${product.id}`} className="cart-product-name">
                 {product.name}
               </Link>
               <div className="cart-product-quantity">
-                <button onClick={() => handleProduct(product.id, "sub")}>-</button>
+                <button onClick={() => handleProduct(product.id, "sub")}>
+                  -
+                </button>
                 <h4>{product.ShoppingCart_Products.quantity}</h4>
-                <button onClick={() => handleProduct(product.id, "add")}>+</button>
+                <button onClick={() => handleProduct(product.id, "add")}>
+                  +
+                </button>
               </div>
               <h3 className="cart-product-price">
-                $ {(product.ShoppingCart_Products.quantity * product.price).toLocaleString()}
+                ${" "}
+                {(
+                  product.ShoppingCart_Products.quantity * product.price
+                ).toLocaleString()}
               </h3>
             </section>
           ))}
@@ -83,10 +101,17 @@ const Cart = () => {
             <p className="labelPrice">Precio total: </p>
             {hasDiscount ? (
               <div className="divDiscount">
-                <p className="pPriceWithDiscount">$ {totalPrice.toLocaleString()}</p>
+                <p className="pPriceWithDiscount">
+                  $ {totalPrice.toLocaleString()}
+                </p>
                 <div>
                   <p className="pPrice">$ {discountPrice.toLocaleString()}</p>
-                  <p className="pDiscount">{Math.round(((totalPrice - discountPrice) / totalPrice) * 100)}% OFF</p>
+                  <p className="pDiscount">
+                    {Math.round(
+                      ((totalPrice - discountPrice) / totalPrice) * 100
+                    )}
+                    % OFF
+                  </p>
                 </div>
               </div>
             ) : (
