@@ -88,10 +88,10 @@ const Detail = () => {
                 <p className="p-return">Compra protegida</p>
               </div>
               <div className="detail-description">
-                <h3>Características del producto</h3>
-                <h4>Categoría: {productDetail.category}</h4>
-                <h4>Marca: {productDetail.brand}</h4>
-                <h3>Descripción</h3>
+                <h2>Características del producto</h2>
+                <h3>Categoría: {productDetail.category}</h3>
+                <h3>Marca: {productDetail.brand}</h3>
+                <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
