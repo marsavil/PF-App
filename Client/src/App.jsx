@@ -9,7 +9,7 @@ import Detail from "./components/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 import Cart from "./components/Cart/Cart";
 import Error404 from "./components/Error404/Error404";
-import Accepted  from "./components/Payment/Accepted"
+import Accepted  from "./components/Payment/PaymentAccepted"
 import Rejected from "./components/Payment/Rejected";
 import AddProduct from "./components/Profile/AddProduct/AddProduct";
 

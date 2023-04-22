@@ -11,18 +11,6 @@ const payment = async (req, res) => {
   const preference = await {
     items: products.map((p) => {
 
-      const update = async () => {
-        const prod = await Product.findOne({
-        where :{
-          id: p.id
-        }
-      })
-      const quant = prod.stock - p.ShoppingCart_Products.quantity
-      prod.stock = quant
-      prod.save()
-      //emptyShoppingCart(id)
-    }
-    update()
       return {
         id: p.id,
         title: p.brand + " " + p.category,
