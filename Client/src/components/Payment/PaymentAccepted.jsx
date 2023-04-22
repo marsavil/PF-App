@@ -6,6 +6,7 @@ import { getCart } from "../../redux/actions/actions";
 
 
 const Accepted = () => {
+  const HOST = "http://localhost:3001/"
   const API_URL = "http://localhost:3001/cart/";
   const API_PRODUCTS_URL = "http://localhost:3001/products/"
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
@@ -33,6 +34,8 @@ const Accepted = () => {
             await axios.put(`${API_PRODUCTS_URL}${p.id}`, productEdit);
           })
         );
+        // Crear orden de compra
+        await axios.post(`${HOST}order/create/${id}`)
 
         // Vaciar carrito
         await axios.post(`${API_URL}empty/${id}`);
