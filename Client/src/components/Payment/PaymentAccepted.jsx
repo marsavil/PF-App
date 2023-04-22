@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
-
+import accepted from "/assets/img/accepted.gif"
+import "./payment.scss";
 
 const Accepted = () => {
-  const HOST = "http://localhost:3001/"
+  const HOST = "http://localhost:3001/";
   const API_URL = "http://localhost:3001/cart/";
-  const API_PRODUCTS_URL = "http://localhost:3001/products/"
+  const API_PRODUCTS_URL = "http://localhost:3001/products/";
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Accepted = () => {
           })
         );
         // Crear orden de compra
-        await axios.post(`${HOST}order/create/${id}`)
+        await axios.post(`${HOST}order/create/${id}`);
 
         // Vaciar carrito
         await axios.post(`${API_URL}empty/${id}`);
@@ -56,8 +57,9 @@ const Accepted = () => {
   }, [cartProducts, dispatch, id, navigate]);
 
   return (
-    <div>
+    <div className="payment-status">
       <h1>Tu compra se ha completado exitosamente</h1>
+      <img src={accepted} alt="Gif" />
     </div>
   );
 };

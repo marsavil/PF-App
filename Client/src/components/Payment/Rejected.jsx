@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import "./payment.scss";
 
 const Rejected = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="payment-status">
       <h1>Tu pago ha sido rechazado</h1>
       {setTimeout(() => {
         navigate("/home");
