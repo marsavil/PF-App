@@ -142,8 +142,6 @@ module.exports = {
       } catch (error) {
           return { error: 'Server error' };
       }
-      
-
-  }
+  },
 
 };
