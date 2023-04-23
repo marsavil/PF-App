@@ -17,6 +17,12 @@ const AddProduct = () => {
 
   const [isLoading, setLoading] = useState(false);
 
+  // Local
+  //const URL = "http://localhost:3001/products"
+  // Deploy
+  const URL = "https://pf-app-production.up.railway.app/products"
+
+  // Cloudinary
   var uploadedImage = "";
   const uploadImage = (e) => {
     const data = new FormData();
@@ -36,6 +42,7 @@ const AddProduct = () => {
         });
       });
   };
+  ///////////
 
   const handleChange = (e) => {
     setFormData({
@@ -49,7 +56,7 @@ const AddProduct = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3001/products",
+        URL,
         formData
       );
       if (response) {

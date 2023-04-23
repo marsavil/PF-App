@@ -18,7 +18,11 @@ const Detail = () => {
   const { id } = useParams();
   const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
-
+  // Local
+  //const URL = "http://localhost:3001/cart/add"
+  // Deploy
+  const URL = "https://pf-app-production.up.railway.app/"
+  
   const buyProduct = [
     {
       ...productDetail,
@@ -34,7 +38,7 @@ const Detail = () => {
 
   const handleAddToCart = async () => {
     try {
-      await axios.post("http://localhost:3001/cart/add", {
+      await axios.post(URL, {
         productId: productDetail.id,
         userId,
       });

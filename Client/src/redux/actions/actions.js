@@ -3,7 +3,13 @@ import axios from "axios";
 import { GET_USER, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_CART, ALL_FILTERS } from "./actions-types";
 import qs from "query-string";
 
-const API_URL = "https://pf-app-production.up.railway.app";
+
+// Local
+//const API_URL = "http://localhost:3001";
+
+// Deploy
+const API_URL = "pf-app-production.up.railway.app";
+
 
 export const loginUser = (user, url) => {
   return async (dispatch) => {
