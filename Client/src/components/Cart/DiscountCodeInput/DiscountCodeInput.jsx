@@ -13,6 +13,11 @@ function DiscountCodeInput({ userId, handleCart }) {
   const [isLoading, setLoading] = useState(false);
 
   const [errorDiscount, setErrorDiscount] = useState(false);
+  
+  // Local
+  const URL = "http://localhost:3001/cart/desc"
+  // Depeloy
+  //const URL = "https://pf-app-production.up.railway.app/"
 
   function handleInputChange(e) {
     setString(e.target.value);
@@ -27,7 +32,7 @@ function DiscountCodeInput({ userId, handleCart }) {
         setLoading(false);
         return;
       }
-      const response = await axios.post("http://localhost:3001/cart/desc", {
+      const response = await axios.post(URL, {
         string,
         userId,
       });
