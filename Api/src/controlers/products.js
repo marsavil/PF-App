@@ -54,9 +54,46 @@ module.exports = {
     });
     return product;
   },
+  productByName: async (req, res) => {
+    const { name } = req.params
+    console.log(name)
+    try {
+      const product  = await Product.findOne({
+        where: {
+          name
+        }
+      })
+      if (product){
+        return res.status(200).json(product)
+      }else{
+        return res.send({})
+      }
+      
+    } catch (error) {
+      return res.send("oops")
+    }
+    
+  },
   createProduct: async function (productData) {
-    const newProduct = await Product.create(productData);
-    return newProduct;
+
+    const verified = await Product.findOne({
+      where:{
+        name: productData.name
+      }
+    })
+    if (verified){
+      verified.brand = productData.brand;
+      verified.price = productData.price;
+      verified.image = productData.image;
+      verified.description = productData.description;
+      verified.stock = verified.stock + productData.stock;
+      verified.disable = false;
+      verified.save();
+    }else {
+      const newProduct = await Product.create(productData);
+      return newProduct;
+    }
+
   },
   updateProduct: async function (id, updatedData) {
     const [rowsUpdated, [updatedProduct]] = await Product.update(updatedData, {
@@ -67,6 +104,20 @@ module.exports = {
       throw new Error(`No se pudo actualizar el producto con ID ${id}`);
     }
     return updatedProduct;
+  },
+  logicDeleteProduct: async function (id) {
+    try {
+      const product = await Product.findByPk(id);
+      if (!product) {
+        return { error: 'Product not found' };
+      }
+      product.disable = true
+      await product.save();
+      return { message: 'Product hided successfully' };
+    } catch (error) {
+      console.error(error);
+      return { error: 'Server error' };
+    }
   },
   deleteProduct: async function (id) {
     try {
@@ -91,8 +142,6 @@ module.exports = {
       } catch (error) {
           return { error: 'Server error' };
       }
-      
-
-  }
+  },
 
 };

@@ -1,5 +1,6 @@
 import React from "react";
-import { brands } from "../../functions/constants";
+import { brands } from "../../../functions/constants";
+import './filterBrand.scss'
 
 const FilterBrand = ({ filterState, setFilterState, setCurrentPage }) => {
   const handleBrandChange = (e) => {
@@ -13,11 +14,11 @@ const FilterBrand = ({ filterState, setFilterState, setCurrentPage }) => {
 
   return (
     <div className="filterBrand">
-      <select value={filterState.brand} onChange={handleBrandChange}>
-        <option value="">Seleccione una marca</option>
+      <select className="option" value={filterState.brand} onChange={handleBrandChange}>
+        <option className="option" value="">Seleccione una marca</option>
         {brands.map((brand, index) => {
           return (
-            <option key={index} value={brand}>
+            <option className="option" key={index} value={brand}>
               {brand}
             </option>
           );

@@ -69,6 +69,23 @@ module.exports = {
       </div>
     `;
   },
+  templateChangePassword: (email, token) => {
+    return `
+          <head>
+              <link rel="stylesheet" href="./style.css">
+          </head>
+          
+          <div id="email___content">
+              <img src="https://www.flickr.com/photos/197399024@N05/52623616952/in/dateposted-public/" alt="">
+              <h2>Hola ${email}</h2>
+              <p>Has realizado un cambio de contraseña en ElectroShop. Si tu no realizaste esta acción, ignora este mensaje.</p>
+              <a
+                  href="http://localhost:3001/user/confirmchange/${token}"
+                  target="_blank"
+              >Confirma el cambio de tu contraseña</a>
+          </div>
+        `;
+  },
   templateAdminInvitation: (email, token) => {
     return `
           <head>
@@ -80,13 +97,13 @@ module.exports = {
               <h2>Hola ${email}</h2>
               <p>Has sido invitado a formar parate del equipo administrativo de Electro Shop</p>
               <a
-                  href="http://localhost:3000/login"
+                  href="http://localhost:3000/user/login"
                   target="_blank"
               >Te invitamos a iniciar sesión</a>
           </div>
         `;
   },
-  templateAdminSuspension: (email) => {
+  templateAdminSuspension: (email, sender) => {
     return `
           <head>
               <link rel="stylesheet" href="./style.css">

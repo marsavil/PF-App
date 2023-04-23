@@ -1,15 +1,13 @@
+import "./auth.scss";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { validateRegisterData } from "../../functions/validate";
 import { createUser } from "../../redux/actions/actions";
-import { useDispatch } from "react-redux";
-
-import "./auth.scss";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BeatLoader } from "react-spinners";
 
 const Register = () => {
-  const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
   const [dataRegister, setDataRegister] = useState({
     name: "",
     lastName: "",
@@ -21,15 +19,27 @@ const Register = () => {
 
   const [errors, setErrors] = useState({});
 
+  const [isLoading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { ...dataRegister };
     delete formData.confirmPassword;
-
-    dispatch(createUser(formData));
-
-    // navigate("/login");
+    setLoading(true);
+    try {
+      await createUser(formData);
+      toast.info(
+        "Registro exitoso. Por favor, revise su correo para validar su cuenta."
+      );
+    } catch (error) {
+      toast.error(`${error.message}`);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200);
+    }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDataRegister({
@@ -42,6 +52,7 @@ const Register = () => {
 
   return (
     <div className="authDiv">
+      <ToastContainer />
       <form className="authForm" onSubmit={handleSubmit}>
         <h1>Registro</h1>
         <input
@@ -136,7 +147,13 @@ const Register = () => {
           </p>
         )}
 
-        <button type="submit">Registrarse</button>
+        <button className="authButton" type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <BeatLoader color={"#ffffff"} size={7} />
+          ) : (
+            "Registrarse"
+          )}
+        </button>
         <p>
           ¿Ya tienes cuenta? <Link to="/login">Iniciar sesion</Link>
         </p>

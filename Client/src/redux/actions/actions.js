@@ -1,43 +1,54 @@
 import axios from "axios";
-import {
-  GET_USER,
-  GET_ALL_PRODUCTS,
-  GET_PRODUCT_DETAIL,
-  CLEAR_DETAIL,
-  ADD_TO_CART,
-  ALL_FILTERS,
-} from "./actions-types";
-import qs from "query-string"; // importar la biblioteca query-string
+
+import { GET_USER, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_CART, ALL_FILTERS } from "./actions-types";
+import qs from "query-string";
 
 // const API_URL = "http://localhost:3001";
 const API_URL = "https://pf-app-production.up.railway.app";
 
-export const getUser = (user) => {
+export const loginUser = (user, url) => {
   return async (dispatch) => {
     try {
-      let response = await axios.post(API_URL + "/user/login/log", user);
+      let response = await axios.post(API_URL + `/user/login/${url}`, user);
+      localStorage.setItem("userData", JSON.stringify(response.data));
       return dispatch({
         type: GET_USER,
         payload: response.data,
       });
     } catch (error) {
-      console.error("Error while fetching user:", error);
+      console.error("Error en la petición:", error);
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
+      } else {
+        console.error(error.message);
+        throw new Error("Error en la petición");
+      }
     }
   };
 };
 
-export const createUser = (user) => {
-  return async (dispatch) => {
-    try {
-      let response = await axios.post(API_URL + "/user", user);
-      return dispatch({
-        type: GET_USER,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error("Error while creating user:", error);
+export const createUser = async (user) => {
+  try {
+    const response = await axios.post(API_URL + "/user", user);
+    if (response.data.success) {
+    } else {
+      throw new Error(response.data.msg);
     }
-  };
+  } catch (error) {
+    console.error("Error while creating user:", error);
+    throw error;
+  }
+};
+
+export const getCart = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(API_URL + `/cart/user/${userId}`);
+    dispatch({ type: GET_CART, payload: response.data });
+  } catch (error) {
+    console.error("Error al obtener el carrito del usuario:", error);
+  }
 };
 
 export const getAllProducts = () => {
@@ -68,29 +79,9 @@ export function getProductDetail(id) {
   };
 }
 
-export const clearDetail = () => {
-  return {
-    type: CLEAR_DETAIL,
-  };
-};
-
-export const addToCart = (product) => {
-  return async (dispatch) => {
-    try {
-      let response = await axios.post(API_URL + "/cart", product);
-      return dispatch({
-        type: ADD_TO_CART,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error("Error while adding to cart:", error);
-    }
-  };
-};
-
 export function allFilters(payload) {
   const params = {
-    brand: payload.brand || null, 
+    brand: payload.brand || null,
     category: payload.category || null,
     search: payload.search || null,
   };
@@ -113,3 +104,17 @@ export function allFilters(payload) {
     }
   };
 }
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(API_URL + "/user");
+      return dispatch({
+        type: GET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error while fetching all users:", error);
+    }
+  };
+};

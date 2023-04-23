@@ -16,7 +16,7 @@
   }
 
   .authFormLogin {
-    margin-top: 8%;
+    margin-top: 4%;
   }
 
   .authForm h1 {
@@ -35,18 +35,17 @@
     padding: 0 10px;
   }
 
-  .authForm button {
+  .authButton {
     font-size: 22px;
     font-weight: 700;
-    color: var(--light-color);
+    color: #fcfcfc;
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
     padding: 5px 50px;
+    margin-bottom: 15px;
     border: 1px solid var(--steel-blue-matte);
-    transition: 0.3s ease-in-out;
-  }
-
-  .authForm button:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .authForm p {
@@ -66,10 +65,81 @@
     color: var(--steel-blue-matte);
     margin-left: 5px;
   }
-  .error{
+  .error {
     color: red;
     font-size: 12px;
     font-weight: 700;
     margin: 5px 0;
+  }
+
+  .pAuth {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center !important;
+    font-weight: 400 !important;
+  }
+
+  // que el parrafo pAuth tenga lineas al costado
+  .pAuth::before {
+    content: "";
+    display: inline-block;
+    width: 100px;
+    height: 1px;
+    background-color: var(--steel-blue-matte);
+    margin-right: 10px;
+  }
+
+  .pAuth::after {
+    content: "";
+    display: inline-block;
+    width: 100px;
+    height: 1px;
+    background-color: var(--steel-blue-matte);
+    margin-left: 10px;
+  }
+
+  .loginAuth0 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0 5px 0;
+
+    button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--steel-blue-matte) !important;
+      border-radius: 5px !important;
+      width: 200px;
+      padding: 2px 10px !important;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        padding-right: 0 !important;
+        translate: -5px;
+      }
+
+      span {
+        translate: -10px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 18px;
+        padding: 0 !important;
+      }
+      .loading {
+        margin-left: 20px;
+      }
+    }
   }
 }

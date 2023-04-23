@@ -1,10 +1,18 @@
 import "./navbar.scss";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/assets/img/logo.png";
-import DarkMode from "../DarkMode/DarkMode";
+import DarkMode from "./NavbarButtons/DarkMode/DarkMode";
+import ProfileButton from "./NavbarButtons/ProfileButton";
+import LogoutButton from "./NavbarButtons/LogoutButton";
+import CartButton from "./NavbarButtons/CartButton";
 
 const Navbar = () => {
-  const token = false;
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
+  const { token, id: userId } =
+    JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const handleProductsClick = () => {
     const productsRef = document.querySelector(".products");
@@ -19,20 +27,24 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar__links">
-        <Link to="/">Inicio</Link>
-        <Link to="/home" onClick={handleProductsClick}>
+        <Link to="/" className="links">
+          Inicio
+        </Link>
+        <Link to="/home" className="links" onClick={handleProductsClick}>
           Productos
         </Link>
         {token ? (
-          <Link to="/login" className="desconectarse">
-            Cerrar sesion
-          </Link>
+          <div className="token_true">
+            <ProfileButton darkMode={darkMode} setDarkMode={setDarkMode} />
+            <CartButton darkMode={darkMode} userId={userId} />
+            <LogoutButton />
+          </div>
         ) : (
           <Link to="/login" className="ingresar">
-            Iniciar sesion
+            Iniciar sesión
           </Link>
         )}
-        <DarkMode />
+        <DarkMode darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
     </div>
   );

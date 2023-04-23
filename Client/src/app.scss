@@ -12,8 +12,12 @@
   --silver-matte: #c0c0c0;
   --light-gray-matte: #d3d3d3;
   --storm-gray-matte: #5d5d5d;
+  --storm-gray-medium-matte: #666;
+  --storm-gray-light-matte: #999;
   --success-color: #00bd00;
   --error-color: #ff0000;
+  --modal-red-button: #d9534f;
+  --modal-yellow-button: #dbb657;
 }
 
 body {
@@ -34,9 +38,45 @@ body {
   font-size: 14px;
   font-weight: bold;
   transition: all 0.5s ease;
+}
+button {
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ------------------------------ MODAL ------------------------------ */
+
+.modal-content {
+  background-color: var(--white-color);
+  color: var(--dark-color);
+
+  .modal-header {
+    background-color: var(--white-color);
+  }
+
+  .modal-body {
+    input,
+    textarea {
+      background-color: var(--white-color);
+      color: var(--dark-color);
+    }
+  }
+
+  .modal-footer {
+    button {
+      color: var(--dark-color);
+
+      &:hover {
+        color: var(--dark-color);
+      }
+    }
+  }
 }
