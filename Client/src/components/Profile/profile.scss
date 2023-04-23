@@ -7,16 +7,15 @@
   .data {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    margin: 0 30px;
     h3 {
       font-size: 22px;
       margin-top: 20px;
     }
     .cards {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid var(--light-gray-matte);
-      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0 0 20%;
       input {
         margin-bottom: 15px;
         border: none;
@@ -37,6 +36,7 @@
     }
     h4 {
       color: rgba(0, 0, 0, 0.8);
+      font-size: 18px;
     }
     p {
       padding: 0;
