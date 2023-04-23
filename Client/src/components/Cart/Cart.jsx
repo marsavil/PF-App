@@ -11,7 +11,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
-  const API_URL = "http://localhost:3001/cart/";
+  const API_URL = "https://pf-app-production.up.railway.app/cart";
 
   const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
   const { totalPrice, discountPrice } = useSelector((state) => state.cartDetail);
