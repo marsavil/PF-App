@@ -15,9 +15,10 @@ function DiscountCodeInput({ userId, handleCart }) {
   const [errorDiscount, setErrorDiscount] = useState(false);
   
   // Local
-  const URL = "http://localhost:3001/cart/desc"
+  //const URL = "http://localhost:3001/cart/desc"
+  
   // Depeloy
-  //const URL = "https://pf-app-production.up.railway.app/"
+  const URL = "https://pf-app-production.up.railway.app/"
 
   function handleInputChange(e) {
     setString(e.target.value);

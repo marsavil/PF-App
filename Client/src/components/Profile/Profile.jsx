@@ -22,6 +22,10 @@ const Profile = () => {
   const [editedLastName, setEditedLastName] = useState(lastName);
 
   const [isLoading, setLoading] = useState(false);
+  // Local
+  //const URL = "http://localhost:3001/user/update"
+  // Deploy
+  const URL = "https://pf-app-production.up.railway.app/user/update"
 
   const saveChanges = async () => {
     const updatedUserData = {
@@ -32,7 +36,7 @@ const Profile = () => {
     };
     setLoading(true);
     try {
-      await axios.put("http://localhost:3001/user/update", updatedUserData);
+      await axios.put(URL, updatedUserData);
       setTimeout(() => {
         setEditMode(false);
         setEditedName(editedName);

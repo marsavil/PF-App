@@ -7,9 +7,16 @@ import accepted from "/assets/img/accepted.gif"
 import "./payment.scss";
 
 const Accepted = () => {
-  const HOST = "http://localhost:3001/";
-  const API_URL = "http://localhost:3001/cart/";
-  const API_PRODUCTS_URL = "http://localhost:3001/products/";
+  // Local
+  //const HOST = "http://localhost:3001/";
+  //const API_URL = "http://localhost:3001/cart/";
+  //const API_PRODUCTS_URL = "http://localhost:3001/products/";
+  
+  // Deploy
+  const HOST = "https://pf-app-production.up.railway.app/";
+  const API_URL = "https://pf-app-production.up.railway.app/cart/";
+  const API_PRODUCTS_URL = "https://pf-app-production.up.railway.app/products/";
+
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const dispatch = useDispatch();

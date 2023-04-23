@@ -3,9 +3,14 @@ import axios from "axios";
 
 const PurchaseOrderButton = ({products, user}) => {
 
+  // Local
+  //const URL = "http://localhost:3001/payment"
+  // Deploy
+  const URL = "https://pf-app-production.up.railway.app/payment"
+
   const handlePayment = () => {
     axios
-      .post("http://localhost:3001/payment", { items: [...products], userId: user})
+      .post(URL, { items: [...products], userId: user})
       .then((res) => {
         window.location.href = res.data.response.body.init_point;
       });
