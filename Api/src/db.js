@@ -8,22 +8,22 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 //Conexion  a la Base de Datos
 
 //Local
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false,
-  native: false,
-  define: {
-    timestamps: false,
-  },
-});
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+//   logging: false,
+//   native: false,
+//   define: {
+//     timestamps: false,
+//   },
+// });
 
 //Deploy
-// const sequelize = new Sequelize(DB_DEPLOY,{
-//     logging: false,
-//     native: false,
-//     define: {
-//     timestamps: false
+const sequelize = new Sequelize(DB_DEPLOY,{
+    logging: false,
+    native: false,
+    define: {
+    timestamps: false
 
-// }})
+}})
 
 const basename = path.basename(__filename);
 
